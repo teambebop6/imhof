@@ -1,6 +1,7 @@
 # imhof
 
-#### Run
-yarn install
-git secret reveal
-yarn start
+Run with:
+
+    yarn install
+    git secret reveal
+    yarn start
