@@ -1,0 +1,102 @@
+<% extend 'layouts/home.ect' %>
+
+<div class="ui two column row home">
+
+  <div class="column">
+    <h2><span>Agenda</span></h2>
+
+    <% if @agenda?.length : %>
+    <div class="agenda-body">
+      <div class="header-left"></div>
+      <table class="ui celled table agenda">
+        <thead>
+          <tr>
+            <th>Datum</th>
+            <th>Bezeichnung</th>
+            <th>Beginn</th>
+            <th>Ende</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <% 
+             monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni",
+             "Juli", "August", "Septempber", "Oktober", "November", "Dezember"
+             ];
+
+             dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+
+             currentMonth = "";
+             %>
+             <div class="agenda-body"><table><tbody>
+                   <% for item in @agenda: %>
+                   <% if currentMonth != monthNames[item.from.getMonth()] : %>
+                   <% currentMonth = monthNames[item.from.getMonth()]; %>
+                 </tbody></table></div>
+
+                 <div class="agenda-body">
+                   <h3><%- currentMonth %> <%- item.from.getFullYear() %></h3>
+                   <table class="ui table agenda">
+                     <tbody>
+                       <% end %> 
+
+                       <tr>
+                         <td>
+                           <%- dayNames[item.from.getDay()] %>, <%- item.from.getDate() %>.
+
+                         </td>
+                         <td>
+                           <%- item.title %>
+                         </td>
+                         <% getMinutesFormatted = (minutes) -> if minutes < 10 then minutes = "0" + minutes else minutes %>
+                         <td>
+                           <% if not item.allday: %>
+                           <%- item.from.getHours() %>:<%- getMinutesFormatted(item.from.getMinutes()) %>
+                           <% end %>
+                         </td>
+                         <td>
+                           <% if not item.allday: %>
+                           <%- item.until.getHours() %>:<%- getMinutesFormatted(item.until.getMinutes()) %>
+                           <% end %>
+                         </td>
+                       </tr>
+                       <% end %>
+                     </tbody>
+                   </table>
+                 </div>
+                 <% else: %>
+                 <p>Die Agenda ist momentan leer.</p>
+                 <% end %>
+
+
+                 <h2><span>Facebook News</span></h2>
+
+                 <div class="fb-page" data-href="https://www.facebook.com/imhofweine" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/imhofweine" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/imhofweine">Facebook News werden geladen...</a></blockquote></div>
+
+  </div>
+  <div class="column empfehlung">
+    <h2><span>Empfehlung des Hauses</span></h2>
+
+    <div class="ui stackable grid">
+      <div class="four wide column img">
+        <a href="/shop">
+          <img id="empfehlung_img" height="325" width="97" src="/images/items/blauburgunder_rose_2.jpg" class="ui itemimage" />
+        </a>
+      </div>
+      <div class="twelve wide column">
+        <div class="title clearfix">
+          <h3>Sommerzeit - Grillzeit</h3>
+        </div>
+        <div class="stackable two column grid description">
+          <div class="column">
+            <p>
+            Jetzt, in der heissen Jahreszeit empfehlen wir Ihnen unseren Storchenäschtler Blauburgunder rosé. Kühl und fruchtig passt er ideal zu Grilladen und zu einem feinen Apéro.                  </p>
+          </div>
+        </div>
+        <p class="footnote"><a class="link" href="/shop">zum Shop</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+

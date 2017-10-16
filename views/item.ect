@@ -1,0 +1,61 @@
+<% extend 'layouts/main.ect' %>
+
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/shop.css" type="text/css" />
+<% end %>
+
+<% block 'scripts' : %>
+<script src="/shop.bundle.js"></script>
+<% end %>
+
+<% if @product.avatar : %>
+<img src="/products/<%= @product.avatar.filename %>" class="ui centered small image" />
+<% end %>
+
+
+<div class="ui grid product-details">
+  <div class="centered row">
+    <h2 class="ui header title"><%= @product.title %></h2>
+  </div>
+  <div class="row">
+    <div class="twelve wide column">
+      <h4>Beschreibung</h4>
+      <div>
+        <%= @product.description %>
+      </div>
+    </div>
+    <div class="four wide column">
+
+
+      <h4>Preis</h4>
+      <p><span><%= @product.price %>.- / Stk.</span></p>
+
+      <form class="ui form buy-item">
+        <div class="field">
+          <p><strong>Menge:</strong></p>
+          <div class="ui buttons">
+            <button class="ui icon button subtract" data-id="<%= @product._id %>">
+              <i class="minus icon"></i>
+            </button>
+            <input type="text" id="amount-<%= @product._id %>" class="ui input between-buttons" value="1" maxlength="3"></input>
+            <button class="ui icon button add" data-id="<%= @product._id %>">
+              <i class="plus icon"></i>
+            </button>
+          </div> 
+        </div>
+        <div class="field">
+          <button class="ui fluid red button to-cart" data-id="<%= @product._id %>">
+            <i class="cart icon"></i>
+            In den Warenkorb
+          </button>
+        </div>
+        <div class="field">
+          <button class="ui fluid button insta-buy" data-id="<%= @product._id %>">
+            <i class="right arrow icon"></i>
+            Sofort kaufen
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<% extend 'admin/layouts/main' %>
+
+<h3>Events</h3>
+<div class="ui three column grid">
+  <div class="row">
+    <div class="column"><a class="ui button" href="./events/new">Neues event erstellen</a></div>
+  </div>
+  <div class="row">
+    <% for event in @events: %>
+      <p><%= event %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<% extend 'layouts/main.ect' %>
+
+<h1><%= @message %></h1>
+<h2><span><%= @error.status %></span></h2>
+<pre>
+  <%= @error.stack %>
+</pre>

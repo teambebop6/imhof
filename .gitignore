@@ -1,0 +1,19 @@
+public/dist
+
+bower_components/
+npm-debug.log
+node_modules/
+*.un~
+*.swp
+mongodb/connect.js
+.DS_Store
+.env
+public/products/
+
+#Semantic
+assets/vendor/Semantic-UI/node_modules
+assets/vendor/Semantic-UI/dist
+
+
+# hidden using git secret
+config.js

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+
+    <!-- Force Compatibility View -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans|Lobster' rel='stylesheet' type='text/css' />
+
+    <link rel="stylesheet" href="/commons.css" type="text/css" />
+
+    <% content 'stylesheets' %>
+    
+    <title>Imhof's Wein und Obstbau</title>
+  </head>
+  <body>
+    <div class="ui sidebar inverted vertical menu">
+      <% include 'partials/menu' %>
+    </div>
+
+    <div class="pusher">
+      <div class="cart-icon cart-out">
+        <div class="number-of-items-in-cart"></div>
+        <a href="/shop/cart"><i class="cart icon"></i></a>
+      </div>
+
+      <div class="ui page-top sticky fixed stackable page grid">
+        <div class="ui grid page-menu">
+          <div class="column page-nav">
+            <a href="/" class="return-home"></a>
+
+            <a class="toggle-sidebar"><i class="huge content icon"></i></a>
+
+            <div class="cart-icon cart-in">
+              <div class="number-of-items-in-cart"></div>
+              <a href="/shop/cart"><i class="cart icon"></i></a>
+            </div>
+            <div class="nav clearfix">
+              <% include 'partials/menu' %>
+            </div>
+          </div>
+        </div>
+        <% include 'partials/subnav' %>
+      </div>
+
+
+      <div class="filler" style="visibility:hidden;height:71px;margin-bottom:1rem;"></div>
+      
+      <div class="ui stackable page grid content">
+        <div class="ui row">
+          <div class="ui column content">
+            <div id="inner-content">
+              <!-- content goes here -->
+              <% content %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% include 'partials/footer' %>
+
+    </div>
+
+    <script src="/commons.js" charset="utf-8"></script>
+
+    <% content 'scripts' %>
+
+  </body>
+</html>

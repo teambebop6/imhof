@@ -1,0 +1,58 @@
+<% extend 'layouts/main.ect' %>
+
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/shop.css" type="text/css" />
+<% end %>
+
+<% block 'scripts' : %>
+<script src="/shop.bundle.js"></script>
+<% end %>
+
+<div class="shipping-info">
+  <h3>Wichtige Info zur Lieferung und Zahlung</h3>
+  <p>
+    Bei Lieferung gilt eine Mindestbestellmenge von <strong>6 Flaschen</strong>.  Wir liefern Ihre Bestellung persönlich innerhalb von <strong>ca. 10 Arbeitstagen</strong> oder gemäss Abmachung. 
+  <br />Bitte <a class="link" href="/contact">kontaktieren Sie uns</a>, wenn Sie es eilig haben, damit wir eine Lösung finden können. 
+  </p>
+  <p><strong>Eine Lieferung in die Region Basel ist gratis</strong>. Ausserhalb wird, sofern nichts anderes vereinbart, ein Transportkostenanteil von CHF 20.– verrechnet. Die Lieferung ist gratis für alle Bestellmengen über CHF 500.–. 
+  </p>
+
+  <p>Wir liefern <strong>gegen Rechnung</strong>, zahlbar innert 30 Tagen netto. Eine Abholung ist nach Absprache natürlich auch möglich. 
+  </p>
+</div>
+
+<% for cat in @cats : %>
+<h2 id="cat-<%- cat._id %>"><span><%- cat._id %></span></h2>
+<div class="ui stackable grid items-grid"><!--grid-->
+  <div class="four column row"><!--four column row-->
+    
+    <% for item in cat.items : %>
+
+    <div class="column shop-item">
+      <a href="/shop/<%= item._id %>">
+        <p class="item-title">
+          <%= item.title %>
+        </p>
+        <div class="item-picture">
+          <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+        </div>
+      </a>
+    </div>
+
+    <% end %>
+
+  </div>
+</div>
+<% end %>
+
+<!-- lammfleisch modal-->
+<div class="ui modal lammfleisch">
+  <i class="close icon"></i>
+  <div class="header">
+    Lammfleisch - Vorbestellung
+  </div>
+  <div class="content">
+    <div class="description"></div>
+  </div>
+</div>
+

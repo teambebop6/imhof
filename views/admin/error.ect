@@ -1,0 +1,15 @@
+<% extend 'admin/layouts/main' %>
+
+<div class="ui page grid">
+  <div class="row">
+    <div class="column">
+
+      <h1><%= @message %></h1>
+      <h2><span><%= @error.status %></span></h2>
+      <pre>
+        <%= @error.stack %>
+      </pre>
+
+    </div>
+  </div>
+</div>

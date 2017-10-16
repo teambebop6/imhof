@@ -1,0 +1,123 @@
+<% extend 'layouts/main.ect' %>
+
+<% block 'stylesheets' : %>
+<% end %>
+
+<% block 'scripts' : %>
+<script src="/buy.bundle.js" charset="utf-8"></script>
+<% end %>
+
+<div class="ui two column stackable grid">
+  <div class="column">
+    <h2><span>Ihr Einkauf:</span></h2>
+
+    <table class="ui very basic table">
+      <thead>
+        <th>Bild</th>
+        <th>Bezeichnung</th>
+        <th>Preis / Stk.</th>
+        <th>Anzahl</th>
+        <th>Subtotal</th>
+      </thead>
+      <tbody>
+        <% for item in @items: %>
+        <tr>
+          <td><img class="ui mini image" src="/products/<%= item.avatar %>"></td>
+          <td><%= item.title %></td>
+          <td><%= item.price %></td>
+          <td><%= item.amount %></td>
+          <td><%= item.subtotal %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="ui grid">
+      <div class="row">
+        <div class="column">
+          <h4 class="ui dividing header" id="total-price">Total (CHF): <%= @totalPrice %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <h3 id="order-title">Bitte füllen Sie folgende Felder aus:</h3>
+
+    <form id="order-submit-form" class="ui form">
+      <div class="ui error message">
+        <div class="header">Es ist ein Fehler aufgetreten.</div>
+        <p class="message"></p>
+      </div>
+      <div class="ui success message">
+        <div class="header">Vielen Dank!</div>
+        <p class="message"></p>
+      </div>
+
+      <div class="field">
+        <label>Vorname</label>
+        <input 
+           required 
+           id="firstName" 
+           type="text" 
+           name="firstName"
+           placeholder="Bitte geben Sie Ihren Vornamen ein."></input>
+      </div>
+      <div class="field">
+        <label>Nachname</label>
+        <input 
+           required 
+           id="lastName" 
+           type="text" 
+           name="lastName" 
+           placeholder="Bitte geben Sie Ihren Nachnamen ein."></input>
+      </div>
+      <div class="field">
+        <label>Adresse</label>
+        <input 
+           required 
+           id="address" 
+           type="text" 
+           name="address" 
+           placeholder="Bitte geben Sie Ihre Adresse ein."></input>
+      </div>
+      <div class="field">
+        <label>Email-Adresse</label>
+        <input 
+           required 
+           id="email" 
+           type="email" 
+           name="email" 
+           placeholder="Bitte geben Sie Ihre Email-Adresse ein."></input>
+      </div>
+      <div class="field">
+        <label>Telefonnummer</label>
+        <input 
+           required 
+           id="phone" 
+           type="text" 
+           name="phone"
+           placeholder="Bitte geben Sie Ihre Telefonnummer ein."></input>
+      </div>
+
+      <div class="field">
+        <div class="wine-and-dine">
+          <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+          <input type="text" name="wineAndDine">
+        </div>
+      </div>
+      <div class="field">
+        <button id="submit-order" class="ui button" type="submit">Senden</button>
+      </div>
+    </form>
+  </div>
+
+
+</div>
+<div class="ui modal agb"> 
+  <i class="close icon"></i>
+  <div class="header">
+    Allgemeine Geschäftsbedingungen
+  </div>
+  <div class="content"></div>
+</div>

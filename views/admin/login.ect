@@ -1,0 +1,27 @@
+<% extend 'layouts/main.ect' %>
+
+<div class="ui page grid" id="login_grid">
+  <div class="two column row">
+    <div class="centered column">
+      <h3 class="ui header">Dieser Bereich ist Passwortgeschützt</h3>
+      <p>
+        Bitte loggen Sie sich ein.
+      </p>
+      <form class="ui large form" id="login_form" method="POST" action="/admin/login">
+        <div class="ui segment">
+          <div class="field">
+            <input name="admin" type="text" placeholder="Username" required>
+          </div>
+          <div class="field">
+            <input name="password" type="password" placeholder="Passwort" required>
+          </div>
+          <a class="ui left floated button">
+            <i class="left arrow icon"></i>
+            Zurück
+          </a>
+          <button class="ui right floated primary button" type="submit">Einloggen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<% extend 'admin/layouts/main' %>
+
+<h3>Neues Event</h3>
+<div class="ui grid">
+  <div class="two column row">
+    <div class="column">
+      <form id="modify-event" class="ui form" method="post" action="./modify">
+        <div class="hidden field">
+          <input name="id" type="hidden"/>
+        </div>
+        <div class="field">
+          <label>Name</label>
+          <input name="name" type="text"/>
+        </div>
+        <div class="field">
+          <label>Beginn</label>
+          <input name="begin" type="text"/>
+        </div>
+        <div class="field">
+          <label>Ende</label>
+          <input name="end" type="text"/>
+        </div>
+        <button class="ui green fluid button" type="submit">Event speichern</button>
+      </form>
+    </div>
+  </div>
+</div>

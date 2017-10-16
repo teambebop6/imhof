@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>  <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>   <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+
+    <!-- viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='/commons.css' rel='stylesheet' type='text/css' />
+
+    <title>Imhof's Wein und Obstbau - Das Gute liegt so nah! - Home</title>
+  </head>
+  <body>
+
+    <!-- FABEBOOK TIMELINE -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.10";
+fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- END FACEBOOK TIMELINE -->
+
+    <div class="ui sidebar inverted vertical menu">
+      <% include 'partials/menu' %>
+    </div>
+    <div class="pusher">
+
+      <div class="cart-icon cart-out">
+        <div class="number-of-items-in-cart"></div>
+        <a href="/shop/cart"><i class="cart icon"></i></a>
+      </div>
+      <div class="ui page-top sticky fixed stackable page grid page-cont">
+
+        <div class="ui grid page-menu">
+          <div class="column page-nav">
+
+            <a href="/" class="home return-home"></a>
+            <a class="toggle-sidebar"><i class="huge content icon"></i></a>
+
+            <div class="cart-icon cart-in">
+              <div class="number-of-items-in-cart"></div>
+              <a href="/shop/cart"><i class="cart icon"></i></a>
+            </div>
+            <div class="nav clearfix">
+              <% include 'partials/menu' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filler" style="visibility:hidden;height:87px;margin:0;"></div>
+
+      <div class="ui page grid top-bg">
+        <div class="ui two column row logo-row">
+          <div class="alpha"></div>
+          <div class="logo"></div>
+        </div>
+      </div>
+      <div class="ui relaxed page grid page-cont">
+        <% content %>
+      </div>
+
+
+      <% include 'partials/footer' %>
+    </div>
+
+    <script src="/commons.js"></script>
+  </body>
+</html>

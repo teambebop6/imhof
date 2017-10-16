@@ -1,0 +1,131 @@
+<html>
+  <head></head>
+  <body>
+
+    <h2><span>Sehr geehrter Kunde, sehr geehrte Kundin</span></h2>
+    <p>Falls Sie interessiert an unseren Lammfleisch-Produkten sind, können Sie hier gemäss ihren Wünschen eine unverbindliche Vorbestellung machen. <br />Wir bieten <strong>Frischfleisch</strong> sowie eine kleine varierende Menge an <strong>tiefgefrorenem Fleisch</strong> an. Sobald ihre Vorbestellung bei uns eintrifft, werden wir unseren Lammfleisch-bestand überprüfen und uns dann telefonisch oder per Email bei Ihnen melden.</p>
+
+    <h3>Unsere Lammfleisch-Produkte:</h3>
+    <div class="lammfleisch-table table">
+      <div class="table-row">
+        <div class="table-cell">Mischpacket 1/2 Lamm (5 - 7 kg)</div>
+        <div class="table-cell">32.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Mischpacket 1 Lamm (8 - 12 kg)</div>
+        <div class="table-cell">32.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Gigot mit Knochen</div>
+        <div class="table-cell">35.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Rollbraten (ca. 800g)</div>
+        <div class="table-cell">32.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Voressen (ca. 350g)</div>
+        <div class="table-cell">32.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Gehacktes (ca. 350g)</div>
+        <div class="table-cell">18.70 per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Rack (Kottelets am Stück)</div>
+        <div class="table-cell">58.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Chops (Nierstück)</div>
+        <div class="table-cell">59.50 per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Filet</div>
+        <div class="table-cell">59.50 per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Bratwürste grob (2er-Pack)</div>
+        <div class="table-cell">3.– per Stück</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Bratwürste fein (2er-Pack)</div>
+        <div class="table-cell">2.70 per Stück</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Hamburger (2er-Pack)</div>
+        <div class="table-cell">3.– per Stück</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Ofen-Fleischkäse (ca. 550g)</div>
+        <div class="table-cell">10.– per Stück</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Trockenfleisch luftgetrocknet</div>
+        <div class="table-cell">70.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Indianerknebeli (div. Grössen)</div>
+        <div class="table-cell">65.– per Kilo</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Bündner Salsiz</div>
+        <div class="table-cell">6.50 per Stück</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">Bündner Knebeli</div>
+        <div class="table-cell">7.50 per Stück</div>
+      </div>
+    </div>
+    <h3>Ihre Nachricht:</h3>
+
+    <!-- Messages -->
+    <div class="ui success message">
+      <div class="header">Vielen Dank</div>
+      <p>Ihre Vorbestellung wurde erfolgreich abgeschickt. Wir werden uns so bald wie möglich bei Ihnen melden.</p>
+    </div>
+    <div class="ui error message">
+      <div class="header">Fehler</div>
+      <p class="error-message">Es ist ein Fehler aufgetreten!</p>
+    </div>
+
+    <div class="ui grid">
+      <div class="column">
+        <form class="ui form" id="commentForm">
+          <div class="field">
+            <label>Ihr Vorname</label>
+            <input class="ui input" name="firstName" type="text" required="" />
+          </div>
+          <div class="field">
+            <label>Ihr Nachname</label>
+            <input class="ui input" name="lastName" minlength="2" type="text" required>
+          </div>
+          <div class="field">
+            <label>Ihre Telefonnummer</label>
+            <input class="ui input" name="phone" minlength="10" type="text" required>
+          </div>
+          <div class="field">
+            <label>Ihre Email-Adresse</label>
+            <input class="ui input" name="email" type="text" required>
+          </div>
+          <div class="field">
+            <label>Ihre Nachricht</label>
+            <textarea name="text" required></textarea>
+          </div>
+          <div class="field">
+            <div class="wine-and-dine">
+              <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+              <input type="text" name="wineAndDine">
+            </div>
+          </div>
+
+          <div class="field">
+            <button id="send-preorder" class="ui button" type="submit">Absenden</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/commons.js"></script>
+    <script src="/lammfleisch.js"></script>
+  </body>
+</html>

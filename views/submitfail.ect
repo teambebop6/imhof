@@ -1,0 +1,15 @@
+<!-- Show this file as .html -->
+<% extend 'boilerplate.ect' %>
+
+
+    <% block 'stylesheets' : %>
+        <link rel="stylesheet" type="text/css" href=""/>
+    <% end %>
+    
+    <!-- Success messege sent to the client -->
+    <h2><span>Entschuldigung!</span></h2>
+       <p>Es ist ein Fehler beim Bestellungs-Vorgang aufgetreten. Das hätte nicht passieren dürfen. Bitte navigieren Sie zurück zum <a href="/shop/cart">Warenkorb</a> und versuchen Sie es erneut!</p>
+        
+    <% block 'scripts' : %>
+        <script src="/javascripts/js.cookie.js"></script>
+    <% end %>

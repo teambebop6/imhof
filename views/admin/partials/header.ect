@@ -1,0 +1,13 @@
+<div class="ui secondary pointing menu">
+  <div class="header item">
+    <a href="/admin">
+      <img src="/images/logo_@2x.png" class="ui tiny image">
+      <span>Dashboard</span>
+    </a>
+  </div>
+  <a class="item <% if (@active && @active.products) : %>active<% end %>" href="/admin/products/">Produkte</a>
+  <a class="item <% if (@active && @active.events) : %>active<% end %>" href="/admin/events/">Events</a>
+  <div class="right menu"><a class="ui item" href="/">Zurück zur Webseite</a>
+    <a class="ui item" href="/admin/logout">Logout</a>
+  </div>
+</div>

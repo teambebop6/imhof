@@ -1,0 +1,87 @@
+<% extend 'layouts/main.ect' %>
+
+<% block 'scripts': %>
+<script src="/contact.bundle.js" charset="utf-8"></script>
+<% end %>
+
+<% block 'stylesheets': %>
+<% end %>
+
+<h2><span>Kontaktieren Sie uns</span></h2>
+
+<div class="ui two column stackable grid">
+  <div class="ui column">
+    <form id="contact-form" class="ui form">
+      <div class="ui error message">
+        <div class="header">Es ist ein Fehler aufgetreten!</div>
+        <p class="message"></p>
+      </div>
+      <div class="ui success message">
+        <div class="header">Erfolg!</div>
+        <p class="message"></p>
+      </div>
+      <div class="field">
+        <label>Vorname</label>
+        <input type="text" name="firstName" minlength="2" placeholder="Ihr Vorname" required>
+      </div>
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="lastName" minlength="2" placeholder="Ihr Famillienname" required>
+      </div>
+      <div class="field">
+        <label>Telefon</label>
+        <input type="text" name="phone" placeholder="Ihre Telefonnummer">
+      </div>
+      <div class="field">
+        <label>Email-Adresse</label>
+        <input type="email" name="email" placeholder="Ihre Email-Adresse" required>
+      </div>
+      <div class="field">
+        <label>Ihre Nachricht</label>
+        <textarea name="text" required></textarea>
+      </div>
+      <div class="field">
+        <div class="wine-and-dine">
+          <p class="error">Bitte lassen Sie das folgende Feld leer.</p>
+          <input type="text" name="wineAndDine">
+        </div>
+      </div>
+      <button id="submit-form" class="ui primary button" type="submit">Senden</button>
+    </form>
+  </div>
+  <div class="column">
+    <div class="column contact-block">
+      <p><strong>Imhof Wein und Obstbau</strong></p>
+      <p class="address">Kienberghof 10 <br />4450 Sissach</p>
+      <p class="email">E-Mail: <a class="link" href="mailto:info@imhof-weine.ch">info@imhof-weine.ch</a></p>
+
+      <h3>Telefonnummern</h3>
+      <table class="ui table">
+        <tbody>
+          <tr>
+            <td>Home</td>
+            <td><a class="link" href="tel:+41619732222">061 973 22 22</a>
+            </td>
+
+          </tr>
+          <tr>
+            <td>Jeannette Imhof</td>
+            <td><a class="link" href="tel:+41787545468">078 754 54 68</a></td>
+          </tr>
+          <tr>
+            <td>Dieter Imhof</td>
+            <td><a class="link" href="tel:+41763724408">076 372 44 08</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Karte</h3>
+    <div class="row map-row">
+      <!-- Map -->
+      <div id="map"></div>
+      <div id='map-canvas' ></div>
+    </div>
+  </div>
+</div>
+

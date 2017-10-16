@@ -1,0 +1,57 @@
+<% extend 'admin/layouts/main' %>
+
+<div class="ui page grid">
+  <div class="row">
+    <div class="column">
+      <h3><% if @product._id : %>Produkt bearbeiten<% else : %>Neues Produkt <% end %></h3>
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="column">
+            <form id="modify-product" class="ui form" method="post" enctype="multipart/form-data" action="<%= @root %>/modify">
+              <div class="hidden field">
+                <input name="id" type="hidden" value="<%= @product._id %>" />
+              </div>
+              <div class="field">
+                <label>Titel</label>
+                <input name="title" type="text" value="<%= @product.title %>"/>
+              </div>
+              <div class="field">
+                <label>Preis</label>
+                <input name="price" type="text" value="<%= @product.price %>" />
+              </div>
+              <div class="field">
+                <label>Beschreibung</label>
+                <textarea name="description"><%= @product.description %></textarea>
+              </div>
+              <div class="field">
+                <label>Profile Picture</label>
+                <input name="avatar" type="file" />
+                <% if @product.avatar : %>
+                <img class="ui small image" src="/products/<%= @product.avatar.filename %>" /> 
+                <% end %>
+              </div>
+              <div class="field">
+                <div id="visible-checkbox" class="ui slider checkbox">
+                  <input id="visible" type="hidden" value="<%= @product.visible %>" />
+                  <input name="visible" type="checkbox">
+                  <label>Sichtbar?</label>
+                </div>
+              </div>
+              <div class="field" id="product-type-dropdown">
+                <input name="product-type-is-addition" id="product-type-is-addition" type="hidden" value="false" />
+                <input id="product-type" type="hidden" value="<% if @product.type: %><%= @product.type.name %><% end %>" />
+                <select name="type" class="ui search fluid dropdown">
+                  <option value="">Produkttyp</option>
+                  <% for cat in @cats : %>
+                  <option value="<%= cat.name %>"><%= cat.name %></option>
+                  <% end %>
+                </select>
+              </div>
+              <button class="ui green fluid button" type="submit">Produkt speichern</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

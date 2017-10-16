@@ -1,0 +1,34 @@
+mixin header(text)
+    .ui.page.grid
+        .row
+            .center.aligned.column
+                h1.ui.header= text
+
+
+mixin alert_modal(header, description, todos)
+    .ui.modal.notification_popups&attributes(attributes)
+        .container.content
+            .pic
+                i.check.circle.icon
+            .header=header
+            if description
+                .description=description
+            if todos
+                .todo
+                    each todo in todos
+                        .btn-container
+                            a.ui.button.primary.uppercase(href=todo.href)=todo.text
+
+mixin alert_page(header, description, todos)
+    .notification_popups
+        .container.content
+            .pic
+                i.check.circle.icon
+            .header=header
+            if description
+                .description=description
+            if todos
+                .todo
+                    each todo in todos
+                        .btn-container
+                            a.ui.fluid.button.primary.uppercase(href=todo.href)=todo.text

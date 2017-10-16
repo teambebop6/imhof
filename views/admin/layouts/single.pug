@@ -1,0 +1,15 @@
+include ../mixins
+
+doctype html
+block page
+  html
+    head
+      title ForPOTUS - Admin Dashboard
+      link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+      link(rel='icon', href='/favicon.ico', type='image/x-icon')
+      link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css')
+      link(rel='stylesheet', type='text/css', href='/css/admin/style.css')
+
+    body(class=active)
+      block content
+      script(src="bundle.js")
