@@ -57,8 +57,8 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  var name = res.locals.config.ADMIN_NAME;
-  var password = res.locals.config.ADMIN_PASSWORD;
+  var name = req.app.locals.config.ADMIN_NAME;
+  var password = req.app.locals.config.ADMIN_PASSWORD;
 
   if (req.body.admin && req.body.password && req.body.admin === name && req.body.password === password) {
     req.session.admin = {
