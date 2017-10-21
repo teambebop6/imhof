@@ -35,7 +35,7 @@ var store = new RedisStore({
 app.use(session({
   name: "imhof",
   store: store,
-  secret: config.SESSION_SECRET || "",
+  secret: config.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   cookie: {
