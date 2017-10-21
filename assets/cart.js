@@ -64,6 +64,10 @@ common.then(function(){
   }
 
 
+  var updateTotalPrice = function(){
+    $('#totalPrice .value').text("Total (CHF): " + getTotalPrice());
+  }
+
   function amountChanged(id, amount){
     // Update cookie
     items = Cookies.getJSON('itemsToBuy') || [];
@@ -83,9 +87,8 @@ common.then(function(){
     console.log("Amount: " + amount);
 
     $('#subtotal-'+id).text(price * amount);
-    
-    // Calculate total
-    $('#totalPrice .value').text(getTotalPrice());
+   
+    updateTotalPrice();
   }
 
 
@@ -107,7 +110,7 @@ common.then(function(){
             // Update cookie
             Cookies.set('itemsToBuy', items, {expires: 15});
 
-            $('#totalPrice .value').text(getTotalPrice());
+            updateTotalPrice();
           } 
         }
 
@@ -126,6 +129,6 @@ common.then(function(){
 
 
   // Initialize
-  $('#totalPrice .value').text(getTotalPrice());
+  updateTotalPrice();
   refreshActionButtons();
 });
