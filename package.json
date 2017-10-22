@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nodemon app.js",
     "webpack": "webpack --progress --colors",
-    "webpack-watch": "webpack --watch --colors --progress --display-error-details"
+    "webpack-watch": "webpack --watch --colors --progress --display-error-details",
+    "build": "echo 'imhof builded!' && exit 0",
+    "test": "echo 'imhof!' && exit 0"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
