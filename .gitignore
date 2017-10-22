@@ -15,5 +15,5 @@ assets/vendor/Semantic-UI/node_modules
 assets/vendor/Semantic-UI/dist
 
 
-# hidden using git secret
+# git secret hidden files
 config.js
