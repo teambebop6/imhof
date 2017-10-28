@@ -6,8 +6,8 @@
     "start": "nodemon app.js",
     "webpack": "webpack --progress --colors",
     "webpack-watch": "webpack --watch --colors --progress --display-error-details",
-    "build": "echo 'imhof builded!' && exit 0",
-    "test": "echo 'imhof!' && exit 0"
+    "build": "gulp build",
+    "test": "gulp test"
   },
   "dependencies": {
     "body-parser": "^1.13.3",
@@ -50,13 +50,21 @@
   "description": "Imhof's Wein- und Obstbau",
   "main": "app.js",
   "devDependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.2",
     "gulp-livereload": "^3.8.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-plumber": "^1.1.0",
-    "webpack": "3.5.1"
+    "gulp-util": "^3.0.7",
+    "gulp-clean": "^0.3.2",
+    "webpack": "3.5.1",
+    "gulp-zip": "^4.0.0",
+    "run-sequence": "^2.2.0",
+    "merge-stream": "^1.0.1"
   },
   "author": "",
   "license": "ISC"

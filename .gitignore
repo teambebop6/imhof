@@ -17,3 +17,6 @@ assets/vendor/Semantic-UI/dist
 
 # git secret hidden files
 /config.js
+/dist
+
+.yarnclean

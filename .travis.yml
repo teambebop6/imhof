@@ -17,8 +17,9 @@ before_install:
 - gpg --import ./.travis/tb6_private_key.asc
 script:
 - git secret reveal
-- yarn test
-- yarn build
+- gulp clean
+- gulp build
+- gulp dist
 branches:
   only:
   - dev
