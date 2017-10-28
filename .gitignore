@@ -16,4 +16,4 @@ assets/vendor/Semantic-UI/dist
 
 
 # git secret hidden files
-config.js
+/config.js
