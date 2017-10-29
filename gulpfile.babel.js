@@ -19,7 +19,7 @@ gulp.task('default', () => {
 });
 
 gulp.task('build', () => {
-  runSequance('build:semantic', 'build:webpack', 'build:others', () => {
+  runSequance('build:webpack', 'build:others', () => {
 
     gutil.log('Imhof builded!');
   });
