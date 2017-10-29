@@ -9,13 +9,16 @@ import webpack from 'webpack';
 import runSequance from 'run-sequence';
 import zip from 'gulp-zip';
 import webpackConfig from './webpack.config';
+import buildSemantic from './assets/vendor/Semantic-UI/tasks/build';
+
+const semanticDist = './assets/vendor/Semantic-UI/dist';
 
 gulp.task('default', () => {
     gutil.log('This is imhof Gulp!');
 });
 
 gulp.task('build', () => {
-    runSequance('build:webpack', 'build:others', () => {
+    runSequance('build:semantic', 'build:webpack', 'build:others', () => {
 
         gutil.log('Imhof builded!');
     });
@@ -30,6 +33,8 @@ gulp.task('dist', () => {
 gulp.task('build:others', () => {
     gutil.log('Imhof others builded!');
 });
+
+gulp.task('build:semantic', buildSemantic);
 
 gulp.task('build:webpack', (callback) => {
     const wConfig = Object.create(webpackConfig);
@@ -84,6 +89,6 @@ gulp.task('test', () => {
 });
 
 gulp.task('clean', () => {
-    return gulp.src(['dist/', 'dist.zip', 'imhof-dist.zip'], {read: false})
+    return gulp.src([semanticDist, 'dist/', 'dist.zip', 'imhof-dist.zip'], {read: false})
         .pipe(clean());
 });
