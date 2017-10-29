@@ -20,3 +20,5 @@ assets/vendor/Semantic-UI/dist
 /dist
 
 .yarnclean
+
+*dist.zip
