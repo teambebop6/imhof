@@ -27,39 +27,44 @@ var storage = multer.diskStorage({
     });
   }
 });
-var upload = multer({ storage: storage });
+var upload = multer({storage: storage});
 
 // List products
-router.get('/', utils.isNotAuthenticatedThenLogin, function(req, res, next) {
-  Product.findByCat().exec(function(err, cats){
-   if(err){next(err)}
-   else{
-     
-     console.log("Received cats:");
-     console.log(cats);
-     return res.render('admin/products/index', {
-       active: {products: true },
-       cats: cats
-    });
-   }
+router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+
+  Product.findByCat().exec(function (err, cats) {
+    if (err) {
+      next(err)
+    }
+    else {
+
+      console.log("Received cats:");
+      console.log(cats);
+      return res.render('admin/products/index', {
+        active: {products: true},
+        cats: cats
+      });
+    }
   });
 });
 
 // Save product
-saveProduct = function(req, res, next, product){
+saveProduct = function (req, res, next, product) {
   console.log("Req body is:");
   console.log(req.body);
-  
+
   product.title = req.body.title;
   product.price = req.body.price;
   product.description = req.body.description;
   product.visible = req.body.visible;
-  
-  
-  ProductCat.findOne({name: req.body.type}, function(err, cat){
-    if(err){next(err);}
-    else{
-      if(!cat){
+
+
+  ProductCat.findOne({name: req.body.type}, function (err, cat) {
+    if (err) {
+      next(err);
+    }
+    else {
+      if (!cat) {
         cat = new ProductCat({name: req.body.type});
         cat.save();
       }
@@ -68,72 +73,87 @@ saveProduct = function(req, res, next, product){
 
       console.log("Cat is: " + JSON.stringify(cat));
 
-      if(req.file){
+      if (req.file) {
         product.avatar = req.file;
       }
-      
-      product.save(function(err){
-        if(err){next(err);}
-        else{
+
+      product.save(function (err) {
+        if (err) {
+          next(err);
+        }
+        else {
           res.redirect('/admin/products/');
         }
       });
 
     }
   })
-  
+
 }
 
-router.post('/modify', upload.single('avatar'), function(req, res, next){
-  if(req.body.id){
+router.post('/modify', upload.single('avatar'), function (req, res, next) {
+  if (req.body.id) {
     // Update existing product
-    Product.findOne({_id: req.body.id}, function(err, product){
-      if(err){return next(err)}
-      if(!product){return next({status: 400, message: "Product not found."})}
-      else{
-        if(req.file && product.avatar){
-          fs.unlink(product.avatar.path, function(err){
-            if(err){console.log(err)}
-            else{
+    Product.findOne({_id: req.body.id}, function (err, product) {
+      if (err) {
+        return next(err)
+      }
+      if (!product) {
+        return next({status: 400, message: "Product not found."})
+      }
+      else {
+        if (req.file && product.avatar) {
+          fs.unlink(product.avatar.path, function (err) {
+            if (err) {
+              console.log(err)
+            }
+            else {
               console.log("Deleted image: " + product.avatar.path);
             }
           });
         }
-        
+
         saveProduct(req, res, next, product);
       }
     });
-  }else{
+  } else {
     saveProduct(req, res, next, new Product());
   }
 });
 
 
-router.get('/new', utils.isNotAuthenticatedThenLogin, function(req, res, next) {
-  ProductCat.find(function(err, cats){
-    if(!cats){ cats = {} }
+router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  ProductCat.find(function (err, cats) {
+    if (!cats) {
+      cats = {}
+    }
 
     return res.render('admin/products/modify', {
-      active: {products: true },
+      active: {products: true},
       product: {},
       cats: cats,
       root: '/admin/products/'
     });
-  
+
   });
 });
 
-router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function(req, res, next) {
-  Product.findOne({_id: req.params.id}, function(err, product){
-    if(err){next(err)};
-    if(!product){
+router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  Product.findOne({_id: req.params.id}, function (err, product) {
+    if (err) {
+      next(err)
+    }
+    ;
+    if (!product) {
       next({status: 400, message: "Product not found!"});
-    }else{
-      ProductCat.find(function(err, cats){
-        if(!cats){ cats = {} }
-          
+    } else {
+      ProductCat.find(function (err, cats) {
+        if (!cats) {
+          cats = {}
+        }
+
         return res.render('admin/products/modify', {
-          active: {products: true },
+          active: {products: true},
           product: product,
           root: '/admin/products/',
           cats: cats
@@ -143,26 +163,32 @@ router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function(req, res, 
   });
 });
 
-router.post('/delete', utils.isNotAuthenticatedThenLogin, function(req, res, next) {
+router.post('/delete', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
   console.log("Deleting id: " + req.body.id)
-  Product.findOne({_id: req.body.id}, function(err, product){
-    if(err){return res.json(err)}
-    if(!product){
+  Product.findOne({_id: req.body.id}, function (err, product) {
+    if (err) {
+      return res.json(err)
+    }
+    if (!product) {
       return res.json({status: 400, message: "Product not found."})
     }
-    else{
-      product.remove(function(err){
-        if(err){res.json(err)}
-        else{
+    else {
+      product.remove(function (err) {
+        if (err) {
+          res.json(err)
+        }
+        else {
           res.json({
             status: 200,
             message: "Successfully deleted product."
           });
 
-          if(product.avatar){
-            fs.unlink(product.avatar.path, function(err){
-              if(err){console.log(err)}
-              else{
+          if (product.avatar) {
+            fs.unlink(product.avatar.path, function (err) {
+              if (err) {
+                console.log(err)
+              }
+              else {
                 console.log("Deleted image: " + product.avatar.path);
               }
             });

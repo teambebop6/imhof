@@ -12,7 +12,7 @@ Product = new mongoose.Schema({
   price: Number,
   avatar: Object,
   titlePicture: Number,
-  title: String, 
+  title: String,
   description: String,
   visible: {
     type: Boolean,
@@ -31,19 +31,19 @@ Product = new mongoose.Schema({
 
 Product.plugin(autoIncrement.plugin, 'Product');
 
-Product.statics.findByCat = function(args){
-  
+Product.statics.findByCat = function (args) {
+
   return this.aggregate([
-    { 
-      "$match": args ? args : {} 
+    {
+      "$match": args ? args : {}
     },
     {
       "$group": {
         "_id": "$type.name",
-        "items": {$push: "$$ROOT"}  
-      }  
+        "items": {$push: "$$ROOT"}
+      }
     }
   ]);
-}
+};
 
 module.exports = mongoose.model('Product', Product);
