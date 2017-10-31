@@ -25,6 +25,13 @@ common.then(function(){
 
 
   // Item cart
+ 
+  $('.buy-item').removeClass('disabled');
+  $('.to-cart').removeClass('disabled');
+  $('.insta-buy').removeClass('disabled');
+  $('.add').removeClass('disabled');
+  $('.subtract').removeClass('disabled');
+  
   $('form.buy-item').submit(function(e){
     e.preventDefault();
   });
@@ -36,6 +43,8 @@ common.then(function(){
   $('.form.buy-item .insta-buy').click(function(){
     buyItem(true, $(this).attr('id')); 
   });
+
+
 
 
   // Function to return item from cookie where html_id == obj
