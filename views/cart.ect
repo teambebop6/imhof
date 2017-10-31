@@ -10,60 +10,64 @@
 
 <h2><span>Ihr Warenkorb</span></h2>
 
-<table class="ui table cart-items">
-  <thead>
-    <th>Bild</th>
-    <th>Bezeichnung</th>
-    <th>Preis</th>
-    <th>Anzahl</th>
-    <th>Subtotal</th>
-  </thead>
-  <tbody>
-    <% for item in @items: %>
-    <tr data-id="<%= item._id %>" class="item-row">
-      <td><img class="ui mini image" src="/products/<%= item.details.avatar.filename %>"></td>
-      <td><%= item.details.title %></td>
-      <td id="price-<%= item._id %>"><%= item.details.price %></td>
-      <td>
+<div class="cart-container">
+  <table class="ui very basic fixed table cart-items">
+    <thead>
+      <th>Bild</th>
+      <th>Bezeichnung</th>
+      <th>Preis</th>
+      <th>Anzahl</th>
+      <th>Subtotal</th>
+    </thead>
+    <tbody>
+      <% for item in @items: %>
+      <tr data-id="<%= item._id %>" class="item-row">
+        <td><img class="ui mini image" src="/products/<%= item.details.avatar.filename %>"></td>
+        <td><%= item.details.title %></td>
+        <td id="price-<%= item._id %>"><%= @utils.getCHF(item.details.price) %></td>
+        <td>
 
-        <div class="ui mini buttons">
-          <button class="ui icon button subtract" data-id="<%= item._id %>">
-            <i class="minus icon"></i>
-          </button>
-          <input type="text" data-id="<%= item._id %>" name="amount[<%= item._id %>]" id="amount-<%= item._id%>" class="ui input between-buttons item-quantity" value="<%= item.itemsAmount %>" maxlength="3"></input>
-          <button class="ui icon button add" data-id="<%= item._id %>">
-            <i class="plus icon"></i>
-          </button>
-        </div> 
+          <div class="ui mini buttons">
+            <button class="ui icon button subtract" data-id="<%= item._id %>">
+              <i class="minus icon"></i>
+            </button>
+            <input type="text" data-id="<%= item._id %>" name="amount[<%= item._id %>]" id="amount-<%= item._id%>" class="ui input between-buttons item-quantity" value="<%= item.itemsAmount %>" maxlength="3"></input>
+            <button class="ui icon button add" data-id="<%= item._id %>">
+              <i class="plus icon"></i>
+            </button>
+          </div> 
 
-      </td>
-      <td id="subtotal-<%= item._id %>"><%= (item.details.price * item.itemsAmount) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+        </td>
+        <td id="subtotal-<%= item._id %>"><%= @utils.getCHF(item.details.price * item.itemsAmount) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div class="ui grid item-details">
-  <div class="row" id="totalPrice">
-    <div class="right aligned column value">
-      Total: 0.-
+  <div class="ui grid item-details">
+    <div class="row" id="totalPrice">
+      <div class="right aligned column value">
+        Total: 0.-
+      </div>
+    </div>
+
+    <div class="two column row actions">
+      <div class="column">
+        <a class="ui button" id="deleteCart" tabindex="0" href="javascript:;">Warenkorb leeren</a>
+      </div>
+      <div class="right aligned column">
+        <a class="ui red button" tabindex="0" href="./buy">
+          Weiter zur Kasse
+          <i class="ui right arrow icon"></i>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="two column row actions">
-    <div class="column">
-      <a class="ui button" id="deleteCart" tabindex="0" href="javascript:;">Warenkorb leeren</a>
-    </div>
-    <div class="right aligned column">
-      <a class="ui red button" tabindex="0" href="./buy">
-        Weiter zur Kasse
-        <i class="ui right arrow icon"></i>
-      </a>
-    </div>
-  </div>
+
 </div>
 
-
+<!-- Modals -->
 <div class="ui small modal delete">
   <p style="padding:1rem;">Sind Sie sicher, dass Sie dieses Produkt vom Warenkorb löschen möchten?</p>
   <div class="actions">
