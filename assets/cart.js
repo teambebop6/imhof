@@ -1,4 +1,5 @@
 var common = require('./common');
+var viewUtils = require('../utils/ViewUtils');
 
 common.then(function(){
 
@@ -35,7 +36,7 @@ common.then(function(){
       Cookies.remove('itemsToBuy');
     }       
 
-    window.location.replace("/shop/cart");
+    window.location.replace("/shop");
   }
 
   // Empty cart
@@ -60,12 +61,12 @@ common.then(function(){
     $('.item-row').each(function(){
       total += parseInt($(this).find('#subtotal-'+$(this).data('id')).text());
     });
-    return (parseFloat(total) / 100).toFixed(2);
+    return total;
   }
 
 
   var updateTotalPrice = function(){
-    $('#totalPrice .value').text("Total (CHF): " + getTotalPrice());
+    $('#totalPrice .value').text("Total (CHF): " + viewUtils.formatPrice(getTotalPrice()));
   }
 
   function amountChanged(id, amount){
@@ -86,7 +87,7 @@ common.then(function(){
     var amount = parseInt($('#amount-'+id).val());
     console.log("Amount: " + amount);
 
-    $('#subtotal-'+id).text(price * amount);
+    $('#subtotal-'+id).text(viewUtils.formatPrice(price * amount));
    
     updateTotalPrice();
   }
@@ -123,7 +124,7 @@ common.then(function(){
     var items = Cookies.getJSON('itemsToBuy') || new Array();
 
     if(items.length < 1){
-      $('.actions').html('<p class="alert" style="font-size:1rem;">Ihr Warenkorb ist leer. Bitte begeben Sie sich in den <a href="/shop" class="link">Imhof\'s Shop</a>, um unsere Produkte kaufen zu können.</p>')
+      $('.cart-container').html('<p class="alert" style="font-size:1rem;">Ihr Warenkorb ist leer. Bitte begeben Sie sich in den <a href="/shop" class="link">Imhof\'s Shop</a>, um unsere Produkte kaufen zu können.</p>');
     }
   }
 
