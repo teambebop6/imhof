@@ -3,6 +3,9 @@ var common = require('../common.js');
 common.then(function(){
       require(['jquery'], function($){
         require(['jquery.validate'], function(){
+          jQuery.validator.addMethod("price", function (value, element) {
+              return this.optional(element) || /^(\d+|\d+.\d{1,2})$/.test(value);
+          }, "Bitte eine zweistellige Kommazahl eingeben");
           $('form#modify-event').validate({
             rules: {
               // at least 15€ when bonus material is included
@@ -22,7 +25,7 @@ common.then(function(){
               // at least 15€ when bonus material is included
               price: {
                 required: true,
-                number: true
+                price: true
               },
               title : {
                 required: true
