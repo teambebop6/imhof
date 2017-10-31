@@ -13,6 +13,8 @@ utils = require('../../utils/AdminUtils');
 Product = require('../../models/product');
 ProductCat = require('../../models/product_category');
 
+var ViewUtils = require('../../utils/ViewUtils');
+
 // File upload storage
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -42,6 +44,7 @@ router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
       console.log(cats);
       return res.render('admin/products/index', {
         active: {products: true},
+        utils: ViewUtils,
         cats: cats
       });
     }
@@ -50,11 +53,9 @@ router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
 
 // Save product
 saveProduct = function (req, res, next, product) {
-  console.log("Req body is:");
-  console.log(req.body);
 
   product.title = req.body.title;
-  product.price = req.body.price;
+  product.price = req.body.price * 100 ;
   product.description = req.body.description;
   product.visible = req.body.visible;
 
@@ -95,12 +96,8 @@ router.post('/modify', upload.single('avatar'), function (req, res, next) {
   if (req.body.id) {
     // Update existing product
     Product.findOne({_id: req.body.id}, function (err, product) {
-      if (err) {
-        return next(err)
-      }
-      if (!product) {
-        return next({status: 400, message: "Product not found."})
-      }
+      if (err) { return next(err) }
+      if (!product) { return next({status: 400, message: "Product not found."}) }
       else {
         if (req.file && product.avatar) {
           fs.unlink(product.avatar.path, function (err) {
@@ -140,23 +137,23 @@ router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) 
 
 router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
   Product.findOne({_id: req.params.id}, function (err, product) {
-    if (err) {
-      next(err)
-    }
-    ;
-    if (!product) {
-      next({status: 400, message: "Product not found!"});
-    } else {
+    if (err) { return next(err); }
+
+    if (!product) { next({status: 400, message: "Product not found!"}); } 
+    else {
       ProductCat.find(function (err, cats) {
         if (!cats) {
           cats = {}
         }
 
+        console.log(ViewUtils);
+
         return res.render('admin/products/modify', {
           active: {products: true},
           product: product,
           root: '/admin/products/',
-          cats: cats
+          cats: cats,
+          utils: ViewUtils,
         });
       });
     }

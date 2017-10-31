@@ -28,29 +28,29 @@
 
 
       <h4>Preis</h4>
-      <p><span><%= @product.price %>.- / Stk.</span></p>
+      <p><span>CHF <%= @utils.getCHF(@product.price) %> / Stk.</span></p>
 
       <form class="ui form buy-item">
         <div class="field">
           <p><strong>Menge:</strong></p>
           <div class="ui buttons">
-            <button class="ui icon button subtract" data-id="<%= @product._id %>">
+            <button class="ui icon disabled button subtract" data-id="<%= @product._id %>">
               <i class="minus icon"></i>
             </button>
             <input type="text" id="amount-<%= @product._id %>" class="ui input between-buttons" value="1" maxlength="3"></input>
-            <button class="ui icon button add" data-id="<%= @product._id %>">
+            <button class="ui icon button disabled add" data-id="<%= @product._id %>">
               <i class="plus icon"></i>
             </button>
           </div> 
         </div>
         <div class="field">
-          <button class="ui fluid red button to-cart" data-id="<%= @product._id %>">
+          <button class="ui fluid red button disabled to-cart" data-id="<%= @product._id %>">
             <i class="cart icon"></i>
             In den Warenkorb
           </button>
         </div>
         <div class="field">
-          <button class="ui fluid button insta-buy" data-id="<%= @product._id %>">
+          <button class="ui fluid button disabled insta-buy" data-id="<%= @product._id %>">
             <i class="right arrow icon"></i>
             Sofort kaufen
           </button>

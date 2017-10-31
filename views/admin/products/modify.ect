@@ -16,8 +16,8 @@
                 <input name="title" type="text" value="<%= @product.title %>"/>
               </div>
               <div class="field">
-                <label>Preis</label>
-                <input name="price" type="text" value="<%= @product.price %>" />
+                <label>Preis (CHF)</label>
+                <input name="price" type="text" value="<%= @utils.getCHF(@product.price) %>" />
               </div>
               <div class="field">
                 <label>Beschreibung</label>
