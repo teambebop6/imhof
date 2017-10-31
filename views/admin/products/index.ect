@@ -19,7 +19,7 @@
         <tr>
           <th width="25%">Bild</th>
           <th width="25%">Titel</th>
-          <th width="25%">Preis</th>
+          <th width="25%">Preis (CHF)</th>
           <th>Aktionen</th>
         </tr>
       </thead>
@@ -32,7 +32,7 @@
             <% end %>
           </td>
           <td><%= product.title %></td>
-          <td><%= product.price %></td>
+          <td><%= @utils.getCHF(product.price) %></td>
           <td>
             <a class="ui icon button" href="/admin/products/modify/<%= product._id %>">
               <i class="write icon"></i>
