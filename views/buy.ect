@@ -11,7 +11,7 @@
   <div class="column">
     <h2><span>Ihr Einkauf:</span></h2>
 
-    <table class="ui very basic table">
+    <table class="ui very basic fixed table">
       <thead>
         <th>Bild</th>
         <th>Bezeichnung</th>
@@ -24,9 +24,9 @@
         <tr>
           <td><img class="ui mini image" src="/products/<%= item.avatar %>"></td>
           <td><%= item.title %></td>
-          <td><%= item.price %></td>
+          <td><%= @utils.getCHF(item.price) %></td>
           <td><%= item.amount %></td>
-          <td><%= item.subtotal %></td>
+          <td><%= @utils.getCHF(item.subtotal) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -35,7 +35,7 @@
     <div class="ui grid">
       <div class="row">
         <div class="column">
-          <h4 class="ui dividing header" id="total-price">Total (CHF): <%= @totalPrice %></h4>
+          <h4 class="ui dividing header" id="total-price">Total (CHF): <%= @utils.getCHF(@totalPrice) %></h4>
         </div>
       </div>
     </div>
@@ -45,13 +45,8 @@
     <h3 id="order-title">Bitte füllen Sie folgende Felder aus:</h3>
 
     <form id="order-submit-form" class="ui form">
-      <div class="ui error message">
-        <div class="header">Es ist ein Fehler aufgetreten.</div>
-        <p class="message"></p>
-      </div>
-      <div class="ui success message">
-        <div class="header">Vielen Dank!</div>
-        <p class="message"></p>
+      <div class="ui message" style="display:none;">
+        <div class="message"></div>
       </div>
 
       <div class="field">
@@ -114,6 +109,22 @@
 
 
 </div>
+
+<div class="ui mini modal orderConfirm">
+  <i class="close icon"></i>
+  <div class="header">
+    Bestellung erfolgreich!
+  </div>
+  <div class="content">
+    <p>Wir haben Ihre Bestellung erfolgreich erhalten. Sie hören von uns!</p>
+
+    <p>
+      Familie Imhof
+    </p>
+
+  </div>
+</div>
+
 <div class="ui modal agb"> 
   <i class="close icon"></i>
   <div class="header">
