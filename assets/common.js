@@ -31,7 +31,7 @@ var common = new Promise(function(resolve, reject){
   console.log("Before loading jquery...");
   require(['jquery'], function($){
     console.log("after loading jquery...");
-    
+
     jQuery = $;
     window.jQuery = jQuery;
     window.$ = $;
@@ -43,7 +43,7 @@ var common = new Promise(function(resolve, reject){
     console.log("Before loading main...");
     require('./js/main.js'); // Include main.js
     console.log("Before loading semantic components...");
-    
+
     require('./vendor/Semantic-UI/dist/components/site.js');
     require('./vendor/Semantic-UI/dist/components/modal.js');
     require('./vendor/Semantic-UI/dist/components/dimmer.js');
