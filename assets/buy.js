@@ -1,4 +1,5 @@
 var common = require('./common');
+var viewUtils = require('../utils/ViewUtils');
 
 common.then(function(){
   require(['jquery.validate', './vendor/jquery.validate.de'], function(){
@@ -24,10 +25,24 @@ common.then(function(){
       },
       lang: 'de',
       submitHandler: function(form){
+        $('#order-submit-form button[type="submit"]').addClass('disabled loading');
+
         $.post({url:"/shop/order", data: $(form).serialize()}).then(function(res){
-          console.log(res);
+          $('#order-submit-form button[type="submit"]').removeClass('disabled loading');
+          
+          if(res.status != 200){
+             viewUtils.showMessage(res);
+          }else{
+            // Success
+            $('.mini.modal.orderConfirm').modal({
+              onHidden: function(){
+                window.location.replace("/");
+              } 
+            }).modal('show');
+          }
         }).fail(function(xhr, status, err){
-          console.log(err);
+          $('#order-submit-form button[type="submit"]').removeClass('disabled loading');
+          viewUtils.showMessage(err);
         })
       }
     });
