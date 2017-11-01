@@ -129,7 +129,8 @@ router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) 
       active: {products: true},
       product: {},
       cats: cats,
-      root: '/admin/products/'
+      root: '/admin/products/',
+      utils: ViewUtils,
     });
 
   });
