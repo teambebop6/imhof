@@ -70,10 +70,13 @@ gulp.task('dist:copy', () => {
   const views = gulp.src(['views/**/*'])
     .pipe(gulp.dest('dist/views/'));
 
+  const semantic = gulp.src(['assets/vendor/Semantic-UI/dist/**/*'])
+    .pipe(gulp.dest('dist/assets/vendor/Semantic-UI/dist/'));
+
   const dist = gulp.src(['package.json', 'app.js', 'config.js', 'pm2.*.config.js'])
     .pipe(gulp.dest('dist/'));
 
-  return merge(helpers, models, publicFolder, routes, utils, views, dist);
+  return merge(helpers, models, publicFolder, routes, utils, views, semantic, dist);
 
 });
 
