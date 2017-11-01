@@ -12,7 +12,7 @@ public/products/
 
 #Semantic
 assets/vendor/Semantic-UI/node_modules
-#assets/vendor/Semantic-UI/dist
+assets/vendor/Semantic-UI/dist
 
 
 # git secret hidden files
