@@ -17,14 +17,18 @@
               </div>
               <div class="field">
                 <label>Preis (CHF)</label>
+                <% if @product.price : %>
                 <input name="price" type="text" value="<%= @utils.getCHF(@product.price) %>" />
+                <% else : %>
+                <input name="price" type="text" />
+                <% end %>
               </div>
               <div class="field">
                 <label>Beschreibung</label>
                 <textarea name="description"><%= @product.description %></textarea>
               </div>
               <div class="field">
-                <label>Profile Picture</label>
+                <label>Bild</label>
                 <input name="avatar" type="file" />
                 <% if @product.avatar : %>
                 <img class="ui small image" src="/products/<%= @product.avatar.filename %>" /> 
