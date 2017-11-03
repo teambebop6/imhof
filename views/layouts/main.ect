@@ -32,7 +32,12 @@
       <div class="ui page-top sticky fixed stackable page grid">
         <div class="ui grid page-menu">
           <div class="column page-nav">
-            <a href="/" class="return-home"></a>
+            <a href="/" class="return-home">
+              <p style="display:none;"><span>Home</span></p>
+              <div class="logo-container">
+                <img src="/images/logo_@2x.png" />
+              </div>
+            </a>
 
             <a class="toggle-sidebar"><i class="huge content icon"></i></a>
 
@@ -68,7 +73,9 @@
 
     <script src="/commons.js" charset="utf-8"></script>
 
-    <% content 'scripts' %>
+    <% content 'scripts' : %>
+      <script src="/default.bundle.js" charset="utf-8"></script>
+    <% end %>
 
   </body>
 </html>
