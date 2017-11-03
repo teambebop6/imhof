@@ -19,6 +19,8 @@ require('./vendor/Semantic-UI/dist/components/message.css');
 require('./vendor/Semantic-UI/dist/components/checkbox.css');
 require('./vendor/Semantic-UI/dist/components/dropdown.css');
 require('./vendor/Semantic-UI/dist/components/table.css');
+require('./vendor/Semantic-UI/dist/components/divider.css');
+require('./vendor/Semantic-UI/dist/components/list.css');
 
 require('./vendor/Semantic-UI/dist/components/icon.css');
 
@@ -28,9 +30,7 @@ require('./less/main.less');
 
 var common = new Promise(function(resolve, reject){
 
-  console.log("Before loading jquery...");
   require(['jquery'], function($){
-    console.log("after loading jquery...");
 
     jQuery = $;
     window.jQuery = jQuery;
@@ -40,9 +40,7 @@ var common = new Promise(function(resolve, reject){
       require('./js/jquery.validate.custom.js');
     });
 
-    console.log("Before loading main...");
     require('./js/main.js'); // Include main.js
-    console.log("Before loading semantic components...");
 
     require('./vendor/Semantic-UI/dist/components/site.js');
     require('./vendor/Semantic-UI/dist/components/modal.js');
@@ -52,11 +50,24 @@ var common = new Promise(function(resolve, reject){
     require('./vendor/Semantic-UI/dist/components/checkbox.js');
     require('./vendor/Semantic-UI/dist/components/dropdown.js');
 
-    console.log("After.");
 
     $('.ui.message').hide();
 
     $('.ui.checkbox').checkbox();
+
+
+    // Logo
+    $('.logo-container').transition('horizontal flip').transition('horizontal flip');
+    setInterval(function(){
+      $('.logo-container').transition('horizontal flip').transition('horizontal flip');
+    }, 8000)
+
+    $('.return-home').on('mouseover', function(){
+      $(this).find('p').show();
+    });
+    $('.return-home').on('mouseout', function(){
+      $(this).find('p').hide();
+    });
 
     resolve();
   });
