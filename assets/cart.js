@@ -66,7 +66,9 @@ common.then(function(){
 
 
   var updateTotalPrice = function(){
-    $('#totalPrice .value').text("Total (CHF): " + viewUtils.formatPrice(getTotalPrice()));
+    $('#totalPrice .value').text(viewUtils.formatPrice(getTotalPrice()));
+
+    $('.continue-purchase').show();
   }
 
   function amountChanged(id, amount){
