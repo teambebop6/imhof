@@ -59,7 +59,7 @@ common.then(function(){
   function getTotalPrice(){
     var total = 0;
     $('.item-row').each(function(){
-      total += parseInt($(this).find('#subtotal-'+$(this).data('id')).text());
+      total += parseFloat($(this).find('#subtotal-'+$(this).data('id')).text());
     });
     return total;
   }
