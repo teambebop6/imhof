@@ -1,5 +1,6 @@
 require('./vendor/Semantic-UI/dist/components/reset.css'); // html boilerplate
 
+// Semantic css
 require('./vendor/Semantic-UI/dist/components/site.css');
 require('./vendor/Semantic-UI/dist/components/grid.css');
 require('./vendor/Semantic-UI/dist/components/menu.css');
@@ -21,7 +22,7 @@ require('./vendor/Semantic-UI/dist/components/dropdown.css');
 require('./vendor/Semantic-UI/dist/components/table.css');
 require('./vendor/Semantic-UI/dist/components/divider.css');
 require('./vendor/Semantic-UI/dist/components/list.css');
-
+require('./vendor/Semantic-UI/dist/components/sticky.css');
 require('./vendor/Semantic-UI/dist/components/icon.css');
 
 // Less
@@ -42,6 +43,7 @@ var common = new Promise(function(resolve, reject){
 
     require('./js/main.js'); // Include main.js
 
+    // Semantic js
     require('./vendor/Semantic-UI/dist/components/site.js');
     require('./vendor/Semantic-UI/dist/components/modal.js');
     require('./vendor/Semantic-UI/dist/components/dimmer.js');
@@ -49,14 +51,9 @@ var common = new Promise(function(resolve, reject){
     require('./vendor/Semantic-UI/dist/components/form.js');
     require('./vendor/Semantic-UI/dist/components/checkbox.js');
     require('./vendor/Semantic-UI/dist/components/dropdown.js');
+    require('./vendor/Semantic-UI/dist/components/sticky.js');
 
-
-    $('.ui.message').hide();
-
-    $('.ui.checkbox').checkbox();
-
-
-    // Logo
+    // Return home - logo effects
     $('.logo-container').transition('horizontal flip').transition('horizontal flip');
     setInterval(function(){
       $('.logo-container').transition('horizontal flip').transition('horizontal flip');
@@ -69,9 +66,9 @@ var common = new Promise(function(resolve, reject){
       $(this).find('p').hide();
     });
 
+    // Resolve promise
     resolve();
   });
 });
-
 
 module.exports = common;
