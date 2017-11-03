@@ -1,67 +1,160 @@
-<% extend 'layouts/main.ect' %>
+<% extend 'layouts/about.ect' %>
 
-<h2><span>Über uns</span></h2>
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/about.css" type="text/css" />
+<% end %>
 
-<div class="ui two column stackable grid about"> 
-            <div class="column">
-                <img class="about-image" src="/images/family/dieter.jpg">
-		<div class="text">
-			<p><strong>Dieter Imhof</strong></p>
-			<!--<p class="description">
-				Kein Text vorhanden
-			</p>-->
-		</div>
-            </div>
-            <div class="column">
-                <img class="about-image" src="/images/family/jeannette.jpg">
-		<div class="text">
-			<p><strong>Jeannette Imhof</strong></p>
-			<!--<p class="description">
-				Kein Text vorhanden
-			</p>-->
-		</div>
-            </div>
-            <div class="column">
-                <img class="about-image" src="/images/family/janina.jpg">
-		<div class="text">
-			<p><strong>Janina Imhof</strong></p>
-			<!--<p class="description">
-				Kein Text vorhanden
-			</p>-->
-		</div>
-            </div>
-            <div class="column">
-                <img class="about-image" src="/images/family/robin.jpg">
-		<div class="text">
-			<p><strong>Robin Imhof</strong></p>
-			<!--<p class="description">
-				Kein Text vorhanden
-			</p>-->
-		</div>
-            </div>
+<% block 'scripts' : %>
+<script src="/about.bundle.js"></script>
+<% end %>
+
+<div class="ui stackable grid imhof-family">
+  <div class="two column row">
+    <div class="column">
+      <img class="right floated" src="/images/logo_front_hq.png" />
+    </div>
+    <div class="column">
+      <div class="citation">
+        <p class="text">
+        Über Generationen hinweg wurden Erfahrungen im Weinbau weitergegeben, ebenso wie Qualitätsbewusstsein und die Liebe zum Wein.
+        </p>
+        <p class="author">
+        - Janina Imhof, Oenologin in Ausbildung
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 
-<h3>Unser Betrieb</h3>
+<div class="ui page grid">
+  <div class="row">
+    <div class="column content">
+      <h2><span>Über uns</span></h2>
 
-<p>...ist seit vier Generationen in den Händen der Familie Imhof/Gass. Der Betrieb wurde als traditioneller Milchwirtschafts- und Ackerbaubetrieb geführt.</p>
+      <p>Seit vier Generationen ist der Betrieb in den Händen der Familie Imhof/Gass. Unser Kernteam sind:</p>
 
-<p>Im Jahre 1983 wurde die erste Parzelle Reben angepflanzt, um so ein weiteres Standbein in der Landwirtschaft zu schaffen. Im Laufe der Jahre wurden die Kühe durch Schafe ersetzt und der Betrieb wurde nach und nach ganz auf Wein- und Obstbau umgestellt.
-</p>
 
-<p>In unseren Rebbergen pflegen und hegen wir folgende <strong>Traubensorten:</strong></p>
+      <div class="ui four column stackable grid">
+        <div class="column">
 
-<ul>
-<li>	Pinot Noir </li>
-<li>	Riesling-Sylvaner</li>
-<li>	Kerner</li>
-<li>	Pinot Blanc </li>
-<li>	Cabernet Dorsa </li>
-<li>	Merlot </li>
-</ul>
+          <img class="ui medium image" src="/images/family/dieter.jpg">
+          <h3 class="ui header">Dieter Imhof</h3> 
+          <p>Verantwortlicher Reben Anbau, Betriebsführung und Technik.</p>
 
-<p>Eine weitere Intensivkultur sind rund 5 ha Kirschen. Zudem ernten wir von den immer noch zahlreichen, alten Hochstammbäumen. Die Früchte werden zu hochwertigen Edelbrände verarbeitet.</p>
+          <p>Telefon: <a href="tel:+41763724408" class="link">076 372 44 08</a></p>
+        </div>
+        <div class="column">
 
-<p>Das restliche Land brauchen wir als Weide für unsere Mutterschafe.</p>
+          <img class="ui medium image" src="/images/family/jeannette.jpg">
+          <h3 class="ui header">Jeannette Imhof</h3> 
+          <p>Verantwortliche Strategisches, Events und Kommunikation.</p>
 
-<p>Die Bewirtschaftung unseres gesamten Betriebes erfolgt nach den Richtlinien der integrierten Produktion und ist ein wichtiger Bestandteil unserer Philosophie.</p>
+          <p>Telefon: <a href="tel:+41787545468" class="link">078 754 54 68</a></p>
+        </div>
+        <div class="column">
+
+          <img class="ui medium image" src="/images/family/janina.jpg">
+          <h3 class="ui header">Janina Imhof</h3> 
+          <p>Verantwortliche Weinqualität, Kommunikation und Medien.</p>
+        </div>
+        <div class="column">
+          <img class="ui medium image" src="/images/family/robin.jpg">
+          <h3 class="ui header">Robin Imhof</h3> 
+        </div>
+      </div>
+
+
+
+      <h2><span>Angepflanzte Traubensorten</span></h2>
+      <table class="ui very basic table">
+        <tbody>
+          <tr>
+            <td class="three wide">
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td class="three wide">Pinot Noir</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td>Riesling x Sylvaner</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td>Kerner</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td>Pinot Blanc</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td>Cabernet Dorsa</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/images/grape.png" class="ui small image" />
+            </td>
+            <td>Merlot</td>
+            <td>Pinot noir (Spätburgunder, Pinot nero, Blauburgunder, Schwarzburgunder) ist eine bedeutende und meist als hochwertig geltende Rotweinsorte. Sie hat weltweite Verbreitung und Bedeutung erlangt. Der Wein wird gelegentlich als König der Rotweine bezeichnet.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span>Facts</span></h2>
+
+      <div class="ui two column grid facts">
+        <div class="column">
+          <img class="ui tiny centered image" src="/images/icons/truck.png">
+          <p>Die Bewirtschaftung unseres gesamten Betriebes erfolgt nach den Richtlinien der integrierten Produktion und ist ein wichtiger Bestandteil unserer Philosophie.</p>
+        </div>
+        <div class="column">
+          <img class="ui tiny centered image" src="/images/icons/cherry.png">
+          <p>Eine weitere Intensivkultur sind rund 5 ha Kirschen. </p>
+        </div>
+        <div class="column">
+          <img class="ui tiny centered image" src="/images/icons/tree.png">
+          <p>Wir ernten Früchte von zahlreichen alten Hochstammbäumen, welche dann zu hochwertigen Edelbrände verarbeitet werden.</p>
+        </div>
+        <div class="column">
+          <img class="ui tiny centered image" src="/images/icons/sheep.png">
+          <p>Das restliche Land brauchen wir als Weide für unsere Mutterschafe.</p>
+        </div>
+      </div>
+
+      <h2><span>Chronik</span></h2>
+
+      <div id="myTimeline">
+        <div data-vtdate="2017">       
+          <p>Imhof's Merlot wird mit der Médaille d'Argent ausgezeichnet.</p>
+          <a href="https://www.laselection.ch/fr-CH/resultate/weinsuche.aspx/Search/productdetail/21502/Imhofs%20Merlot/ps/false" target="_blank">
+            <img class="ui small image medaille" src="/images/medailledargent.png" />
+          </a>
+        </div>
+        <div data-vtdate="1984 - 1991">
+          Im Laufe der Jahre wurden die Kühe durch Schafe ersetzt und der Betrieb wurde nach und nach ganz auf Wein- und Obstbau umgestellt.
+        </div>
+        <div data-vtdate="1983">
+          Die erste Parzelle Reben wird angepflanzt durch die Familie Imhof/Gass, um ein weiteres Standbein in der Landwirtschaft zu schaffen.
+        </div>
+        <div data-vtdate="vor 1983">
+          Der Betrieb wurde als traditioneller Milchwirtschafts- und Ackerbaubetrieb geführt.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
