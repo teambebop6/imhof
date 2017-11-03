@@ -15,9 +15,9 @@
     <thead>
       <th>Bild</th>
       <th>Bezeichnung</th>
-      <th>Preis</th>
+      <th>Preis (CHF)</th>
       <th>Anzahl</th>
-      <th>Subtotal</th>
+      <th>Subtotal (CHF)</th>
     </thead>
     <tbody>
       <% for item in @items: %>
@@ -45,18 +45,22 @@
   </table>
 
   <div class="ui grid item-details">
-    <div class="row" id="totalPrice">
-      <div class="right aligned column value">
-        Total: 0.-
+      <div class="two column row" id="totalPrice">
+        <div class="right floated right aligned column">
+          <p>Total (CHF)</p>
+          <div class="value">
+            <%= @utils.getCHF(@totalPrice) %>
+          </div>
+        </div>
       </div>
-    </div>
+
 
     <div class="two column row actions">
       <div class="column">
         <a class="ui button" id="deleteCart" tabindex="0" href="javascript:;">Warenkorb leeren</a>
       </div>
       <div class="right aligned column">
-        <a class="ui red button" tabindex="0" href="./buy">
+        <a class="ui red button continue-purchase" style="display:none;" tabindex="0" href="./buy">
           Weiter zur Kasse
           <i class="ui right arrow icon"></i>
         </a>
