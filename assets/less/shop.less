@@ -41,12 +41,14 @@ input.ui.input.between-buttons{
 }
 
 .shipping-info{
+
   border:1px solid @primary-color;
 
   p{
     padding:0 0rem;
     margin:1rem;
   }
+
   h3{
     background:@primary-color;
 
@@ -83,30 +85,24 @@ input.ui.input.between-buttons{
   height:90px !important;
 }
 
-// Checkout
-
-.item-details{
-  .details-header{
-    font-style:italic;
-  }
+.ui.grid.item-details{
+  border-top: 6px solid @light-gray;
+  padding: 0; 
 }
 
 #totalPrice{
-  div{
-    float:right;
-  }
-  
-  span{
-    margin-right:1rem;
-    font-style:italic;
-    font-size:2rem;
-    color:@dark-gray;
-    
-  }
-
   .value{
     font-size:2rem;
     margin-top:1rem;
+    padding: 1rem;
+    border-bottom:2px solid @light-yellow;
+    display:inline-block;
+  }
+
+  p{
+    margin-top: 3rem;
+    display: inline-block;
+    margin-right: 1rem;
   }
 }
 
@@ -163,7 +159,7 @@ input.ui.input.between-buttons{
     display:block;
     position:relative;
   }
-  
+
   .item-title{
     display:none;
     position:absolute;
