@@ -1,6 +1,7 @@
 <% extend 'layouts/main.ect' %>
 
 <% block 'stylesheets' : %>
+<link rel="stylesheet" type="text/css" href="/shop.css" />
 <% end %>
 
 <% block 'scripts' : %>
@@ -32,10 +33,14 @@
       </tbody>
     </table>
 
-    <div class="ui grid">
-      <div class="row">
-        <div class="column">
-          <h4 class="ui dividing header" id="total-price">Total (CHF): <%= @utils.getCHF(@totalPrice) %></h4>
+
+    <div class="ui grid item-details">
+      <div class="two column row" id="totalPrice">
+        <div class="right floated column">
+          <p>Total (CHF)</p>
+          <div class="value">
+            <%= @utils.getCHF(@totalPrice) %>
+          </div>
         </div>
       </div>
     </div>
