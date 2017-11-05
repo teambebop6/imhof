@@ -1,24 +1,24 @@
 <% extend 'admin/layouts/main' %>
 
-<h3>Neues Event</h3>
-<div class="ui grid">
+<div class="ui page grid">
   <div class="two column row">
     <div class="column">
+      <h3><% if @event._id : %>Event bearbeiten<% else : %>Neues Event <% end %></h3>
       <form id="modify-event" class="ui form" method="post" action="./modify">
         <div class="hidden field">
           <input name="id" type="hidden"/>
         </div>
         <div class="field">
           <label>Name</label>
-          <input name="name" type="text"/>
+          <input name="name" type="text" value="<%= @event.name %>"/>
         </div>
         <div class="field">
           <label>Beginn</label>
-          <input name="begin" type="text"/>
+          <input name="begin" type="text" value="<%= @event.begin %>"/>
         </div>
         <div class="field">
           <label>Ende</label>
-          <input name="end" type="text"/>
+          <input name="end" type="text" value="<%= @event.end %>"/>
         </div>
         <button class="ui green fluid button" type="submit">Event speichern</button>
       </form>

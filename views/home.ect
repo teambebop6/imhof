@@ -6,67 +6,70 @@
     <h2><span>Agenda</span></h2>
 
     <% if @agenda?.length : %>
-    <div class="agenda-body">
-      <div class="header-left"></div>
-      <table class="ui celled table agenda">
-        <thead>
-          <tr>
-            <th>Datum</th>
-            <th>Bezeichnung</th>
-            <th>Beginn</th>
-            <th>Ende</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-    <% 
+        <div class="agenda-body">
+          <div class="header-left"></div>
+          <table class="ui celled table agenda">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Bezeichnung</th>
+                <th>Beginn</th>
+                <th>Ende</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <%
              monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni",
              "Juli", "August", "Septempber", "Oktober", "November", "Dezember"
              ];
-
              dayNames = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-
              currentMonth = "";
-             %>
-             <div class="agenda-body"><table><tbody>
-                   <% for item in @agenda: %>
-                   <% if currentMonth != monthNames[item.from.getMonth()] : %>
-                   <% currentMonth = monthNames[item.from.getMonth()]; %>
-                 </tbody></table></div>
+         %>
+         <div class="agenda-body">
+            <table>
+                <tbody>
+                    <% for item in @agenda: %>
+                        <% if currentMonth != monthNames[item.begin.getMonth()] : %>
+                            <% currentMonth = monthNames[item.begin.getMonth()]; %>
+                </tbody>
+            </table>
+         </div>
 
-                 <div class="agenda-body">
-                   <h3><%- currentMonth %> <%- item.from.getFullYear() %></h3>
-                   <table class="ui table agenda">
-                     <tbody>
-                       <% end %> 
+         <div class="agenda-body">
+           <h3><%- currentMonth %> <%- item.begin.getFullYear() %></h3>
+           <table class="ui table agenda">
+             <tbody>
+               <% end %>
 
-                       <tr>
-                         <td>
-                           <%- dayNames[item.from.getDay()] %>, <%- item.from.getDate() %>.
+               <tr>
+                 <td>
+                   <%- dayNames[item.begin.getDay()] %>, <%- item.begin.getDate() %>.
 
-                         </td>
-                         <td>
-                           <%- item.title %>
-                         </td>
-                         <% getMinutesFormatted = (minutes) -> if minutes < 10 then minutes = "0" + minutes else minutes %>
-                         <td>
-                           <% if not item.allday: %>
-                           <%- item.from.getHours() %>:<%- getMinutesFormatted(item.from.getMinutes()) %>
-                           <% end %>
-                         </td>
-                         <td>
-                           <% if not item.allday: %>
-                           <%- item.until.getHours() %>:<%- getMinutesFormatted(item.until.getMinutes()) %>
-                           <% end %>
-                         </td>
-                       </tr>
-                       <% end %>
-                     </tbody>
-                   </table>
-                 </div>
-                 <% else: %>
-                 <p>Die Agenda ist momentan leer.</p>
-                 <% end %>
+                 </td>
+                 <td>
+                   <%- item.name %>
+                 </td>
+                 <% getMinutesFormatted = (minutes) -> if minutes < 10 then minutes = "0" + minutes else minutes %>
+                 <td>
+                   <% if not item.allday: %>
+                   <%- item.begin.getHours() %>:<%- getMinutesFormatted(item.begin.getMinutes()) %>
+                   <% end %>
+                 </td>
+                 <td>
+                   <% if not item.allday: %>
+                   <%- item.end.getHours() %>:<%- getMinutesFormatted(item.end.getMinutes()) %>
+                   <% end %>
+                 </td>
+               </tr>
+               <% end %>
+             </tbody>
+           </table>
+         </div>
+
+     <% else: %>
+        <p>Die Agenda ist momentan leer.</p>
+     <% end %>
 
 
                  <h2><span>Facebook News</span></h2>

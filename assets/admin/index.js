@@ -70,6 +70,22 @@ common.then(function(){
             });
           }
         });
+
+        $('.remove-event').click(function(){
+          var el = this;
+          var id = $(el).data('id');
+          if(confirm("Sind Sie sicher, dass Sie dieses Event löschen möchten?")){
+            $.post({
+              url: '/admin/events/delete',
+              data: { id: id }
+            }).done(function(res){
+              $(el).closest('tr').remove();
+            }).fail(function(xhr, status, err){
+              console.log(err);
+            });
+          }
+        });
+
       });
     }
 )

@@ -1,13 +1,42 @@
 <% extend 'admin/layouts/main' %>
 
-<h3>Events</h3>
-<div class="ui three column grid">
+
+<div class="ui page grid">
   <div class="row">
-    <div class="column"><a class="ui button" href="./events/new">Neues event erstellen</a></div>
+    <div class="column"><h3>Events</h3></div>
   </div>
   <div class="row">
-    <% for event in @events: %>
-      <p><%= event %></p>
-    <% end %>
+    <div class="column"><a class="ui button" href="./new">Neues Event erstellen</a></div>
+  </div>
+  <div class="row">
+    <table class="ui fluid table">
+         <thead>
+            <tr>
+                <th>Name</th>
+                <th>Beginn</th>
+                <th>Ende</th>
+                <th>Creation Date</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for event in @events: %>
+              <tr>
+                <td><%= event.name %></td>
+                <td><%= @moment(event.begin).format("MMMM Do YYYY HH:mm") %></td>
+                <td><%= @moment(event.end).format("MMMM Do YYYY HH:mm") %></td>
+                <td><%= @moment(event.creation_date).format("YYYY-MM-DD HH:mm:ss") %></td>
+                <td>
+                    <a class="ui icon button" href="/admin/events/modify/<%= event._id %>">
+                      <i class="write icon"></i>
+                    </a>
+                    <button class="ui red icon button remove-event" date-id=<%= event._id %>>
+                      <i class="remove icon"></i>
+                    </button>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+    </table>
   </div>
 </div>

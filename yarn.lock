@@ -4172,6 +4172,10 @@ moment@^2.19.1:
   version "2.19.1"
   resolved "http://registry.npm.taobao.org/moment/download/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
 
+momentjs@^2.0.0:
+  version "2.0.0"
+  resolved "http://r.cnpmjs.org/momentjs/download/momentjs-2.0.0.tgz#73df904b4fa418f6e3c605e831cef6ed5518ebd4"
+
 mongodb-core@2.1.17:
   version "2.1.17"
   resolved "http://registry.npm.taobao.org/mongodb-core/download/mongodb-core-2.1.17.tgz#a418b337a14a14990fb510b923dee6a813173df8"
