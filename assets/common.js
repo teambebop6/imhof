@@ -37,10 +37,6 @@ var common = new Promise(function(resolve, reject){
     window.jQuery = jQuery;
     window.$ = $;
 
-    require(['./vendor/jquery.validate.min.js'], function(){
-      require('./js/jquery.validate.custom.js');
-    });
-
     require('./js/main.js'); // Include main.js
 
     // Semantic js
