@@ -11,6 +11,7 @@ module.exports = function (app) {
   // Load controllers
   app.use('/admin/events', require('./events'));
   app.use('/admin/products', require('./products'));
+  app.use('/admin/showcases', require('./showcases'));
   app.use('/admin', router);
 
   // ERROR HANDLERS

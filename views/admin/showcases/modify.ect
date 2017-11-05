@@ -1,0 +1,41 @@
+<% extend 'admin/layouts/main' %>
+
+<% block 'scripts' : %>
+  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+<% end %>
+
+<div class="ui page grid">
+  <div class="two column row">
+    <div class="column">
+      <h3><% if @showcase._id : %>Schaukasten bearbeiten<% else : %>Neues schaukasten <% end %></h3>
+      <form id="modify-showcase" class="ui form" method="post" action="./modify">
+        <div class="hidden field">
+          <input name="id" type="hidden"/>
+        </div>
+        <div class="field">
+          <label>Title</label>
+          <input name="title" type="text" value="<%= @showcase.title %>"/>
+        </div>
+        <div class="field">
+          <label>Detail</label>
+          <textarea name="detail"><%= @showcase.detail %></textarea>
+        </div>
+        <div class="field">
+          <label>Avatar</label>
+          <input name="avatar" type="file" />
+          <% if @showcase.avatar : %>
+            <img class="ui small image" src="/showcases/<%= @showcase.avatar.filename %>" />
+          <% end %>
+        </div>
+        <div class="field">
+          <div id="showcase-visible-checkbox" class="ui slider checkbox">
+            <input id="showcase-visible" type="hidden" value="<%= @showcase.visible %>" />
+            <input name="visible" type="checkbox">
+            <label>Sichtbar?</label>
+          </div>
+        </div>
+        <button class="ui green fluid button" type="submit">Schaukasten speichern</button>
+      </form>
+    </div>
+  </div>
+</div>

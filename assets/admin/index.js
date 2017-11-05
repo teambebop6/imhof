@@ -33,10 +33,25 @@ common.then(function(){
             }
           });
 
+          $('form#modify-showcase').validate({
+            rules: {
+              title: {
+                required: true,
+              },
+              detail : {
+                required: true
+              }
+            }
+          });
+
         });
         
         if($('#visible').val() == "true"){
           $('#visible-checkbox').checkbox('check');
+        }
+
+        if($('#showcase-visible').val() == "true"){
+          $('#showcase-visible-checkbox').checkbox('check');
         }
 
         // Set selected for single selection dropdown
@@ -86,6 +101,20 @@ common.then(function(){
           }
         });
 
+        $('.remove-showcase').click(function(){
+          var el = this;
+          var id = $(el).data('id');
+          if(confirm("Sind Sie sicher, dass Sie dieses Schaukasten löschen möchten?")){
+            $.post({
+              url: '/admin/showcases/delete',
+              data: { id: id }
+            }).done(function(res){
+              $(el).closest('tr').remove();
+            }).fail(function(xhr, status, err){
+              console.log(err);
+            });
+          }
+        });
 
         require('../vendor/jquery.picker/picker.min.css');
         require(['../vendor/jquery.picker/picker.min.js'], function(){

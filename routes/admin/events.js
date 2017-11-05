@@ -45,7 +45,7 @@ router.post('/modify', function (req, res, next) {
         return next(err)
       }
       if (!event) {
-        return next({status: 400, message: "User not found."})
+        return next({status: 400, message: "Showcase not found."})
       }
       else {
         event.name = req.body.name;
