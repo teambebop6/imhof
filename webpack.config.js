@@ -67,8 +67,14 @@ module.exports = {
       filename: "[name].css",
     }),
     new webpack.optimize.CommonsChunkPlugin({
+      filename: "admin/commons.js",
+      name: "admin/commons",
+      chunks: ['admin/index'],
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
       filename: "commons.js",
       name: "commons",
+      chunks: ['default', 'about', 'contact', 'shop', 'cart', 'buy'],
     })
   ]
 };
