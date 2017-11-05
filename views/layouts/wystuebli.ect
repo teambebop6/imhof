@@ -20,17 +20,21 @@
       <% include 'partials/menu' %>
     </div>
     <div class="pusher">
-
       <div class="cart-icon cart-out">
         <div class="number-of-items-in-cart"></div>
         <a href="/shop/cart"><i class="cart icon"></i></a>
       </div>
-      <div class="ui page-top sticky fixed stackable page grid page-cont">
 
+      <div class="ui page-top sticky fixed stackable page grid">
         <div class="ui grid page-menu">
           <div class="column page-nav">
+            <a href="/" class="return-home">
+              <p style="display:none;"><span>Home</span></p>
+              <div class="logo-container">
+                <img src="/images/logo_@2x.png" />
+              </div>
+            </a>
 
-            <a href="/" class="return-home"></a>
             <a class="toggle-sidebar"><i class="huge content icon"></i></a>
 
             <div class="cart-icon cart-in">
@@ -42,32 +46,27 @@
             </div>
           </div>
         </div>
+        <% include 'partials/subnav' %>
       </div>
 
-      <div class="filler" style="visibility:hidden;height:87px;margin:0;"></div>
 
-      <div class="top-bg">
-        <div class="ui centered page grid container">
-        </div>
-      </div>
-      <div class="ui stackable relaxed page grid page-cont">
-        <div class="ui row">
-          <div class="ui column content">
-            <div id="inner-content">
-              <!-- content goes here -->
-              <% content %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div class="filler" style="visibility:hidden;height:71px;margin-bottom:1rem;"></div>
 
-    <div class="row">
+
+      <% content %>
+
+      <div class="ui grid" style="background:white;">
+        <div class="dark dotted row" style="height:5rem;"></div>
+      </div>
+
       <% include 'partials/footer' %>
     </div>
-    
-    <script src='/commons.js'></script>
-    
+
+    <script src="/commons.js" charset="utf-8"></script>
+
+    <% content 'scripts' %>
+
+
 
   </body>
 </html>
