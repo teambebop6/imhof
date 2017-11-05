@@ -22,3 +22,5 @@ assets/vendor/Semantic-UI/dist
 .yarnclean
 
 *dist.zip
+yarn-error.log
+.idea/
