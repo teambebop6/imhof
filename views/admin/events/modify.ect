@@ -14,11 +14,11 @@
         </div>
         <div class="field">
           <label>Beginn</label>
-          <input name="begin" type="text" value="<%= @event.begin %>"/>
+          <input name="begin" type="text" value="<%= @event.begin %>" data-inputmask="'alias': 'date'"/>
         </div>
         <div class="field">
           <label>Ende</label>
-          <input name="end" type="text" value="<%= @event.end %>"/>
+          <input name="end" type="text" value="<%= @event.end %>" data-inputmask="'alias': 'date'"/>
         </div>
         <button class="ui green fluid button" type="submit">Event speichern</button>
       </form>

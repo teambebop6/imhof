@@ -1,4 +1,4 @@
-var express, router, Event, fs;
+var express, router, Event;
 
 express = require('express');
 router = express.Router();
@@ -70,7 +70,7 @@ router.post('/modify', function (req, res, next) {
     console.log("Creating new event: " + JSON.stringify(event));
     saveEvent(req, res, next, event);
   }
-})
+});
 
 
 router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
@@ -96,9 +96,9 @@ router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res,
   });
 });
 
-router.post('/delete/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
-  console.log(req.params.id)
-  Event.findOne({_id: req.params.id}, function (err, event) {
+router.post('/delete/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  console.log(req.body.id)
+  Event.findOne({_id: req.body.id}, function (err, event) {
     if (err) {
       return res.json(err)
     }
@@ -114,15 +114,6 @@ router.post('/delete/:id', utils.isNotAuthenticatedThenLogin, function (req, res
           res.json({
             status: 200,
             message: "Successfully deleted event."
-          });
-
-          fs.unlink(event.avatar.path, function (err) {
-            if (err) {
-              console.log(err)
-            }
-            else {
-              console.log("Deleted image: " + event.avatar.path);
-            }
           });
         }
       });

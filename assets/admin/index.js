@@ -86,6 +86,13 @@ common.then(function(){
           }
         });
 
+
+        require(['jquery.inputmask'], function(){
+          $(function() {
+            $(":input").inputmask();
+          })
+        })
+
       });
     }
 )
