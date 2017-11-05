@@ -1,4 +1,5 @@
-<% extend 'layouts/main.ect' %>
+<% extend 'layouts/main_nogrid.ect' %>
+
 
 <% block 'stylesheets' : %>
 <link rel="stylesheet" href="/shop.css" type="text/css" />
@@ -8,51 +9,245 @@
 <script src="/shop.bundle.js"></script>
 <% end %>
 
-<div class="shipping-info">
-  <h3>Wichtige Info zur Lieferung und Zahlung</h3>
-  <p>
-    Bei Lieferung gilt eine Mindestbestellmenge von <strong>6 Flaschen</strong>.  Wir liefern Ihre Bestellung persönlich innerhalb von <strong>ca. 10 Arbeitstagen</strong> oder gemäss Abmachung. 
-  <br />Bitte <a class="link" href="/contact">kontaktieren Sie uns</a>, wenn Sie es eilig haben, damit wir eine Lösung finden können. 
-  </p>
-  <p><strong>Eine Lieferung in die Region Basel ist gratis</strong>. Ausserhalb wird, sofern nichts anderes vereinbart, ein Transportkostenanteil von CHF 20.– verrechnet. Die Lieferung ist gratis für alle Bestellmengen über CHF 500.–. 
-  </p>
 
-  <p>Wir liefern <strong>gegen Rechnung</strong>, zahlbar innert 30 Tagen netto. Eine Abholung ist nach Absprache natürlich auch möglich. 
-  </p>
-</div>
 
-<% for cat in @cats : %>
-<h2 id="cat-<%- cat._id %>"><span><%- cat._id %></span></h2>
-<div class="ui stackable grid items-grid"><!--grid-->
-  <div class="four column row"><!--four column row-->
-    
-    <% for item in cat.items : %>
 
-    <div class="column shop-item">
-      <a href="/shop/<%= item._id %>">
-        <p class="item-title">
-          <%= item.title %>
-        </p>
-        <div class="item-picture">
-          <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
-        </div>
-      </a>
+<div class="ui stackable grid shop-header">
+  <div class="two column row">
+    <div class="column">
+      <p class="text">Willkommen im Imhof's Shop</p>
     </div>
-
-    <% end %>
-
+    <div class="column">
+      <img src="/images/logo_front_hq.png" />
+    </div>
   </div>
 </div>
-<% end %>
 
-<!-- lammfleisch modal-->
-<div class="ui modal lammfleisch">
+
+<div class="ui stackable page grid">
+  <div class="row">
+    <div class="column content">
+
+      <% if @cats && @cats[0].items : %>
+      <% item = @cats[0].items[0]; %>
+      <h2><span>Beliebt</span></h2>
+      <div class="ui grid">
+        <div class="five column row">
+          <% for i in [1,2,3,4,5] : %>
+          <div class="column shop-item">
+            <a href="/shop/<%= item._id %>">
+              <p class="item-title">
+                <%= item.title %>
+              </p>
+              <div class="item-picture">
+                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui mini centered image item-image" />
+              </div>
+            </a>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+
+      <% for cat in @cats : %>
+      <h2 id="cat-<%- cat._id %>"><span><%- cat._id %></span></h2>
+      <div class="ui stackable grid items-grid"><!--grid-->
+        <div class="four column row"><!--four column row-->
+          
+          <% for item in cat.items : %>
+
+          <div class="column shop-item">
+            <a href="/shop/<%= item._id %>">
+              <p class="item-title">
+                <%= item.title %>
+              </p>
+              <div class="item-picture">
+                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+              </div>
+            </a>
+          </div>
+
+          <% end %>
+
+        </div>
+      </div>
+      <% end %>
+
+
+
+
+
+      <div class="ui stackable grid lammfleisch-header">
+        <div class="two column row">
+          <div class="column">
+            <img class="right floated" src="/images/logo_front_hq.png" />
+          </div>
+          <div class="column" style="padding-top:5rem;">
+            <span class="text">Imhof's Lammfleisch</span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="ui stackable grid lammfleisch-preorder">
+        <div class="two column row">
+
+          <div class="column">
+
+
+            <p class="description">Wir bieten <strong>Frischfleisch</strong> sowie eine kleine varierende Menge an <strong>tiefgefrorenem Fleisch</strong> an. <p>
+            <p>Sobald ihre Vorbestellung bei uns eintrifft, werden wir unseren Lammfleisch-bestand überprüfen und uns dann telefonisch oder per Email bei Ihnen melden.</p>
+
+
+
+            <h2 class=""><span>Lammfleisch-Produkte im Angebot:</span></h2>
+            <table class="ui selectable very basic table lammfleisch-table">
+              <thead>
+                <tr>
+                  <th>Beschreibung</th>
+                  <th>Preis (CHF)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mischpacket 1/2 Lamm (5 - 7 kg)</td>
+                  <td>32.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Mischpacket 1 Lamm (8 - 12 kg)</td>
+                  <td>32.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Gigot mit Knochen</td>
+                  <td>35.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Rollbraten (ca. 800g)</td>
+                  <td>32.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Voressen (ca. 350g)</td>
+                  <td>32.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Gehacktes (ca. 350g)</td>
+                  <td>18.70 per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Rack (Kottelets am Stück)</td>
+                  <td>58.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Chops (Nierstück)</td>
+                  <td>59.50 per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Filet</td>
+                  <td>59.50 per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Bratwürste grob (2er-Pack)</td>
+                  <td>3.– per Stück</td>
+                </tr>
+                <tr>
+                  <td>Bratwürste fein (2er-Pack)</td>
+                  <td>2.70 per Stück</td>
+                </tr>
+                <tr>
+                  <td>Hamburger (2er-Pack)</td>
+                  <td>3.– per Stück</td>
+                </tr>
+                <tr>
+                  <td>Ofen-Fleischkäse (ca. 550g)</td>
+                  <td>10.– per Stück</td>
+                </tr>
+                <tr>
+                  <td>Trockenfleisch luftgetrocknet</td>
+                  <td>70.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Indianerknebeli (td. Grössen)</td>
+                  <td>65.– per Kilo</td>
+                </tr>
+                <tr>
+                  <td>Bündner Salsiz</td>
+                  <td>6.50 per Stück</td>
+                </tr>
+                <tr>
+                  <td>Bündner Knebeli</td>
+                  <td>7.50 per Stück</td>
+                </tr>  
+              </tbody>
+            </table>
+          </div>
+          <div class="column">
+            <h3>Senden Sie uns eine unverbindliche Vorbestellung!</h3>
+
+            <div class="ui message" style="display:none;">
+              <div class="message"></div>
+            </div>
+            <form class="ui form" id="lammfleisch-order">
+              <div class="two fields">
+                <div class="field">
+                  <label>Ihr Vorname</label>
+                  <input class="ui input" name="firstName" type="text" required="" />
+                </div>
+                <div class="field">
+                  <label>Ihr Nachname</label>
+                  <input class="ui input" name="lastName" minlength="2" type="text" required>
+                </div>
+              </div>
+              <div class="two fields">
+                <div class="field">
+                  <label>Ihre Telefonnummer</label>
+                  <input class="ui input" name="phone" minlength="10" type="text" required>
+                </div>
+                <div class="field">
+                  <label>Ihre Email-Adresse</label>
+                  <input class="ui input" name="email" type="text" required>
+                </div>
+              </div>
+              <div class="field">
+                <label>Ihre Nachricht</label>
+                <textarea name="text" required></textarea>
+              </div>
+              <div class="field">
+                <div class="wine-and-dine">
+                  <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+                  <input type="text" name="wineAndDine">
+                </div>
+              </div>
+
+              <div class="field">
+                <button id="send-preorder" class="ui button" type="submit">Vorbestellung absenden</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="ui mini modal orderConfirm">
   <i class="close icon"></i>
   <div class="header">
-    Lammfleisch - Vorbestellung
+    Vorbestellung erfolgreich!
   </div>
   <div class="content">
-    <div class="description"></div>
+    <p>Wir haben Ihre Vorbestellung erfolgreich erhalten. Sie hören von uns!</p>
+
+    <p>
+    Familie Imhof
+    </p>
+
   </div>
 </div>
 

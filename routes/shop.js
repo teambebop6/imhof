@@ -17,6 +17,10 @@ var _shopItems;
 ECT = require('ect');
 renderer = ECT({ watch: true, root: config.ROOT + '/views', ext : '.ect' });
 
+module.exports = function (app) {
+  app.use('/shop', router);
+};
+
 router.use(expressValidator([]));
 
 router.get('/', function(req, res, next) {
@@ -131,12 +135,6 @@ router.post('/get_item', function(req, res, next){
   });
 });
 
-// Lammfleisch
-router.get('/lammfleisch', function(req, res, next){
-  res.render('lammfleisch');
-});
-
-
 var getFullProductsInfo = function(items){
   return new Promise(function(resolve, reject){
     
@@ -246,6 +244,7 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
 
 // Preorder Lammfleisch
 router.post('/preorder', function(req, res){
+  
   var phone = req.body.phone;
   var firstName = req.body['firstName'];
   var lastName = req.body['lastName'];
@@ -262,7 +261,8 @@ router.post('/preorder', function(req, res){
   }
 
   // Check honeypot field
-  if(req.body.wineAndDine != ""){ res.json({success: false, message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!"}); return;}
+  if(req.body.wineAndDine != ""){ 
+    res.json({status: 400, message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!"}); return;}
 
   // Create message
   var message = req.body.text.replace(/(?:\r\n|\r|\n)/g, '<br />'); // Escaping html message
@@ -278,17 +278,13 @@ router.post('/preorder', function(req, res){
 
   transporter.sendMail(mailOptions, function(error, info){
     if(error){
-      res.json({success: false, error: error});
+      res.json({status: 400, error: error});
     }
     else{
-      res.json({success: true});
+      res.json({status: 200, message: "Besten Dank! Ihre Vorbestellung wurde erfolgreich versendet. Sie hören von uns!"});
     }
 
     transporter.close();
   });
 });
-
-module.exports = function (app) {
-  app.use('/shop', router);
-};
 

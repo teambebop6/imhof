@@ -6,7 +6,6 @@ exports.formatPrice = function(price){
   return parseFloat(price).toFixed(2);
 }
 
-
 exports.showMessage = function(res){
   if(res.status == 200){
     $('.ui.message').removeClass('error');

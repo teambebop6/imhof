@@ -1,4 +1,5 @@
 var common = require("./common");
+var viewUtils = require('../utils/ViewUtils');
 
 require('./less/shop.less');
 
@@ -270,5 +271,44 @@ common.then(function(){
       return 1;
     }
   }
+
+
+  require(['jquery.validate', './vendor/jquery.validate.de'], function(){
+    $("form#lammfleisch-order").submit(function(e){
+      e.preventDefault();
+    }).validate({
+      lang: 'de',
+      rules: {
+        phone:{
+          required: true,
+          phoneCH: true
+        },
+        email: {
+          required: true,
+          email: true
+        }
+      },
+      submitHandler: function(form, event) {
+
+        var submit_btn = $(form).find('button[type="submit"]');
+
+        submit_btn.addClass('disabled loading');
+        $.post({url:"/shop/preorder", data: $(form).serialize()}).then(function(res){
+          submit_btn.removeClass('disabled loading');
+
+          if(res.status != 200){
+            viewUtils.showMessage(res);
+          }else{
+            // Success
+            $('.mini.modal.orderConfirm').modal('show');
+            $('.ui.message').hide();
+          }
+        }).fail(function(xhr, status, err){
+          submit_btn.removeClass('disabled loading');
+          viewUtils.showMessage(err);
+        });
+      }
+    });
+  });
 });
 

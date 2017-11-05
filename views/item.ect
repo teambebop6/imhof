@@ -17,45 +17,69 @@
   <div class="centered row">
     <h2 class="ui header title"><%= @product.title %></h2>
   </div>
-  <div class="row">
-    <div class="twelve wide column">
-      <h4>Beschreibung</h4>
-      <div>
-        <%= @product.description %>
+  <div class="two column row">
+    <div class="column">
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="centered column">
+            <h4>Beschreibung</h4>
+            <div>
+              <%= @product.description %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="four wide column">
+    <div class="column">
 
 
-      <h4>Preis</h4>
-      <p><span>CHF <%= @utils.getCHF(@product.price) %> / Stk.</span></p>
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="right floated column">
+            <h4>Preis</h4>
+            <p><span>CHF <%= @utils.getCHF(@product.price) %> / Stk.</span></p>
 
-      <form class="ui form buy-item">
-        <div class="field">
-          <p><strong>Menge:</strong></p>
-          <div class="ui buttons">
-            <button class="ui icon disabled button subtract" data-id="<%= @product._id %>">
-              <i class="minus icon"></i>
-            </button>
-            <input type="text" id="amount-<%= @product._id %>" class="ui input between-buttons" value="1" maxlength="3"></input>
-            <button class="ui icon button disabled add" data-id="<%= @product._id %>">
-              <i class="plus icon"></i>
-            </button>
-          </div> 
+            <form class="ui form buy-item">
+              <div class="field">
+                <p><strong>Menge:</strong></p>
+                <div class="ui buttons">
+                  <button class="ui icon disabled button subtract" data-id="<%= @product._id %>">
+                    <i class="minus icon"></i>
+                  </button>
+                  <input type="text" id="amount-<%= @product._id %>" class="ui input between-buttons" value="1" maxlength="3"></input>
+                  <button class="ui icon button disabled add" data-id="<%= @product._id %>">
+                    <i class="plus icon"></i>
+                  </button>
+                </div> 
+              </div>
+              <div class="field">
+                <button class="ui fluid red button disabled to-cart" data-id="<%= @product._id %>">
+                  <i class="cart icon"></i>
+                  In den Warenkorb
+                </button>
+              </div>
+              <div class="field">
+                <button class="ui fluid button disabled insta-buy" data-id="<%= @product._id %>">
+                  <i class="right arrow icon"></i>
+                  Sofort kaufen
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="field">
-          <button class="ui fluid red button disabled to-cart" data-id="<%= @product._id %>">
-            <i class="cart icon"></i>
-            In den Warenkorb
-          </button>
-        </div>
-        <div class="field">
-          <button class="ui fluid button disabled insta-buy" data-id="<%= @product._id %>">
-            <i class="right arrow icon"></i>
-            Sofort kaufen
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
+
+
+<h2><span>Lieferkonditionen</span></h2>
+<p>
+Bei Lieferung gilt eine Mindestbestellmenge von <strong>6 Flaschen</strong>.  Wir liefern Ihre Bestellung persönlich innerhalb von <strong>ca. 10 Arbeitstagen</strong> oder gemäss Abmachung. 
+<br />Bitte <a class="link" href="/contact">kontaktieren Sie uns</a>, wenn Sie es eilig haben, damit wir eine Lösung finden können. 
+</p>
+<p><strong>Eine Lieferung in die Region Basel ist gratis</strong>. Ausserhalb wird, sofern nichts anderes vereinbart, ein Transportkostenanteil von CHF 20.– verrechnet. Die Lieferung ist gratis für alle Bestellmengen über CHF 500.–. 
+</p>
+
+<p>Wir liefern <strong>gegen Rechnung</strong>, zahlbar innert 30 Tagen netto. Eine Abholung ist nach Absprache natürlich auch möglich. 
+</p>

@@ -5,16 +5,7 @@ common.then(function(){
   var $ = window.jQuery;
 
   require(['jquery.validate', './vendor/jquery.validate.de'], function(){
-    // Add Swiss phone number rule
-    var validator = function(phone_number, element){
-      phone_number = phone_number.replace(/\s+/g, "");
-      return this.optional(element) 
-        || phone_number.length > 9 
-        && phone_number.match(/^(?:(?:|0{1,2}|\+{0,2})41(?:|\(0\))|0)([1-9]\d)(\d{3})(\d{2})(\d{2})$/);
-    }
-
-    $.validator.addMethod("phoneCH", validator , "Bitte geben Sie eine gültige Telefonnummer ein!");
-
+    
     // Order submit form
     $('#order-submit-form').submit(function(e){
       e.preventDefault();
