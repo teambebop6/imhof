@@ -50,6 +50,49 @@ a.link:hover{
   float:right;
 }
 
+.wystuebli-container{
+  padding-top:8rem;
+  padding-bottom:8rem;
+  background: #634d3c;
+
+  color:rgba(255,255,255,0.4);
+  
+  h2 > span{
+    color:rgba(255,255,255,0.8);
+    border:none;
+  }
+}
+
+.ui.grid.lammfleisch-preorder{
+  margin-top:3rem;
+}
+
+.ui.grid.shop-header{
+  background:url('/images/headers/shop.jpg');
+  margin-top:6rem;
+  margin-bottom:3rem;
+  padding:3rem;
+
+  .text{
+    color:white;
+    padding:1rem;
+    text-transform:uppercase;
+    background: @primary-color;
+    font-size:2.5rem;
+  }
+}
+.ui.grid.lammfleisch-header{
+  background:url('/images/headers/meat.jpg');
+
+  .text{
+    color:white;
+    padding:1rem;
+    text-transform:uppercase;
+    background: @secondary-color;
+    font-size:2.5rem;
+  }
+}
+
 .ui.grid.imhof-family{
   margin-top:3rem;
   margin-bottom:3rem;
@@ -106,6 +149,22 @@ a.link:hover{
   background-image: -moz-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
   background-image: -ms-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
   background-image: repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  
+  &.dark{
+  
+  @color: #282833;
+  @bgcolor: transparent;
+
+  //padding: 2.25em 1.6875em;
+  background-image: -webkit-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  background-image: -moz-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  background-image: -ms-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  background-image: repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  }
+  
+ 
+  padding:6px !important;
+  
   -webkit-background-size: 3px 3px;
   -moz-background-size: 3px 3px;
   background-size: 3px 3px;
@@ -329,6 +388,7 @@ padding-right: 0;
 
   h3{
     border-bottom:1px solid @light-gray;
+
   }
 
   list-style-type:none;
@@ -401,7 +461,7 @@ html,body{
 }
 .number-of-items-in-cart{
   span{
-    background: red none repeat scroll 0% 0%;
+    background: @secondary-color none repeat scroll 0% 0%;
     color: white;
     padding: 2px;
     width: 23px;
@@ -461,8 +521,7 @@ height:430px;}
   a:hover{
     color:lighten(#222, 5);
   }
-
-  border-bottom:1px solid @secondary-color;
+  
   margin-right:2rem;
   margin-top:1rem;
   i{
@@ -500,6 +559,7 @@ height:430px;}
   }
   .title{
     color: #222;
+    
     h3{
       margin:1rem;
       font-size:2rem;
@@ -567,7 +627,6 @@ h2{
   font-size:1.7rem;
   text-transform:uppercase;
   font-weight:300;
-  font-style:italic;
   font-family: 'Open Sans', sans-serif;
   padding-top:1rem;
   display:block;
