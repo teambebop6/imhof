@@ -87,11 +87,17 @@ common.then(function(){
         });
 
 
-        require(['jquery.inputmask'], function(){
-          $(function() {
-            $(":input").inputmask();
+        require('../vendor/jquery.picker/picker.min.css');
+        require(['../vendor/jquery.picker/picker.min.js'], function(){
+
+          console.log("Jquery picker loaded.");
+          $('.js-full-picker').each(function (index, e) {
+            new Picker(e, {
+              format: 'YYYY-MM-DD HH:mm',
+            });
           })
-        })
+
+        });
 
       });
     }

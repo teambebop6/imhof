@@ -18,11 +18,11 @@
         </div>
         <div class="field">
           <label>Beginn</label>
-          <input name="begin" type="text" value="<%= @event.begin %>" data-inputmask="'alias': 'date'"/>
+          <input name="begin" type="text" value="<%= @event.begin %>" class="js-full-picker"/>
         </div>
         <div class="field">
           <label>Ende</label>
-          <input name="end" type="text" value="<%= @event.end %>" data-inputmask="'alias': 'date'"/>
+          <input name="end" type="text" value="<%= @event.end %>" class="js-full-picker"/>
         </div>
         <button class="ui green fluid button" type="submit">Event speichern</button>
       </form>
