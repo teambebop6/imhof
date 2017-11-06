@@ -8,7 +8,7 @@
   <div class="two column row">
     <div class="column">
       <h3><% if @showcase._id : %>Schaukasten bearbeiten<% else : %>Neues schaukasten <% end %></h3>
-      <form id="modify-showcase" class="ui form" method="post" action="./modify">
+      <form id="modify-showcase" class="ui form" enctype="multipart/form-data" method="post" action="./modify">
         <div class="hidden field">
           <input name="id" type="hidden"/>
         </div>

@@ -9,6 +9,7 @@ mongodb/connect.js
 .DS_Store
 .env
 public/products/
+public/showcases/
 
 #Semantic
 assets/vendor/Semantic-UI/node_modules
