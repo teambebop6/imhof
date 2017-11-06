@@ -8,9 +8,9 @@
   <div class="two column row">
     <div class="column">
       <h3><% if @event._id : %>Event bearbeiten<% else : %>Neues Event <% end %></h3>
-      <form id="modify-event" class="ui form" method="post" action="./modify">
+      <form id="modify-event" class="ui form" method="post" action="/admin/events/modify">
         <div class="hidden field">
-          <input name="id" type="hidden"/>
+          <input name="id" type="hidden" value="<%= @event._id %>" />
         </div>
         <div class="field">
           <label>Name</label>
