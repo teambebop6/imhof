@@ -4,6 +4,7 @@ express = require('express');
 router = express.Router();
 
 var moment = require('moment');
+//moment.locale("de");
 
 utils = require('../../utils/AdminUtils');
 
@@ -90,7 +91,7 @@ router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res,
     } else {
       return res.render('admin/events/modify', {
         active: {events: true},
-        event: event
+        event: event,
       });
     }
   });
