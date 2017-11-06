@@ -6,79 +6,12 @@ ItemSchema = require('../models/item');
 transporter = require('../helpers/sendmail');
 Event = require('../models/event');
 
+const moment = require('moment');
+moment.locale("de");
+
 module.exports = function (app) {
   app.use('/', router);
 };
-
-var agenda = [
-  {
-    from: new Date("2017-10-28 10:00"),
-    until: new Date("2017-11-05 22:00"),
-    title: 'Basler Weinmesse'
-  },
-  {
-    from: new Date("2017-07-28 18:00"),
-    until: new Date("2017-07-28 22:00"),
-    title: 'Imhof\'s Wystübli offen'
-  },
-  {
-    from: new Date("2017-07-21 18:00"),
-    until: new Date("2017-07-21 22:00"),
-    title: 'Imhof\'s Wystübli offen'
-  },
-  {
-    from: new Date("2017-07-14 18:00"),
-    until: new Date("2017-07-14 22:00"),
-    title: 'Imhof\'s Wystübli offen'
-  },
-  {
-    from: new Date("2017-07-07 18:00"),
-    until: new Date("2017-07-07 22:00"),
-    title: 'Imhof\'s Wystübli offen'
-  },
-  {
-    from: new Date("2017-06-25 10:00"),
-    until: new Date("2017-06-25 19:00"),
-    title: 'Räbesunntig offen'
-  },
-  {
-    from: new Date("2017-04-09 14:00"),
-    until: new Date("2017-04-09 19:00"),
-    title: 'Besenbeiz offen'
-  },
-  {
-    from: new Date("2017-04-08 17:00"),
-    until: new Date("2017-04-08 22:00"),
-    title: 'Besenbeiz offen'
-  },
-  {
-    from: new Date("2017-04-02 14:00"),
-    until: new Date("2017-04-02 19:00"),
-    title: 'Besenbeiz offen'
-  },
-  {
-    from: new Date("2017-04-01 17:00"),
-    until: new Date("2017-04-01 22:00"),
-    title: 'Besenbeiz offen'
-  },
-
-  {
-    from: new Date("2017-03-26 14:00"),
-    until: new Date("2017-03-26 19:00"),
-    title: 'Besenbeiz offen'
-  },
-  {
-    from: new Date("2017-03-19 14:00"),
-    until: new Date("2017-03-19 19:00"),
-    title: 'Besenbeiz offen'
-  },
-  {
-    from: new Date("2017-03-18 17:00"),
-    until: new Date("2017-03-18 22:00"),
-    title: 'Besenbeiz offen'
-  }
-];
-
 
 router.get('/', function (req, res, next) {
   ItemSchema.find(function (error, shopItems) {
@@ -92,13 +25,11 @@ router.get('/', function (req, res, next) {
           res.render('home.ect', {
             site: 'home',
             shopItems: shopItems.slice(0, 2),
+            moment: moment,
             agenda: events.sort(function (a, b) {
               return a.begin - b.begin
             }).filter(function (element, index, array) {
-              if (element.end > Date.now()) {
-                return true;
-              }
-              return false;
+              return element.end > Date.now();
             })
           });
         }
