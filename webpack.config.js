@@ -27,6 +27,7 @@ module.exports = {
     shop: './assets/shop',
     cart: './assets/cart',
     buy: './assets/buy',
+    home: './assets/home',
     'admin/index': './assets/admin/index'
   },
   output: {
@@ -47,6 +48,7 @@ module.exports = {
     },
     {test:/\.gif$/,loader:'url-loader'},
     {test:/\.png$/,loader:'url-loader'},
+    {test:/\.cur/,loader:'url-loader'},
     {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
@@ -75,7 +77,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       filename: "commons.js",
       name: "commons",
-      chunks: ['default', 'about', 'contact', 'shop', 'cart', 'buy'],
+      chunks: ['default', 'about', 'contact', 'shop', 'cart', 'buy', 'home'],
     })
   ]
 };

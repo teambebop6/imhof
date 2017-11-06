@@ -5,6 +5,7 @@ router = express.Router();
 ItemSchema = require('../models/item');
 transporter = require('../helpers/sendmail');
 Event = require('../models/event');
+Showcase = require('../models/showcase');
 
 const moment = require('moment');
 moment.locale("de");
@@ -22,15 +23,25 @@ router.get('/', function (req, res, next) {
         if (err) {
           next(err)
         } else {
-          res.render('home.ect', {
-            site: 'home',
-            shopItems: shopItems.slice(0, 2),
-            moment: moment,
-            agenda: events.sort(function (a, b) {
-              return a.begin - b.begin
-            }).filter(function (element, index, array) {
-              return element.end > Date.now();
-            })
+
+          // showcase
+          // TODO only latest now
+          Showcase.find({visible: true}).sort({visible: -1, last_modified_date: -1}).exec(function(err, showcases) {
+            if (err) {
+              next(err)
+            } else {
+              res.render('home.ect', {
+                site: 'home',
+                shopItems: shopItems.slice(0, 2),
+                moment: moment,
+                agenda: events.sort(function (a, b) {
+                  return a.begin - b.begin
+                }).filter(function (element, index, array) {
+                  return element.end > Date.now();
+                }),
+                showcases: showcases
+              });
+            }
           });
         }
       })

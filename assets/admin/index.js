@@ -134,6 +134,28 @@ common.then(function () {
       }
     });
 
+    var switchShowcaseVisibleCheckbox = function (showcaseId, checked) {
+      $.post({
+        url: '/admin/showcases/visible/',
+        data: {
+          id: showcaseId,
+          visible: checked
+        }
+      }).done(function (res) {
+      }).fail(function (xhr, status, err) {
+        console.log(err);
+      });
+    };
+
+    $('.visible_checkbox').checkbox({
+      onChecked: function (ele) {
+        switchShowcaseVisibleCheckbox($(this).data('id'), true)
+      },
+      onUnchecked: function (ele) {
+        switchShowcaseVisibleCheckbox($(this).data('id'), false)
+      }
+    });
+
     require('../vendor/jquery.picker/picker.min.css');
     require(['../vendor/jquery.picker/picker.min.js'], function () {
 

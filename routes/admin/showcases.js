@@ -31,7 +31,7 @@ var upload = multer({storage: storage});
 
 // List Showcases
 router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
-  Showcase.find(function (err, showcases) {
+  Showcase.find({}).sort({visible: -1, last_modified_date: -1}).exec(function (err, showcases) {
     if (err) {
       next(err)
     }
@@ -48,9 +48,7 @@ router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
 // Save showcase
 saveShowcase = function (req, res, next, showcase) {
 
-  showcase.title = req.body.title;
-  showcase.detail = req.body.detail;
-  showcase.visible = req.body.visible;
+  showcase.last_modified_date = new Date();
 
   if (req.file) {
     showcase.avatar = req.file;
@@ -65,6 +63,29 @@ saveShowcase = function (req, res, next, showcase) {
     }
   });
 };
+
+router.post('/visible', function (req, res, next) {
+
+  var id = req.body.id;
+  var visible = req.body.visible;
+
+  if (id) {
+    // Update existing showcase
+    Showcase.findOne({_id: id}, function (err, showcase) {
+      if (err) {
+        return next(err)
+      }
+      if (!showcase) {
+        return next({status: 400, message: "Showcase not found."})
+      } else {
+        showcase.visible = visible;
+        saveShowcase(req, res, next, showcase);
+      }
+    });
+  } else {
+    return res.json({status: 400, message: "Showcase not found."})
+  }
+});
 
 router.post('/modify', upload.single('avatar'), function (req, res, next) {
 
@@ -91,6 +112,10 @@ router.post('/modify', upload.single('avatar'), function (req, res, next) {
           });
         }
 
+        showcase.title = req.body.title;
+        showcase.detail = req.body.detail;
+        showcase.visible = req.body.visible;
+
         saveShowcase(req, res, next, showcase);
       }
     });
@@ -99,7 +124,12 @@ router.post('/modify', upload.single('avatar'), function (req, res, next) {
     console.log("Req body is:");
     console.log(req.body);
 
-    saveShowcase(req, res, next, new Showcase());
+    var showcase = new Showcase();
+    showcase.title = req.body.title;
+    showcase.detail = req.body.detail;
+    showcase.visible = req.body.visible;
+
+    saveShowcase(req, res, next, showcase);
   }
 });
 

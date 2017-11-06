@@ -17,7 +17,8 @@
         <tr>
           <th width="10%">Bild</th>
           <th width="25%">Titel</th>
-          <th width="45%">Detail</th>
+          <th width="35%">Detail</th>
+          <th width="10%">Visible</th>
           <th>Aktionen</th>
         </tr>
       </thead>
@@ -31,6 +32,16 @@
           </td>
           <td><%= showcase.title %></td>
           <td><%= showcase.detail %></td>
+          <td>
+            <div class="ui slider checkbox visible_checkbox">
+              <% if showcase.visible:  %>
+                <input type="checkbox" checked data-id='<%= showcase._id %>' />
+              <% else: %>
+                <input type="checkbox" data-id='<%= showcase._id %>' '/>
+              <% end %>
+              <label></label>
+            </div>
+          </td>
           <td>
             <a class="ui icon button" href="/admin/showcases/modify/<%= showcase._id %>">
               <i class="write icon"></i>
