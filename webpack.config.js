@@ -14,6 +14,7 @@ module.exports = {
     alias: {
       'jquery': path.join(__dirname, '/node_modules/jquery/dist/jquery.js'),
       'jquery.validate': path.join(__dirname, '/assets/vendor/jquery.validate.min.js'),
+      'jquery.validate.de': path.join(__dirname, '/assets/vendor/jquery.validate.de.js'),
       'cookies': path.join(__dirname, '/assets/js/js.cookie'),
       'lightbox': path.join(__dirname, '/bower_components/lightbox2/dist/js/lightbox.min.js'),
       'jquery.datepicker': path.join(__dirname, '/assets/vendor/jquery.datepicker/datepicker.min.js')

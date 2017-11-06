@@ -10,7 +10,7 @@
     <div class="column"><h3>Events</h3></div>
   </div>
   <div class="row">
-    <div class="column"><a class="ui button" href="./new">Neues Event erstellen</a></div>
+    <div class="column"><a class="ui button" href="/admin/events/new">Neues Event erstellen</a></div>
   </div>
   <div class="row">
     <table class="ui fluid table">
@@ -19,7 +19,6 @@
                 <th>Name</th>
                 <th>Beginn</th>
                 <th>Ende</th>
-                <th>Erstellungsdatum</th>
                 <th></th>
             </tr>
           </thead>
@@ -27,9 +26,8 @@
             <% for event in @events: %>
               <tr>
                 <td><%= event.name %></td>
-                <td><%= @moment(event.begin).format("MMMM Do YYYY HH:mm") %></td>
-                <td><%= @moment(event.end).format("MMMM Do YYYY HH:mm") %></td>
-                <td><%= @moment(event.creation_date).format("YYYY-MM-DD HH:mm:ss") %></td>
+                <td><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
+                <td><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
                 <td>
                     <a class="ui icon button" href="/admin/events/modify/<%= event._id %>">
                       <i class="write icon"></i>
