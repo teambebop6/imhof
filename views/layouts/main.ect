@@ -29,7 +29,7 @@
         <a href="/shop/cart"><i class="cart icon"></i></a>
       </div>
 
-      <div class="ui page-top sticky fixed stackable page grid">
+      <div class="ui page-top top sticky fixed stackable page grid">
         <div class="ui grid page-menu">
           <div class="column page-nav">
             <a href="/" class="return-home">
@@ -54,25 +54,11 @@
       </div>
 
 
-      <div class="filler" style="visibility:hidden;height:71px;margin-bottom:1rem;"></div>
+     
+      <% content %>
+
+      <div class="filler" style="height:3rem;"></div>
       
-      <div class="ui stackable page grid content">
-        <div class="ui row">
-          <div class="ui column content">
-            <div id="inner-content">
-              <!-- content goes here -->
-              <% content %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="filler" style="height:6rem;"></div>
-      <div class="ui grid" style="background:white;">
-        <div class="dotted row" style="height:5rem;"></div>
-      </div>
-
       <% include 'partials/footer' %>
 
     </div>
