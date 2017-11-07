@@ -41,28 +41,39 @@ common.then(function(){
           method: "POST",
           data: $('#contact-form').serialize(),
           success: function(result){
+            var msg = $('.ui.message');
+            $('#submit-form').removeClass('loading');
+            $('#submit-form').prop('disabled', false);  
             if(result.success){
+
+              // Reset contact form
               $('#contact-form')[0].reset();
               $('#contact-form .field').hide();
               $('#contact-form button').hide();
-              $('.error.message').hide();
 
-              $('.success.message > .message').html(result.message);
-              $('.success.message').show();
+              msg.addClass('success');
+              msg.removeClass('error');
+
+              msg.find('.message').html(result.message);
+              msg.show();
             }else{
-              $('.error.message > .message').html(result.message);
-              $('.error.message').show();
-              $('.success.message').hide();
+              msg.addClass('error');
+              msg.removeClass('success');
 
+              msg.find('.message').html(result.message);
+              msg.show();
             }
 
             $('#submit-form').removeClass('loading');
             $('#submit-form').prop('disabled', false);  
           },
           error: function(err){
-            $('.error.message > .message').html(err);
-            $('.error.message').show();
-            $('.success.message').hide();
+            var msg = $('.ui.message');
+
+            msg.addClass('error');
+            msg.removeClass('success');
+            msg.find('.message').html(err);
+            msg.show();
 
             $('#submit-form').removeClass('loading');
             $('#submit-form').prop('disabled', false);  
