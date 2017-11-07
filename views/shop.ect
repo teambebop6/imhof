@@ -1,4 +1,4 @@
-<% extend 'layouts/main_nogrid.ect' %>
+<% extend 'layouts/main.ect' %>
 
 
 <% block 'stylesheets' : %>
@@ -8,7 +8,6 @@
 <% block 'scripts' : %>
 <script src="/shop.bundle.js"></script>
 <% end %>
-
 
 
 
@@ -78,163 +77,170 @@
 
 
 
-      <div class="ui stackable grid lammfleisch-header">
-        <div class="two column row">
-          <div class="column">
-            <img class="right floated" src="/images/logo_front_hq.png" />
-          </div>
-          <div class="column" style="padding-top:5rem;">
-            <span class="text">Imhof's Lammfleisch</span>
-          </div>
-        </div>
-      </div>
 
 
 
 
 
-
-      <div class="ui stackable grid lammfleisch-preorder">
-        <div class="two column row">
-
-          <div class="column">
-
-
-            <p class="description">Wir bieten <strong>Frischfleisch</strong> sowie eine kleine varierende Menge an <strong>tiefgefrorenem Fleisch</strong> an. <p>
-            <p>Sobald ihre Vorbestellung bei uns eintrifft, werden wir unseren Lammfleisch-bestand überprüfen und uns dann telefonisch oder per Email bei Ihnen melden.</p>
-
-
-
-            <h2 class=""><span>Lammfleisch-Produkte im Angebot:</span></h2>
-            <table class="ui selectable very basic table lammfleisch-table">
-              <thead>
-                <tr>
-                  <th>Beschreibung</th>
-                  <th>Preis (CHF)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mischpacket 1/2 Lamm (5 - 7 kg)</td>
-                  <td>32.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Mischpacket 1 Lamm (8 - 12 kg)</td>
-                  <td>32.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Gigot mit Knochen</td>
-                  <td>35.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Rollbraten (ca. 800g)</td>
-                  <td>32.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Voressen (ca. 350g)</td>
-                  <td>32.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Gehacktes (ca. 350g)</td>
-                  <td>18.70 per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Rack (Kottelets am Stück)</td>
-                  <td>58.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Chops (Nierstück)</td>
-                  <td>59.50 per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Filet</td>
-                  <td>59.50 per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Bratwürste grob (2er-Pack)</td>
-                  <td>3.– per Stück</td>
-                </tr>
-                <tr>
-                  <td>Bratwürste fein (2er-Pack)</td>
-                  <td>2.70 per Stück</td>
-                </tr>
-                <tr>
-                  <td>Hamburger (2er-Pack)</td>
-                  <td>3.– per Stück</td>
-                </tr>
-                <tr>
-                  <td>Ofen-Fleischkäse (ca. 550g)</td>
-                  <td>10.– per Stück</td>
-                </tr>
-                <tr>
-                  <td>Trockenfleisch luftgetrocknet</td>
-                  <td>70.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Indianerknebeli (td. Grössen)</td>
-                  <td>65.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Bündner Salsiz</td>
-                  <td>6.50 per Stück</td>
-                </tr>
-                <tr>
-                  <td>Bündner Knebeli</td>
-                  <td>7.50 per Stück</td>
-                </tr>  
-              </tbody>
-            </table>
-          </div>
-          <div class="column">
-            <h3>Senden Sie uns eine unverbindliche Vorbestellung!</h3>
-
-            <div class="ui message" style="display:none;">
-              <div class="message"></div>
-            </div>
-            <form class="ui form" id="lammfleisch-order">
-              <div class="two fields">
-                <div class="field">
-                  <label>Ihr Vorname</label>
-                  <input class="ui input" name="firstName" type="text" required="" />
-                </div>
-                <div class="field">
-                  <label>Ihr Nachname</label>
-                  <input class="ui input" name="lastName" minlength="2" type="text" required>
-                </div>
-              </div>
-              <div class="two fields">
-                <div class="field">
-                  <label>Ihre Telefonnummer</label>
-                  <input class="ui input" name="phone" minlength="10" type="text" required>
-                </div>
-                <div class="field">
-                  <label>Ihre Email-Adresse</label>
-                  <input class="ui input" name="email" type="text" required>
-                </div>
-              </div>
-              <div class="field">
-                <label>Ihre Nachricht</label>
-                <textarea name="text" required></textarea>
-              </div>
-              <div class="field">
-                <div class="wine-and-dine">
-                  <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
-                  <input type="text" name="wineAndDine">
-                </div>
-              </div>
-
-              <div class="field">
-                <button id="send-preorder" class="ui button" type="submit">Vorbestellung absenden</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
 
+      <div class="ui stackable grid lammfleisch-header">
+        <div class="two column row">
+          <div class="column">
+            <img class="right floated" src="/images/logo_front_hq.png" />
+          </div>
+          <div class="column" style="padding-top:4rem;">
+            <span class="text">Imhof's Lammfleisch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui page grid">
+        <div class="row">
+          <div class="column content">
+
+<div class="ui stackable grid lammfleisch-preorder">
+  <div class="two column row">
+
+    <div class="column">
+
+
+      <p class="description">Wir bieten <strong>Frischfleisch</strong> sowie eine kleine varierende Menge an <strong>tiefgefrorenem Fleisch</strong> an. <p>
+      <p>Sobald ihre Vorbestellung bei uns eintrifft, werden wir unseren Lammfleisch-bestand überprüfen und uns dann telefonisch oder per Email bei Ihnen melden.</p>
+
+
+
+      <h2 class=""><span>Lammfleisch-Produkte im Angebot:</span></h2>
+      <table class="ui selectable very basic table lammfleisch-table">
+        <thead>
+          <tr>
+            <th>Beschreibung</th>
+            <th>Preis (CHF)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mischpacket 1/2 Lamm (5 - 7 kg)</td>
+            <td>32.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Mischpacket 1 Lamm (8 - 12 kg)</td>
+            <td>32.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Gigot mit Knochen</td>
+            <td>35.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Rollbraten (ca. 800g)</td>
+            <td>32.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Voressen (ca. 350g)</td>
+            <td>32.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Gehacktes (ca. 350g)</td>
+            <td>18.70 per Kilo</td>
+          </tr>
+          <tr>
+            <td>Rack (Kottelets am Stück)</td>
+            <td>58.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Chops (Nierstück)</td>
+            <td>59.50 per Kilo</td>
+          </tr>
+          <tr>
+            <td>Filet</td>
+            <td>59.50 per Kilo</td>
+          </tr>
+          <tr>
+            <td>Bratwürste grob (2er-Pack)</td>
+            <td>3.– per Stück</td>
+          </tr>
+          <tr>
+            <td>Bratwürste fein (2er-Pack)</td>
+            <td>2.70 per Stück</td>
+          </tr>
+          <tr>
+            <td>Hamburger (2er-Pack)</td>
+            <td>3.– per Stück</td>
+          </tr>
+          <tr>
+            <td>Ofen-Fleischkäse (ca. 550g)</td>
+            <td>10.– per Stück</td>
+          </tr>
+          <tr>
+            <td>Trockenfleisch luftgetrocknet</td>
+            <td>70.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Indianerknebeli (td. Grössen)</td>
+            <td>65.– per Kilo</td>
+          </tr>
+          <tr>
+            <td>Bündner Salsiz</td>
+            <td>6.50 per Stück</td>
+          </tr>
+          <tr>
+            <td>Bündner Knebeli</td>
+            <td>7.50 per Stück</td>
+          </tr>  
+        </tbody>
+      </table>
+    </div>
+    <div class="column">
+      <h3>Senden Sie uns eine unverbindliche Vorbestellung!</h3>
+
+      <div class="ui message" style="display:none;">
+        <div class="message"></div>
+      </div>
+      <form class="ui form" id="lammfleisch-order">
+        <div class="two fields">
+          <div class="field">
+            <label>Ihr Vorname</label>
+            <input class="ui input" name="firstName" type="text" required="" />
+          </div>
+          <div class="field">
+            <label>Ihr Nachname</label>
+            <input class="ui input" name="lastName" minlength="2" type="text" required>
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Ihre Telefonnummer</label>
+            <input class="ui input" name="phone" minlength="10" type="text" required>
+          </div>
+          <div class="field">
+            <label>Ihre Email-Adresse</label>
+            <input class="ui input" name="email" type="text" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Ihre Nachricht</label>
+          <textarea name="text" required></textarea>
+        </div>
+        <div class="field">
+          <div class="wine-and-dine">
+            <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+            <input type="text" name="wineAndDine">
+          </div>
+        </div>
+
+        <div class="field">
+          <button id="send-preorder" class="ui button" type="submit">Vorbestellung absenden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+          </div>
+          </div>
+          </div>
 
 <div class="ui mini modal orderConfirm">
   <i class="close icon"></i>
