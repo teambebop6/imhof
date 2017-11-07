@@ -78,7 +78,7 @@ a.link:hover{
 
 .ui.grid.shop-header{
   background:url('/images/headers/shop.jpg');
-  margin-top:6rem;
+  margin-top:9rem;
   margin-bottom:3rem;
   padding:3rem;
 
@@ -92,7 +92,11 @@ a.link:hover{
 }
 .ui.grid.lammfleisch-header{
   background:url('/images/headers/meat.jpg');
+  background-position: center 66%;
 
+  height: 400px;
+
+  padding-top: 4rem;
   .text{
     color:white;
     padding:1rem;
@@ -103,10 +107,11 @@ a.link:hover{
 }
 
 .ui.grid.imhof-family{
-  margin-top:3rem;
+  margin-top:71px;
   margin-bottom:3rem;
-  padding:3rem;
+  padding:5rem;
   background:url('/images/headers/reben.jpg');
+  height:400px;
 
 
   .citation{
@@ -158,22 +163,22 @@ a.link:hover{
   background-image: -moz-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
   background-image: -ms-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
   background-image: repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
-  
-  &.dark{
-  
-  @color: #282833;
-  @bgcolor: transparent;
 
-  //padding: 2.25em 1.6875em;
-  background-image: -webkit-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
-  background-image: -moz-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
-  background-image: -ms-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
-  background-image: repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+  &.dark{
+
+    @color: #282833;
+    @bgcolor: transparent;
+
+    //padding: 2.25em 1.6875em;
+    background-image: -webkit-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+    background-image: -moz-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+    background-image: -ms-repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
+    background-image: repeating-radial-gradient(center center, @color, @color 1px, @bgcolor 1px, @bgcolor 100%);
   }
-  
- 
+
+
   padding:6px !important;
-  
+
   -webkit-background-size: 3px 3px;
   -moz-background-size: 3px 3px;
   background-size: 3px 3px;
@@ -240,9 +245,9 @@ p.category-selection{
 
 
 .ui.grid.subnav-grid {
-padding-left: 0;
-margin-left: 0;
-padding-right: 0;
+  padding-left: 0;
+  margin-left: 0;
+  padding-right: 0;
   width:100%;
   .row{
 
@@ -530,7 +535,7 @@ height:430px;}
   a:hover{
     color:lighten(#222, 5);
   }
-  
+
   margin-right:2rem;
   margin-top:1rem;
   i{
@@ -568,7 +573,7 @@ height:430px;}
   }
   .title{
     color: #222;
-    
+
     h3{
       margin:1rem;
       font-size:2rem;
@@ -619,8 +624,8 @@ h1{
 }
 
 h2{
-  
-  
+
+
   margin-top:2rem;
 
   &:not(.no-margin):not(:first-child){
@@ -1035,7 +1040,6 @@ Modify as content requires.
     width:100%;
     display:block;
     background:url('/images/top_bg/bg_reben.jpg') no-repeat center top;
-    border-bottom: 1px solid @light-gray;
     height:400px;
   }
   .ui.page.grid.page-top{
