@@ -7,17 +7,17 @@
 <div class="ui page grid">
   <div class="two column row">
     <div class="column">
-      <h3><% if @showcase._id : %>Schaukasten bearbeiten<% else : %>Neues schaukasten <% end %></h3>
+      <h3><% if @showcase._id : %>Schaukasten-Element bearbeiten<% else : %>Neues Schaukasten-Element<% end %></h3>
       <form id="modify-showcase" class="ui form" enctype="multipart/form-data" method="post" action="/admin/showcases/modify/">
         <div class="hidden field">
           <input name="id" type="hidden" value="<%= @showcase._id %>"/>
         </div>
         <div class="field">
-          <label>Title</label>
+          <label>Titel</label>
           <input name="title" type="text" value="<%= @showcase.title %>"/>
         </div>
         <div class="field">
-          <label>Detail</label>
+          <label>Beschreibung</label>
           <textarea name="detail"><%= @showcase.detail %></textarea>
         </div>
         <div class="field">
@@ -34,7 +34,7 @@
             <label>Sichtbar?</label>
           </div>
         </div>
-        <button class="ui green fluid button" type="submit">Schaukasten speichern</button>
+        <button class="ui green fluid button" type="submit">Schaukasten-Element speichern</button>
       </form>
     </div>
   </div>
