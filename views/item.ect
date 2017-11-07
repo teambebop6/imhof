@@ -8,15 +8,24 @@
 <script src="/shop.bundle.js"></script>
 <% end %>
 
+
+
+
+
+<div class="filler" style="height:9rem;"></div>
+
+
+
+
+
 <% if @product.avatar : %>
 <img src="/products/<%= @product.avatar.filename %>" class="ui centered small image" />
 <% end %>
 
 
-<div class="ui stackable grid product-details">
-  <div class="centered row">
-    <h2 class="ui header title"><%= @product.title %></h2>
-  </div>
+
+<h2 class="ui centered header title"><%= @product.title %></h2>
+<div class="ui stackable page grid product-details">
   <div class="two column row">
     <div class="column">
       <div class="ui grid">
@@ -31,8 +40,6 @@
       </div>
     </div>
     <div class="column">
-
-
       <div class="ui grid">
         <div class="two column row">
           <div class="right floated column">
@@ -71,15 +78,19 @@
     </div>
   </div>
 </div>
+<div class="ui page grid">
+  <div class="row">
+    <div class="column content">
+      <h2><span>Lieferkonditionen</span></h2>
+      <p>
+      Bei Lieferung gilt eine Mindestbestellmenge von <strong>6 Flaschen</strong>.  Wir liefern Ihre Bestellung persönlich innerhalb von <strong>ca. 10 Arbeitstagen</strong> oder gemäss Abmachung. 
+      <br />Bitte <a class="link" href="/contact">kontaktieren Sie uns</a>, wenn Sie es eilig haben, damit wir eine Lösung finden können. 
+      </p>
+      <p><strong>Eine Lieferung in die Region Basel ist gratis</strong>. Ausserhalb wird, sofern nichts anderes vereinbart, ein Transportkostenanteil von CHF 20.– verrechnet. Die Lieferung ist gratis für alle Bestellmengen über CHF 500.–. 
+      </p>
 
-
-<h2><span>Lieferkonditionen</span></h2>
-<p>
-Bei Lieferung gilt eine Mindestbestellmenge von <strong>6 Flaschen</strong>.  Wir liefern Ihre Bestellung persönlich innerhalb von <strong>ca. 10 Arbeitstagen</strong> oder gemäss Abmachung. 
-<br />Bitte <a class="link" href="/contact">kontaktieren Sie uns</a>, wenn Sie es eilig haben, damit wir eine Lösung finden können. 
-</p>
-<p><strong>Eine Lieferung in die Region Basel ist gratis</strong>. Ausserhalb wird, sofern nichts anderes vereinbart, ein Transportkostenanteil von CHF 20.– verrechnet. Die Lieferung ist gratis für alle Bestellmengen über CHF 500.–. 
-</p>
-
-<p>Wir liefern <strong>gegen Rechnung</strong>, zahlbar innert 30 Tagen netto. Eine Abholung ist nach Absprache natürlich auch möglich. 
-</p>
+      <p>Wir liefern <strong>gegen Rechnung</strong>, zahlbar innert 30 Tagen netto. Eine Abholung ist nach Absprache natürlich auch möglich. 
+      </p>
+    </div>
+  </div>
+</div>
