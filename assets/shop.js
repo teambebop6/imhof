@@ -157,22 +157,7 @@ common.then(function(){
   });
 
   $('#link-lammfleisch').click(function(){
-
-    // Load content
-    $.ajax({
-      url: "/shop/lammfleisch",
-      mehtod: "GET",
-      success: function(result){
-        $('.ui.modal.lammfleisch .description').html(result);
-
-
-        $('.ui.modal.lammfleisch').modal('show');
-      },
-      error: function(err){
-        console.log(err);
-      }
-    })
-
+    jumpTo($('#anchor-lammfleisch').offset());
   });
 
 
