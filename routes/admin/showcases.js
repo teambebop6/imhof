@@ -18,7 +18,7 @@ Showcase = require('../../models/showcase');
 // File upload storage
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var p = path.join(req.app.locals.config.UPLOAD_FOLDER, '/showcases/);
+    var p = path.join(req.app.locals.config.UPLOAD_FOLDER, '/showcases/');
     mkdirp.sync(p);
     cb(null, p)
   },
