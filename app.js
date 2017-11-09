@@ -102,6 +102,7 @@ app.use(expressValidator([]));
 
 // Serve static directories
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(config.UPLOAD_FOLDER));
 app.use(express.static(path.join(__dirname, 'public/dist')));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
