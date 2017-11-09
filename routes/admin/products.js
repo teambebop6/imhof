@@ -7,6 +7,7 @@ crypto = require('crypto');
 mime = require('mime');
 mkdirp = require('mkdirp');
 fs = require('fs');
+path = require('path');
 
 utils = require('../../utils/AdminUtils');
 
@@ -19,9 +20,9 @@ var ViewUtils = require('../../utils/ViewUtils');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
 
-    var path = 'public/products/';
-    mkdirp.sync(path)
-    cb(null, path)
+    var p = path.join(req.app.locals.config.UPLOAD_FOLDER, '/products');
+    mkdirp.sync(p)
+    cb(null, p)
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
