@@ -7,112 +7,118 @@
 <% block 'scripts' : %>
 <script src="/buy.bundle.js" charset="utf-8"></script>
 <% end %>
+<div class="filler" style="height:7rem"></div>
 
-<div class="ui two column stackable grid">
-  <div class="column">
-    <h2><span>Ihr Einkauf:</span></h2>
+<div class="ui page grid">
+  <div class="row">
+    <div class="column content">
 
-    <table class="ui very basic fixed table">
-      <thead>
-        <th>Bild</th>
-        <th>Bezeichnung</th>
-        <th>Preis / Stk.</th>
-        <th>Anzahl</th>
-        <th>Subtotal</th>
-      </thead>
-      <tbody>
-        <% for item in @items: %>
-        <tr>
-          <td><img class="ui mini image" src="/products/<%= item.avatar %>"></td>
-          <td><%= item.title %></td>
-          <td><%= @utils.getCHF(item.price) %></td>
-          <td><%= item.amount %></td>
-          <td><%= @utils.getCHF(item.subtotal) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <div class="ui two column stackable grid">
+        <div class="column">
+          <h2><span>Ihr Einkauf:</span></h2>
+
+          <table class="ui very basic fixed table">
+            <thead>
+              <th>Bild</th>
+              <th>Bezeichnung</th>
+              <th>Preis / Stk.</th>
+              <th>Anzahl</th>
+              <th>Subtotal</th>
+            </thead>
+            <tbody>
+              <% for item in @items: %>
+              <tr>
+                <td><img class="ui mini image" src="/products/<%= item.avatar %>"></td>
+                <td><%= item.title %></td>
+                <td><%= @utils.getCHF(item.price) %></td>
+                <td><%= item.amount %></td>
+                <td><%= @utils.getCHF(item.subtotal) %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
 
 
-    <div class="ui grid item-details">
-      <div class="two column row" id="totalPrice">
-        <div class="right floated column">
-          <p>Total (CHF)</p>
-          <div class="value">
-            <%= @utils.getCHF(@totalPrice) %>
+          <div class="ui grid item-details">
+            <div class="two column row" id="totalPrice">
+              <div class="right floated column">
+                <p>Total (CHF)</p>
+                <div class="value">
+                  <%= @utils.getCHF(@totalPrice) %>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="column">
+          <h3 id="order-title">Bitte füllen Sie folgende Felder aus:</h3>
+
+          <form id="order-submit-form" class="ui form">
+            <div class="ui message" style="display:none;">
+              <div class="message"></div>
+            </div>
+
+            <div class="field">
+              <label>Vorname</label>
+              <input 
+                 required 
+                 id="firstName" 
+                 type="text" 
+                 name="firstName"
+                 placeholder="Bitte geben Sie Ihren Vornamen ein."></input>
+            </div>
+            <div class="field">
+              <label>Nachname</label>
+              <input 
+                 required 
+                 id="lastName" 
+                 type="text" 
+                 name="lastName" 
+                 placeholder="Bitte geben Sie Ihren Nachnamen ein."></input>
+            </div>
+            <div class="field">
+              <label>Adresse</label>
+              <input 
+                 required 
+                 id="address" 
+                 type="text" 
+                 name="address" 
+                 placeholder="Bitte geben Sie Ihre Adresse ein."></input>
+            </div>
+            <div class="field">
+              <label>Email-Adresse</label>
+              <input 
+                 required 
+                 id="email" 
+                 type="email" 
+                 name="email" 
+                 placeholder="Bitte geben Sie Ihre Email-Adresse ein."></input>
+            </div>
+            <div class="field">
+              <label>Telefonnummer</label>
+              <input 
+                 required 
+                 id="phone" 
+                 type="text" 
+                 name="phone"
+                 placeholder="Bitte geben Sie Ihre Telefonnummer ein."></input>
+            </div>
+
+            <div class="field">
+              <div class="wine-and-dine">
+                <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+                <input type="text" name="wineAndDine">
+              </div>
+            </div>
+            <div class="field">
+              <button id="submit-order" class="ui button" type="submit">Senden</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="column">
-    <h3 id="order-title">Bitte füllen Sie folgende Felder aus:</h3>
-
-    <form id="order-submit-form" class="ui form">
-      <div class="ui message" style="display:none;">
-        <div class="message"></div>
-      </div>
-
-      <div class="field">
-        <label>Vorname</label>
-        <input 
-           required 
-           id="firstName" 
-           type="text" 
-           name="firstName"
-           placeholder="Bitte geben Sie Ihren Vornamen ein."></input>
-      </div>
-      <div class="field">
-        <label>Nachname</label>
-        <input 
-           required 
-           id="lastName" 
-           type="text" 
-           name="lastName" 
-           placeholder="Bitte geben Sie Ihren Nachnamen ein."></input>
-      </div>
-      <div class="field">
-        <label>Adresse</label>
-        <input 
-           required 
-           id="address" 
-           type="text" 
-           name="address" 
-           placeholder="Bitte geben Sie Ihre Adresse ein."></input>
-      </div>
-      <div class="field">
-        <label>Email-Adresse</label>
-        <input 
-           required 
-           id="email" 
-           type="email" 
-           name="email" 
-           placeholder="Bitte geben Sie Ihre Email-Adresse ein."></input>
-      </div>
-      <div class="field">
-        <label>Telefonnummer</label>
-        <input 
-           required 
-           id="phone" 
-           type="text" 
-           name="phone"
-           placeholder="Bitte geben Sie Ihre Telefonnummer ein."></input>
-      </div>
-
-      <div class="field">
-        <div class="wine-and-dine">
-          <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
-          <input type="text" name="wineAndDine">
-        </div>
-      </div>
-      <div class="field">
-        <button id="submit-order" class="ui button" type="submit">Senden</button>
-      </div>
-    </form>
-  </div>
-
-
 </div>
 
 <div class="ui mini modal orderConfirm">
@@ -124,7 +130,7 @@
     <p>Wir haben Ihre Bestellung erfolgreich erhalten. Sie hören von uns!</p>
 
     <p>
-      Familie Imhof
+    Familie Imhof
     </p>
 
   </div>
