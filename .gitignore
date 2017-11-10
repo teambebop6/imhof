@@ -7,7 +7,6 @@ node_modules/
 *.swp
 mongodb/connect.js
 .DS_Store
-.env
 public/products/
 public/showcases/
 
