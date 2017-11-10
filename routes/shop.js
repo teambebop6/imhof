@@ -1,10 +1,8 @@
-var express , router, request, transporter, config, mongoose, Item, expressValidator, ECT, renderer, Cookies;
+var express , router, request, mongoose, Item, expressValidator, Cookies;
 
 express = require('express');
 router = express.Router();
 request = require('request');
-transporter = require('../helpers/sendmail');
-config = require('../config');
 mongoose = require('mongoose')
 Product = require('../models/product');
 ProductCategory = require('../models/product_category');
@@ -14,8 +12,6 @@ utils = require('../utils/Utils');
 ViewUtils = require('../utils/ViewUtils');
 
 var _shopItems; 
-ECT = require('ect');
-renderer = ECT({ watch: true, root: config.ROOT + '/views', ext : '.ect' });
 
 module.exports = function (app) {
   app.use('/shop', router);
@@ -208,7 +204,7 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
       total += item.subtotal;
     });
 
-    var html = renderer.render('../views/emails/order.ect', { 
+    var html = req.app.locals.ect_renderer.render('../views/emails/order.ect', { 
       'customer' : clientContact,
       'items' : items,
       'total' : total
@@ -223,7 +219,7 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
 
     console.log("Sending mail...");
 
-    transporter.sendMail(mailOptions, function(error, info){
+    req.app.locals.smtp_transporter.sendMail(mailOptions, function(error, info){
       if(error){
         res.json({status: 400, message: "Nachricht konnte nicht übermittelt werden."})
       }
@@ -235,10 +231,11 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
         res.json({status: 200, message: "Ihre Bestellung wurde erfolgreich gesendet!"});
       }
 
-      transporter.close();
+      req.app.locals.smtp_transporter.close();
     })
   }).catch(function(err){
-      res.json({status: 400, message: "Entschuldigung. Es trat ein Fehler auf."})
+    console.log(err);
+    res.json({status: 400, message: "Entschuldigung. Es trat ein Fehler auf."})
   });
 });
 
@@ -276,7 +273,7 @@ router.post('/preorder', function(req, res){
     html: html
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
+  req.app.locals.smtp_transporter.sendMail(mailOptions, function(error, info){
     if(error){
       res.json({status: 400, error: error});
     }
@@ -284,7 +281,7 @@ router.post('/preorder', function(req, res){
       res.json({status: 200, message: "Besten Dank! Ihre Vorbestellung wurde erfolgreich versendet. Sie hören von uns!"});
     }
 
-    transporter.close();
+    req.app.locals.smtp_transporter.close();
   });
 });
 
