@@ -70,13 +70,16 @@ gulp.task('dist:copy', () => {
   const views = gulp.src(['views/**/*'])
     .pipe(gulp.dest('dist/views/'));
 
+  const imhof_secret = gulp.src(['imhof-secret/**/*'])
+    .pipe(gulp.dest('dist/imhof-secret/'));
+
   const semantic = gulp.src(['assets/vendor/Semantic-UI/dist/**/*'])
     .pipe(gulp.dest('dist/assets/vendor/Semantic-UI/dist/'));
 
-  const dist = gulp.src(['package.json', 'app.js', 'config.js', 'pm2.*.config.js'])
+  const dist = gulp.src(['package.json', 'app.js', 'config.js', 'config2.js', 'pm2.*.config.js'])
     .pipe(gulp.dest('dist/'));
 
-  return merge(helpers, models, publicFolder, routes, utils, views, semantic, dist);
+  return merge(helpers, models, publicFolder, routes, utils, views, imhof_secret, semantic, dist);
 
 });
 
