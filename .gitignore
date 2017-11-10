@@ -25,3 +25,5 @@ assets/vendor/Semantic-UI/dist
 *dist.zip
 yarn-error.log
 .idea/
+
+imhof-secret/

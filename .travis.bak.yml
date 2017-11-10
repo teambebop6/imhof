@@ -1,15 +1,22 @@
+os: osx
 language: node_js
 sudo: true
 node_js:
 - 6.9.1
 cache:
+  apt: true
   directories:
   - node_modules
 addons:
   ssh_known_hosts: github.com
 before_install:
-- bash ./.travis/checkout_secret.sh
+- openssl aes-256-cbc -K $encrypted_b3b18cd533be_key -iv $encrypted_b3b18cd533be_iv
+  -in ./.travis/tb6_private_key.asc.enc -out ./.travis/tb6_private_key.asc -d
+- brew update
+- brew install git-secret
+- gpg --import ./.travis/tb6_private_key.asc
 script:
+- git secret reveal
 - gulp build
 - gulp dist
 - gulp release
