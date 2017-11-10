@@ -23,10 +23,17 @@ router.get('/', function(req, res, next) {
 	Product.findByCat({'visible' : true}).exec(function(err, cats){
 		if (err) { return next(err);	} 
 
+    Product.find().limit(5).exec(function(err, favs){
+		if (err) { return next(err);	} 
+    
+
     res.render('shop.ect', {
       site : 'shop',	 
-      cats: cats
+      cats: cats,
+      favs: favs,
     });
+    });
+
   });
 });
 
