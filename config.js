@@ -14,7 +14,7 @@ var development = {
 var production = {
   UPLOAD_FOLDER: '/usr/local/share/uploads',
   DB_PORT: '27017',
-  DB_NAME: 'imhof',
+  DB_NAME: process.env.DB_NAME || 'imhof',
   DEBUG_LOG: false,
   DEBUG_WARN: false,
   DEBUG_ERROR: true,
