@@ -5,6 +5,8 @@ router = express.Router();
 ItemSchema = require('../models/item');
 Event = require('../models/event');
 Showcase = require('../models/showcase');
+Product = require('../models/product');
+ProductService = require('../services/product');
 
 const moment = require('moment');
 moment.locale("de");
@@ -12,6 +14,44 @@ moment.locale("de");
 module.exports = function (app) {
   app.use('/', router);
 };
+
+env = process.env.NODE_ENV || "development";
+
+// To test shop email
+if(env == "development"){
+  router.get('/testemail', function(req, res, next){
+    var customer = {
+      firstName: "Florian",
+      lastName: "Rudin",
+      address: "Kienbergweg 15",
+      email: "flaudre@gmail.com",
+      phone: "0619714440"
+    };
+
+    Product.find().limit(5).lean().exec(function(err, items){
+      if(err){ return err; }
+
+
+      ProductService.getFullProductsInfo(items).then(function(items){
+       
+        var total = 0;
+        items.forEach(function(item, index){
+          items[index].itemsAmount = 5;
+          items[index].subtotal = item.itemsAmount * item.details.price;
+          total += items[index].subtotal;
+        })
+
+        console.log(total);
+        res.render('emails/order', {
+          items: items,
+          customer: customer,
+          total: total,
+          utils: ViewUtils,
+        });
+      });
+    });
+  });
+}
 
 router.get('/', function (req, res, next) {
   ItemSchema.find(function (error, shopItems) {
@@ -47,7 +87,7 @@ router.get('/', function (req, res, next) {
     }
   });
 
-//   res.render('shop', {site : 'shop'});
+  //   res.render('shop', {site : 'shop'});
 });
 
 router.get('/about', function (req, res, next) {
@@ -86,9 +126,9 @@ router.post('/contact/form', function (req, res, next) {
     var message = req.body.text.replace(/(?:\r\n|\r|\n)/g, '<br />'); // Escaping html message
 
     var html = "<h1>" + firstName + " " + lastName + " hat Ihnen eine Nachricht geschrieben</h1> \
-									<p>Telefon: " + phone + "</p> \
-									<p>Email: " + email + "</p> \
-									<p> " + message + "</p>";
+                <p>Telefon: " + phone + "</p> \
+                <p>Email: " + email + "</p> \
+                <p> " + message + "</p>";
 
     // Send Email
     var mailOptions = {
