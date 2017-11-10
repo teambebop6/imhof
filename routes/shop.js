@@ -10,6 +10,7 @@ expressValidator = require('express-validator');
 Cookies = require('cookies');
 utils = require('../utils/Utils');
 ViewUtils = require('../utils/ViewUtils');
+ProductService = require('../services/product');
 
 var _shopItems; 
 
@@ -138,37 +139,6 @@ router.post('/get_item', function(req, res, next){
   });
 });
 
-var getFullProductsInfo = function(items){
-  return new Promise(function(resolve, reject){
-    
-    var ids = items.map(function(item){
-      return item._id
-    });
-
-    Product.find({_id: { $in: ids}}).exec(function(err, products){
-      if(err){ 
-        return reject(err); 
-      }
-      if(!products || products.length < 1){
-        reject({status: 400, message: "No products found."}); 
-      }
-      else{
-        products.forEach(function(product){
-          
-          index = items.findIndex(function(obj) {
-            return obj._id == product._id;
-          });
-
-          items[index].details = product;
-        });
-
-        resolve(items);
-      }
-    });
-  });
-}
-
-
 // Submit order 
 router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, next){
   itemsToBuy = JSON.parse(req.cookies.itemsToBuy);
@@ -201,20 +171,19 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
 
   var items = JSON.parse(req.cookies.itemsToBuy);
 
-  getFullProductsInfo(items).then(function(items){
-    console.log(items);
-
+  ProductService.getFullProductsInfo(items).then(function(items){
+    
     var total = 0;
-
-    items.forEach(function(item){
-      item.subtotal = item.itemsAmount * item.details.price;
-      total += item.subtotal;
-    });
+    items.forEach(function(item, index){
+      items[index].subtotal = item.itemsAmount * item.details.price;
+      total += items[index].subtotal;
+    })
 
     var html = req.app.locals.ect_renderer.render('../views/emails/order.ect', { 
-      'customer' : clientContact,
-      'items' : items,
-      'total' : total
+      customer: clientContact,
+      items: items,
+      total: total,
+      utils: ViewUtils,
     });
 
     var mailOptions = {
@@ -224,17 +193,17 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
       html: html
     };
 
-    console.log("Sending mail...");
+    console.log("Sending email to " + req.app.locals.config.EMAIL_ADDRESS);
 
     req.app.locals.smtp_transporter.sendMail(mailOptions, function(error, info){
       if(error){
         res.json({status: 400, message: "Nachricht konnte nicht übermittelt werden."})
       }
       else{
-        
+
         // Clear cart
         res.clearCookie('itemsToBuy');
-        
+
         res.json({status: 200, message: "Ihre Bestellung wurde erfolgreich gesendet!"});
       }
 
@@ -248,7 +217,7 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
 
 // Preorder Lammfleisch
 router.post('/preorder', function(req, res){
-  
+
   var phone = req.body.phone;
   var firstName = req.body['firstName'];
   var lastName = req.body['lastName'];
