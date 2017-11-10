@@ -26,13 +26,10 @@
 <div class="ui stackable page grid">
   <div class="row">
     <div class="column content">
-
-      <% if @cats && @cats[0].items : %>
-      <% item = @cats[0].items[0]; %>
       <h2><span>Beliebt</span></h2>
       <div class="ui grid">
         <div class="five column row">
-          <% for i in [1,2,3,4,5] : %>
+          <% for item in @favs: %>
           <div class="column shop-item">
             <a href="/shop/<%= item._id %>">
               <p class="item-title">
