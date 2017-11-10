@@ -1,9 +1,8 @@
-var express, router, ItemSchema, transporter;
+var express, router, ItemSchema;
 
 express = require('express');
 router = express.Router();
 ItemSchema = require('../models/item');
-transporter = require('../helpers/sendmail');
 Event = require('../models/event');
 Showcase = require('../models/showcase');
 
@@ -99,7 +98,7 @@ router.post('/contact/form', function (req, res, next) {
       html: html
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
+    req.app.locals.smtp_transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         return res.json({
           success: false,
@@ -112,7 +111,7 @@ router.post('/contact/form', function (req, res, next) {
         message: "Vielen Dank. Wir haben Ihre Nachricht erhalten und melden uns so bald wie möglich bei Ihnen!"
       });
 
-      transporter.close();
+      req.app.locals.smtp_transporter.close();
     });
 
   } else {
