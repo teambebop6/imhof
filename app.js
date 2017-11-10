@@ -8,11 +8,13 @@ express = require('express');
 app = express();
 
 // Config
-require('dotenv').config() // Load environment variables from .env file
 port = process.env.PORT || 3000;
 env = process.env.NODE_ENV || "development";
 config = require('./config')(env);
-// config.setEnvironment(env);
+
+// Load SMTP transporter
+transporter = require('./helpers/sendmail')(config);
+app.locals.smtp_transporter = transporter;
 
 // Load modules
 http = require('http');
@@ -73,6 +75,9 @@ mongoose.connection.on('disconnected', function () {
 // Templating engine
 var ECT = require('ect');
 var ectRenderer = ECT({watch: true, root: config.ROOT + '/views', ext: '.ect'});
+
+app.locals.ect_renderer = ectRenderer;
+
 app.set('view engine', 'ect');
 app.engine('ect', ectRenderer.render);
 app.set('views', path.join(__dirname, 'views'))
