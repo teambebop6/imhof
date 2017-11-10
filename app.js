@@ -11,7 +11,7 @@ app = express();
 require('dotenv').config() // Load environment variables from .env file
 port = process.env.PORT || 3000;
 env = process.env.NODE_ENV || "development";
-config = require('./config2')(env);
+config = require('./config')(env);
 // config.setEnvironment(env);
 
 // Load modules

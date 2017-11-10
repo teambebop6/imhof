@@ -76,7 +76,7 @@ gulp.task('dist:copy', () => {
   const semantic = gulp.src(['assets/vendor/Semantic-UI/dist/**/*'])
     .pipe(gulp.dest('dist/assets/vendor/Semantic-UI/dist/'));
 
-  const dist = gulp.src(['package.json', 'app.js', 'config.js', 'config2.js', 'pm2.*.config.js'])
+  const dist = gulp.src(['package.json', 'app.js', 'config.js', 'pm2.*.config.js'])
     .pipe(gulp.dest('dist/'));
 
   return merge(helpers, models, publicFolder, routes, utils, views, imhof_secret, semantic, dist);
