@@ -11,4 +11,4 @@ chmod 600 id_rsa_deploy_teambebop6
 # Add the private key to the system
 ssh-add id_rsa_deploy_teambebop6
 
-git clone git@github.com:graspworld/imhof-secret.git ../imhof-secret
+git clone git@github.com:graspworld/imhof-secret.git imhof-secret
