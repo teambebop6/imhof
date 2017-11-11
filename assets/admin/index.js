@@ -10,21 +10,20 @@ common.then(function () {
 
       $('form#modify-event').validate({
         rules: {
-          // at least 15€ when bonus material is included
+          name: {
+            required: true,
+          },
           begin: {
             required: true,
-            date: true
           },
           end: {
             required: true,
-            date: true
-          }
+          },
         }
       });
 
       $('form#modify-product').validate({
         rules: {
-          // at least 15€ when bonus material is included
           price: {
             required: true,
             price: true
