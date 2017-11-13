@@ -42,11 +42,8 @@ common.then(function(){
   });
 
   $('.form.buy-item .insta-buy').click(function(){
-    buyItem(true, $(this).attr('id')); 
+    buyItem(true, $(this).data('id')); 
   });
-
-
-
 
   // Function to return item from cookie where html_id == obj
   function _findWhereId(arr, obj) {
@@ -56,9 +53,12 @@ common.then(function(){
     return undefined;
   }
 
-  // Perform add to cart or buy now
+  // Add to cart or buy now
   function buyItem(buyNow, id) {
-
+    if(!id){
+      console.error("Element has no id");
+      return;
+    }
     var items = Cookies.getJSON('itemsToBuy');
 
     // Get quantity
