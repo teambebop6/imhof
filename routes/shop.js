@@ -52,27 +52,22 @@ router.get('/:id(\\d+)/', function(req, res, next) {
 });
 
 
-router.get('/buy', utils.ifNoItemsInCookiesThenRedirect, function(req, res, next){
-
-  var items = utils.getCartItems(req.cookies.itemsToBuy);
-  var ids = items.map(function(item){ return item._id });
-
-  console.log(ids);
-  console.log(items);
+router.get('/buy', utils.getCartItems, function(req, res, next){
+  var ids = req.items.map(function(item){ return item._id });
 
   Product.find({_id: { $in: ids}}).exec(function(err, products){
     if(err){return next(err);}
     if(!products){return next({status: 400, message: "No products found."}); }
     else{
       products.forEach(function(product){
-        index = items.findIndex(function(obj) {
+        index = req.items.findIndex(function(obj) {
           return obj._id == product._id;
         });
 
-        items[index].details = product;
+        req.items[index].details = product;
       });
 
-      var viewItems = items.map(function(item){
+      var viewItems = req.items.map(function(item){
         return {
           _id: item._id,
           avatar: item.details.avatar ? item.details.avatar.filename : undefined,
@@ -93,37 +88,25 @@ router.get('/buy', utils.ifNoItemsInCookiesThenRedirect, function(req, res, next
   });
 });
 
-router.get('/cart', function(req, res, next){
-  var items = [];
-  var ids = [];
-  if(req.cookies.itemsToBuy){
-    JSON.parse(req.cookies.itemsToBuy).forEach(function(item){
-      if(item && item.itemsAmount && item._id){
-        items.push(item);
-        ids.push(item._id);
-      }
-    });
-  }
-
-  console.log(ids);
-  console.log(items);
+router.get('/cart', utils.getCartItems, function(req, res, next){
+  var ids = req.items.map(function(item){ return item._id });
 
   Product.find({_id: { $in: ids}}).exec(function(err, products){
     if(err){return next(err);}
     if(!products){return next({status: 400, message: "No products found."}); }
     else{
       products.forEach(function(product){
-        index = items.findIndex(function(obj) {
+        index = req.items.findIndex(function(obj) {
           return obj._id == product._id;
         });
 
-        items[index].details = product;
+        req.items[index].details = product;
       });
 
-      console.log(items);
+      console.log(req.items);
 
       res.render('cart', {
-        items: items,
+        items: req.items,
         utils: ViewUtils,
       });
     }
