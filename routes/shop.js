@@ -8,11 +8,9 @@ Product = require('../models/product');
 ProductCategory = require('../models/product_category');
 expressValidator = require('express-validator');
 Cookies = require('cookies');
-utils = require('../utils/Utils');
+var utils = require('../utils/Utils');
 ViewUtils = require('../utils/ViewUtils');
 ProductService = require('../services/product');
-
-var _shopItems; 
 
 module.exports = function (app) {
   app.use('/shop', router);
@@ -55,11 +53,12 @@ router.get('/:id(\\d+)/', function(req, res, next) {
 
 
 router.get('/buy', utils.ifNoItemsInCookiesThenRedirect, function(req, res, next){
-  var items = JSON.parse(req.cookies.itemsToBuy);
 
-  var ids = items.map(function(item){
-    return item._id
-  });
+  var items = utils.getCartItems(req.cookies.itemsToBuy);
+  var ids = items.map(function(item){ return item._id });
+
+  console.log(ids);
+  console.log(items);
 
   Product.find({_id: { $in: ids}}).exec(function(err, products){
     if(err){return next(err);}
@@ -96,13 +95,18 @@ router.get('/buy', utils.ifNoItemsInCookiesThenRedirect, function(req, res, next
 
 router.get('/cart', function(req, res, next){
   var items = [];
+  var ids = [];
   if(req.cookies.itemsToBuy){
-    items = JSON.parse(req.cookies.itemsToBuy);
+    JSON.parse(req.cookies.itemsToBuy).forEach(function(item){
+      if(item && item.itemsAmount && item._id){
+        items.push(item);
+        ids.push(item._id);
+      }
+    });
   }
 
-  var ids = items.map(function(item){
-    return item._id
-  });
+  console.log(ids);
+  console.log(items);
 
   Product.find({_id: { $in: ids}}).exec(function(err, products){
     if(err){return next(err);}
