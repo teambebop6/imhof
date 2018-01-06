@@ -8,6 +8,8 @@ Showcase = require('../models/showcase');
 Product = require('../models/product');
 ProductService = require('../services/product');
 
+Grape = require('../models/grape');
+
 const moment = require('moment');
 moment.locale("de");
 
@@ -91,7 +93,16 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/about', function (req, res, next) {
-  res.render('about', {site: 'about'});
+
+  Grape.find().sort({_id: 'asc'}).exec(function(err, grapes){
+    if(err){ return next(err); }
+    
+    res.render('about', {
+      site: 'about',
+      grapes: grapes
+    });
+  })
+
 });
 
 router.get('/wystuebli', function (req, res, next) {
