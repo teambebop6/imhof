@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Lobster');
 
+.ui.grid.grapes-list{
+  > .row {
+    > .column{
+      padding-bottom:1rem;
+      margin-top:2rem;
+
+      
+      &:nth-child(4n+2){
+        > .border {
+          //padding-right:2rem;
+          border-right: 1px solid #efd9d1;
+          height:100%;
+        }
+      }
+    }
+  }
+}
+
 .ui.image.member-image {
   padding-bottom: 1rem;
 }
@@ -91,7 +109,7 @@ a.link:hover{
 }
 
 .ui.grid.shop-header{
-  background:url('/images/headers/shop.jpg');
+  background:url('/images/headers/wines.jpg');
   margin-top:9rem;
   margin-bottom:3rem;
   padding:3rem;
