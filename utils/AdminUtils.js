@@ -1,8 +1,8 @@
 exports.isNotAuthenticatedThenLogin = function(req, res, next) {
-  if (req.session.admin) {
+  if(req.session && req.session.admin) {
     console.log("Req session is set.")
       return next();
-  } else {
+  }else {
     console.log("Req session is not set.")
       return res.render('admin/login');
   }
