@@ -131,7 +131,7 @@ common.then(function(){
     console.log(offset);
     $('html, body').animate({
       scrollTop: offset.top - $('.page-nav').height() - $('.subnav-grid').height()
-    }, 1500, 'swing');
+    }, 900, 'swing');
   }
 
   $('#link-storchenaschtler').click(function(){
@@ -160,6 +160,9 @@ common.then(function(){
     jumpTo($('#anchor-lammfleisch').offset());
   });
 
+  $('.jump-to-shop-start').click(function(){
+    jumpTo($('#shop-start').offset());
+  });
 
   // Shipping info margin
   var setShippingInfoMargin = function(){
