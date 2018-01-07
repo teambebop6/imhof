@@ -1,5 +1,105 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Lobster');
 
+.phone, .email{
+  margin-top:2rem;
+span{
+font-size: 0.85em;
+white-space: pre-line;
+display: block;
+font-weight: bold;
+line-height: 0.8rem;
+}
+}
+
+.downArrow{
+	position: fixed;
+	bottom: 45%;
+	left: 50%;
+}
+
+.bounce {
+	-moz-animation: bounce 3s infinite;
+	-webkit-animation: bounce 3s infinite;
+	animation: bounce 3s infinite;
+}
+
+@bounce-height: 10px;
+
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-@bounce-height);
+    transform: translateY(-@bounce-height);
+  }
+  60% {
+    -moz-transform: translateY(-@bounce-height/2);
+    transform: translateY(-@bounce-height/2);
+  }
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-@bounce-height);
+    transform: translateY(-@bounce-height);
+  }
+  60% {
+    -webkit-transform: translateY(-@bounce-height/2);
+    transform: translateY(-@bounce-height/2);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-@bounce-height);
+    -ms-transform: translateY(-@bounce-height);
+    -webkit-transform: translateY(-@bounce-height);
+    transform: translateY(-@bounce-height);
+  }
+  60% {
+    -moz-transform: translateY(-@bounce-height/2);
+    -ms-transform: translateY(-@bounce-height/2);
+    -webkit-transform: translateY(-@bounce-height/2);
+    transform: translateY(-@bounce-height/2);
+  }
+}
+
+.ui.grid.welcome-to-shop{
+  padding-top:1rem;
+
+  background-color:#997f70;
+  //background-color:white;
+  p{
+  color:white;
+  }
+  span{
+    vertical-align:middle;
+    line-height:95px;
+    color:white;
+    padding:1rem;
+    //text-transform:uppercase;
+    //background: @primary-color;
+    font-size:1.5rem;
+
+  }
+  img{
+    vertical-align:middle;
+    //margin:1rem;
+  }
+}
+
 .ui.grid.grapes-list{
   > .row {
     > .column{
@@ -57,15 +157,31 @@ a:link, a:visited, a:active{
   text-decoration:none;
 }
 
-a:hover{color:black;}
 
 a.link:link, a.link:visited, a.link:active{
-  border-bottom: 1px dotted black;
+  color:@winered;
+  border-bottom: 1px dotted @winered;
+  
+  &.footer-link{
+    color:black;
+    border-bottom: 1px dotted black;
+
+  }
 }
 
-a.link:hover{
-  color: @winered;
-  border-color: @winered;
+a.link:hover, a.link.footer-link:hover{
+  border-color: transparent;
+}
+
+.subnav{
+  a.link:link, a.link:visited, a.link:active{
+    color:black;
+    border-bottom: 1px dotted black;
+  }
+  a.link:hover{
+  border-color: transparent;
+  
+  }
 }
 
 
@@ -108,12 +224,15 @@ a.link:hover{
   margin-top:3rem;
 }
 
-.ui.grid.shop-header{
-  background:url('/images/headers/wines.jpg');
-  margin-top:9rem;
-  margin-bottom:3rem;
-  padding:3rem;
-
+.shop-header{
+  position:relative;
+  background:url('/images/headers/wines4.jpg');
+  background-position:center center;
+  background-repeat:no-repeat;
+  margin-top:7rem;
+  width:100%;
+  height:572px;
+  
   .text{
     color:white;
     padding:1rem;
@@ -122,6 +241,17 @@ a.link:hover{
     font-size:2.5rem;
   }
 }
+
+.header-logo{
+    position: absolute;
+    left: 50%;
+    margin-left: -115px;
+    top: 50%;
+    margin-top: -103px;
+}
+
+
+
 .ui.grid.lammfleisch-header{
   background:url('/images/headers/meat.jpg');
   background-position: center 66%;
@@ -276,15 +406,15 @@ p.category-selection{
 }
 
 
-
 .ui.grid.subnav-grid {
+  
   padding-left: 0;
   margin-left: 0;
   padding-right: 0;
   width:100%;
+  
   .row{
-
-    border-radius: 0 0 5px 5px;
+    //border-radius: 0 0 5px 5px;
     background:@light-gray;
     opacity:0.9;
     border:1px solid @light-gray;
