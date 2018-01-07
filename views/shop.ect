@@ -9,23 +9,25 @@
 <script src="/shop.bundle.js"></script>
 <% end %>
 
+<div class="shop-header">
+  <img class="header-logo" src="/images/logo_front_hq.png" style="z-index:100;"/>
+</div>
 
-
-<div class="ui stackable grid shop-header">
-  <div class="two column row">
-    <div class="column">
-      <p class="text">Willkommen im Imhof's Shop</p>
-    </div>
-    <div class="column">
-      <img src="/images/logo_front_hq.png" />
+<a href="javascript:;" class="jump-to-shop-start" style="margin-top:-4rem;display:block;">
+<div class="ui page grid welcome-to-shop">
+  <div class="row">
+    <div class="center aligned column">
+      <span>Willkommen im </span>
+      <img src="/images/imhofs.png" /><span> Shop</span>
+      <p style="margin-top:1rem;"><i class="ui large double angle down icon arrow-down bounce"></i></p>
     </div>
   </div>
 </div>
-
+</a>
 
 <div class="ui stackable page grid">
   <div class="row">
-    <div class="column content">
+    <div class="column content" id="shop-start">
       <h2><span>Beliebt</span></h2>
       <div class="ui grid">
         <div class="five column row">
@@ -36,7 +38,7 @@
               <%= item.title %>
               </p>
               <div class="item-picture">
-                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui mini centered image item-image" />
+                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image" />
               </div>
             </a>
           </div>
@@ -175,18 +177,6 @@
                   <td>Trockenfleisch luftgetrocknet</td>
                   <td>70.– per Kilo</td>
                 </tr>
-                <tr>
-                  <td>Indianerknebeli (td. Grössen)</td>
-                  <td>65.– per Kilo</td>
-                </tr>
-                <tr>
-                  <td>Bündner Salsiz</td>
-                  <td>6.50 per Stück</td>
-                </tr>
-                <tr>
-                  <td>Bündner Knebeli</td>
-                  <td>7.50 per Stück</td>
-                </tr>  
               </tbody>
             </table>
           </div>
