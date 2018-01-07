@@ -139,21 +139,21 @@ common.then(function(){
       $('.subnav').toggle();
       refreshSubnav();
     }
-    jumpTo($('#anchor-storchenaschtler').offset());
+    jumpTo($('#cat-Storchenäschtler').offset());
   });
   $('#link-edelbrande').click(function(){
     if($(window).width() <= 992){	
       $('.subnav').toggle();
       refreshSubnav();
     }
-    jumpTo($('#anchor-brandy').offset());
+    jumpTo($('#cat-Edelbrände').offset());
   });
   $('#link-imhofs').click(function(){
     if($(window).width() <= 992){	
       $('.subnav').toggle();
       refreshSubnav();
     }
-    jumpTo($('#anchor-imhof_wine').offset());
+    jumpTo($("#cat-Imhof\\'s").offset());
   });
 
   $('#link-lammfleisch').click(function(){
