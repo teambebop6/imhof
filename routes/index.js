@@ -9,6 +9,7 @@ Product = require('../models/product');
 ProductService = require('../services/product');
 
 Grape = require('../models/grape');
+Citation = require('../models/citation');
 
 const moment = require('moment');
 moment.locale("de");
@@ -108,14 +109,22 @@ router.get('/agenda', function (req, res, next) {
   })
 });
 
+defaultCitation = {
+  words: 'Über Generationen hinweg wurden Erfahrungen im Weinbau weitergegeben, ebenso wie Qualitätsbewusstsein und die Liebe zum Wein. ',
+  author: 'Janina Imhof, Oenologin in Ausbildung',
+};
+
 router.get('/about', function (req, res, next) {
 
   Grape.find().sort({_id: 'asc'}).exec(function(err, grapes){
     if(err){ return next(err); }
 
-    res.render('about', {
-      site: 'about',
-      grapes: grapes
+    Citation.findOne({}, function (err, citation) {
+      res.render('about', {
+        site: 'about',
+        grapes: grapes,
+        citation: citation ? citation: defaultCitation,
+      });
     });
   })
 

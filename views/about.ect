@@ -14,14 +14,16 @@
       <img class="right floated" src="/images/logo_front_hq.png" />
     </div>
     <div class="column">
-      <div class="citation">
-        <p class="text">
-        Über Generationen hinweg wurden Erfahrungen im Weinbau weitergegeben, ebenso wie Qualitätsbewusstsein und die Liebe zum Wein.
-        </p>
-        <p class="author">
-        - Janina Imhof, Oenologin in Ausbildung
-        </p>
-      </div>
+      <% if @citation : %>
+          <div class="citation">
+            <p class="text">
+                <%= @citation.words %>
+            </p>
+            <p class="author">
+                - <%= @citation.author %>
+            </p>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -12,6 +12,7 @@ module.exports = function (app) {
   app.use('/admin/events', require('./events'));
   app.use('/admin/products', require('./products'));
   app.use('/admin/showcases', require('./showcases'));
+  app.use('/admin/citations', require('./citations'));
   app.use('/admin', router);
 
   // ERROR HANDLERS

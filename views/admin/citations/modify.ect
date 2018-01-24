@@ -1,0 +1,23 @@
+<% extend 'admin/layouts/main' %>
+
+<% block 'scripts' : %>
+  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+<% end %>
+
+<div class="ui page grid">
+  <div class="two column row">
+    <div class="column">
+      <form id="modify-citation" class="ui form" method="post" action="/admin/citations/modify">
+        <div class="field">
+          <label>Satz</label>
+          <textarea name="words"><%= @citation.words %></textarea>
+        </div>
+        <div class="field">
+          <label>Autor</label>
+          <input name="author" type="text" value="<%= @citation.author %>"/>
+        </div>
+        <button class="ui green fluid button" type="submit">Zitat speichern</button>
+      </form>
+    </div>
+  </div>
+</div>

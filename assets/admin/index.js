@@ -22,6 +22,17 @@ common.then(function () {
         }
       });
 
+      $('form#modify-citation').validate({
+        rules: {
+          words: {
+            required: true,
+          },
+          author: {
+            required: true,
+          },
+        }
+      });
+
       $('form#modify-product').validate({
         rules: {
           price: {
