@@ -14,13 +14,13 @@
       <img class="right floated" src="/images/logo_front_hq.png" />
     </div>
     <div class="column">
-      <% if @citation : %>
+      <% for citation in @citations: %>
           <div class="citation">
             <p class="text">
-                <%= @citation.words %>
+                <%= citation.words %>
             </p>
             <p class="author">
-                - <%= @citation.author %>
+                - <%= citation.author %>
             </p>
           </div>
       <% end %>

@@ -1,0 +1,56 @@
+<% extend 'admin/layouts/main' %>
+
+<% block 'scripts' : %>
+  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+<% end %>
+
+
+<div class="ui page grid">
+  <div class="row">
+    <div class="column"><h3>Zitate</h3></div>
+  </div>
+  <div class="row">
+    <div class="column"><a class="ui button" href="/admin/citations/new">Neues Zitat</a></div>
+  </div>
+  <div class="row">
+    <table class="ui fluid table">
+         <thead>
+            <tr>
+                <th>Satz</th>
+                <th>Autor</th>
+                <th>Sichtbar</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for citation in @citations: %>
+              <tr>
+                <td><%= citation.words %></td>
+                <td><%= citation.author %></td>
+                <td>
+                    <div class="ui slider checkbox citation_visible_checkbox">
+                      <% if citation.visible:  %>
+                        <input type="checkbox" checked data-id='<%= citation._id %>' />
+                      <% else: %>
+                        <input type="checkbox" data-id='<%= citation._id %>' '/>
+                      <% end %>
+                      <label></label>
+                    </div>
+                </td>
+                <td>
+                    <a class="ui icon button" href="/admin/citations/modify/<%= citation._id %>">
+                      <i class="write icon"></i>
+                    </a>
+                    <a class="ui icon button" target="_blank" href="/admin/citations/preview/<%= citation._id %>">
+                      <i class="eye icon"></i>
+                    </a>
+                    <button class="ui red icon button remove-citation" data-id=<%= citation._id %>>
+                      <i class="remove icon"></i>
+                    </button>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+    </table>
+  </div>
+</div>

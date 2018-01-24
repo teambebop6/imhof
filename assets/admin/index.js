@@ -166,6 +166,28 @@ common.then(function () {
       }
     });
 
+    var switchCitationVisibleCheckbox = function (citationId, checked) {
+      $.post({
+        url: '/admin/citations/visible/',
+        data: {
+          id: citationId,
+          visible: checked
+        }
+      }).done(function (res) {
+      }).fail(function (xhr, status, err) {
+        console.log(err);
+      });
+    };
+
+    $('.citation_visible_checkbox').checkbox({
+      onChecked: function (ele) {
+        switchCitationVisibleCheckbox($(this).data('id'), true)
+      },
+      onUnchecked: function (ele) {
+        switchCitationVisibleCheckbox($(this).data('id'), false)
+      }
+    });
+
     require('../vendor/jquery.picker/picker.min.css');
     require(['../vendor/jquery.picker/picker.min.js'], function () {
 

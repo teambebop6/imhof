@@ -8,6 +8,9 @@
   <div class="two column row">
     <div class="column">
       <form id="modify-citation" class="ui form" method="post" action="/admin/citations/modify">
+        <div class="hidden field">
+          <input name="id" type="hidden" value="<%= @citation._id %>" />
+        </div>
         <div class="field">
           <label>Satz</label>
           <textarea name="words"><%= @citation.words %></textarea>

@@ -15,50 +15,120 @@ defaultCitation = {
   author: 'Janina Imhof, Oenologin in Ausbildung',
 };
 
-// List events
+// List citations
 router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
-  Citation.find(function (err, citations) {
+  Citation.find().sort({visible: 'desc', last_modified_date: 'desc'}).exec(function (err, citations) {
     if (err) {
       next(err)
     }
     else {
-      return res.render('admin/citations/modify', {
-        active: { citations: true },
-        citation: (citations && citations.length > 0 ? citations[ 0 ] : defaultCitation),
+      return res.render('admin/citations/index', {
+        active: {citations: true},
+        citations: citations,
+        moment: moment
       });
     }
   });
+
 });
 
-router.post('/modify', function (req, res, next) {
-  // Update existing event
-  if (!req.body.words || !req.body.author) {
-    return next(new Error('Bitte geben Sie Wörter und Autor ein!'));
-  }
-  Citation.findOne({}, function (err, citation) {
+router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  Citation.findOne({_id: req.params.id}, function (err, citation) {
     if (err) {
-      return next(err)
+      next(err)
     }
     if (!citation) {
-      // New Event
-      citation = new Citation({
-        words: req.body.words.trim(),
-        author: req.body.author.trim(),
-      });
+      next({status: 400, message: "Citation not found!"});
     } else {
-      citation.words = req.body.words.trim();
-      citation.author = req.body.author.trim();
+      return res.render('admin/citations/modify', {
+        active: {citations: true},
+        citation: citation,
+      });
     }
-    citation.save(function (err) {
-      if (err) {
-        next(err);
-      }
-      else {
-        res.redirect('/about/');
-      }
-    });
   });
 });
 
+router.get('/preview/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  Citation.findOne({_id: req.params.id}, function (err, citation) {
+    if (err) {
+      next(err)
+    }
+    else {
+      return res.render('admin/citations/preview', {
+        active: {citations: true},
+        citation: citation,
+        moment: moment
+      });
+    }
+  });
+
+});
+
+router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
+  return res.render('admin/citations/modify', {
+    active: {citations: true},
+    citation: {}
+  });
+});
+
+saveCitation = function (req, res, next, citation) {
+  citation.save(function (err) {
+    if (err) {
+      next(err);
+    }
+    else {
+      res.redirect('/admin/citations/');
+    }
+  });
+};
+
+router.post('/modify', function (req, res, next) {
+  if (req.body.id) {
+    // Update existing citation
+    Citation.findOne({_id: req.body.id}, function (err, citation) {
+      if (err) {
+        return next(err)
+      }
+      if (!citation) {
+        return next({status: 400, message: "Citation not found."})
+      } else {
+        citation.words = req.body.words.trim();
+        citation.author = req.body.author.trim();
+        saveCitation(req, res, next, citation);
+      }
+    });
+  } else {
+    console.log("Req body is:");
+    console.log(req.body);
+    var citation = new Citation({
+      words: req.body.words.trim(),
+      author: req.body.author.trim(),
+    });
+    saveCitation(req, res, next, citation);
+  }
+});
+
+router.post('/visible', function (req, res, next) {
+
+  var id = req.body.id;
+  var visible = req.body.visible;
+
+  if (id) {
+    // Update existing Citation
+    Citation.findOne({_id: id}, function (err, citation) {
+      if (err) {
+        return next(err)
+      }
+      if (!citation) {
+        return next({status: 400, message: "Citation not found."})
+      } else {
+        citation.visible = visible;
+        saveCitation(req, res, next, citation);
+      }
+    });
+  } else {
+    return res.json({status: 400, message: "Citation not found."})
+  }
+});
 
 module.exports = router;

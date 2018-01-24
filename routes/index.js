@@ -119,11 +119,11 @@ router.get('/about', function (req, res, next) {
   Grape.find().sort({_id: 'asc'}).exec(function(err, grapes){
     if(err){ return next(err); }
 
-    Citation.findOne({}, function (err, citation) {
+    Citation.find({visible: true}, function (err, citations) {
       res.render('about', {
         site: 'about',
         grapes: grapes,
-        citation: citation ? citation: defaultCitation,
+        citations: citations && citations.length > 0 ? citations: [defaultCitation],
       });
     });
   })

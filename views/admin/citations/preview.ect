@@ -1,0 +1,29 @@
+<% extend 'admin/layouts/main' %>
+
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/about.css" type="text/css" />
+<% end %>
+
+<% block 'scripts' : %>
+  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+<% end %>
+
+<div class="ui stackable grid imhof-family">
+  <div class="two column row">
+    <div class="column">
+      <img class="right floated" src="/images/logo_front_hq.png" />
+    </div>
+    <div class="column">
+      <% if @citation : %>
+          <div class="citation">
+            <p class="text">
+                <%= @citation.words %>
+            </p>
+            <p class="author">
+                - <%= @citation.author %>
+            </p>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
