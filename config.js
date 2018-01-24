@@ -24,6 +24,7 @@ var production = {
 var config = {
   ROOT: __dirname,
   DB_HOST: 'localhost',
+  AGENDA_LIMIT: 4,
 };
 
 module.exports = function (env) {

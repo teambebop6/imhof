@@ -1,0 +1,39 @@
+<% extend 'layouts/main.ect' %>
+
+<div class="ui relaxed page grid page-cont" style="margin-top: 71px !important;">
+
+    <div class="ui column row home">
+
+      <div class="column">
+        <h2><span>Agenda</span></h2>
+
+        <% if @agenda?.length : %>
+        <table class="ui very basic table">
+          <thead>
+            <tr>
+              <th>Anlass</th>
+              <th>Beginn</th>
+              <th>Ende</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for event in @agenda : %>
+            <tr>
+              <td><%= event.name %></td>
+              <td><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
+              <td><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <% else: %>
+        <p>Die Agenda ist momentan leer.</p>
+        <% end %>
+
+      </div>
+
+    </div>
+
+</div>
+

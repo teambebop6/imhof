@@ -35,7 +35,7 @@ if(env == "development"){
 
 
       ProductService.getFullProductsInfo(items).then(function(items){
-       
+
         var total = 0;
         items.forEach(function(item, index){
           items[index].itemsAmount = 5;
@@ -60,11 +60,11 @@ router.get('/', function (req, res, next) {
     if (error) {
       console.log('Data not found: ', error);
     } else {
+      const limit = req.app.locals.config.AGENDA_LIMIT || 4;
       Event.find(function (err, events) {
         if (err) {
           next(err)
         } else {
-
           // showcase
           // TODO only latest now
           Showcase.find({visible: true}).sort({visible: -1, last_modified_date: -1}).exec(function(err, showcases) {
@@ -79,7 +79,7 @@ router.get('/', function (req, res, next) {
                   return a.begin - b.begin
                 }).filter(function (element, index, array) {
                   return element.end > Date.now();
-                }),
+                }).slice(0, limit),
                 showcases: showcases
               });
             }
@@ -92,11 +92,27 @@ router.get('/', function (req, res, next) {
   //   res.render('shop', {site : 'shop'});
 });
 
+router.get('/agenda', function (req, res, next) {
+  Event.find(function (err, events) {
+    if (err) {
+      next(err)
+    } else {
+      res.render('agenda.ect', {
+        site: 'agenda',
+        moment: moment,
+        agenda: events.sort(function (a, b) {
+          return a.begin - b.begin
+        }),
+      });
+    }
+  })
+});
+
 router.get('/about', function (req, res, next) {
 
   Grape.find().sort({_id: 'asc'}).exec(function(err, grapes){
     if(err){ return next(err); }
-    
+
     res.render('about', {
       site: 'about',
       grapes: grapes
