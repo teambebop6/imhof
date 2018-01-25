@@ -14,16 +14,25 @@
       <img class="right floated" src="/images/logo_front_hq.png" />
     </div>
     <div class="column">
-      <% for citation in @citations: %>
-          <div class="citation">
-            <p class="text">
-                <%= citation.words %>
-            </p>
-            <p class="author">
-                - <%= citation.author %>
-            </p>
-          </div>
-      <% end %>
+      <div class="slider-pro" id="citation-slider">
+          <% a = 0%>
+          <% for citation in @citations: %>
+              <% if a == 0: %>
+                <% visibleClass='' %>
+              <% else: %>
+                <% visibleClass='hide' %>
+              <% end %>
+              <div class="citation <%= visibleClass %>" id="<%= 'citation-' + a %>">
+                <p class="text">
+                    <%= citation.words %>
+                </p>
+                <p class="author">
+                    - <%= citation.author %>
+                </p>
+              </div>
+              <% a+=1 %>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>
