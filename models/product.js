@@ -1,4 +1,4 @@
-var Event, mongoose, autoIncrement;
+var Event, mongoose, autoIncrement, ProductCat, Product;
 
 mongoose = require('mongoose');
 autoIncrement = require('mongoose-auto-increment');

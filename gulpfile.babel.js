@@ -70,6 +70,9 @@ gulp.task('dist:copy', () => {
   const utils = gulp.src(['utils/**/*'])
     .pipe(gulp.dest('dist/utils/'));
 
+  const scripts = gulp.src(['scripts/build/**/*'])
+    .pipe(gulp.dest('dist/scripts/'));
+
   const views = gulp.src(['views/**/*'])
     .pipe(gulp.dest('dist/views/'));
 
@@ -82,7 +85,7 @@ gulp.task('dist:copy', () => {
   const dist = gulp.src(['package.json', 'app.js', 'config.js', 'pm2.*.config.js'])
     .pipe(gulp.dest('dist/'));
 
-  return merge(helpers, models, services, publicFolder, routes, utils, views, imhof_secret, semantic, dist);
+  return merge(helpers, models, services, publicFolder, routes, utils, scripts, views, imhof_secret, semantic, dist);
 
 });
 
