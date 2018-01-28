@@ -71,7 +71,7 @@ gulp.task('dist:copy', () => {
     .pipe(gulp.dest('dist/utils/'));
 
   const scripts = gulp.src(['scripts/build/**/*'])
-    .pipe(gulp.dest('dist/scripts/'));
+    .pipe(gulp.dest('dist/scripts/build/'));
 
   const views = gulp.src(['views/**/*'])
     .pipe(gulp.dest('dist/views/'));
