@@ -3,7 +3,7 @@ var express , router, request, mongoose, Item, expressValidator, Cookies;
 express = require('express');
 router = express.Router();
 request = require('request');
-mongoose = require('mongoose')
+mongoose = require('mongoose');
 Product = require('../models/product');
 ProductCategory = require('../models/product_category');
 expressValidator = require('express-validator');
@@ -22,9 +22,12 @@ router.get('/', function(req, res, next) {
 	Product.findByCat({'visible' : true}).exec(function(err, cats){
 		if (err) { return next(err);	} 
 
+		console.log(cats);
+
     Product.find().limit(5).exec(function(err, favs){
-		if (err) { return next(err);	} 
-    
+		if (err) { return next(err);	}
+
+    console.log(favs);
 
     res.render('shop.ect', {
       site : 'shop',	 

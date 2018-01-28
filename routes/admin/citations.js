@@ -17,7 +17,7 @@ defaultCitation = {
 
 // List citations
 router.get('/', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
-  Citation.find().sort({visible: 'desc', last_modified_date: 'desc'}).exec(function (err, citations) {
+  Citation.find().sort({last_modified_date: 'desc', last_modified_date: 'desc'}).exec(function (err, citations) {
     if (err) {
       next(err)
     }
@@ -82,7 +82,7 @@ saveCitation = function (req, res, next, citation) {
   });
 };
 
-router.post('/modify', function (req, res, next) {
+router.post('/modify', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
   if (req.body.id) {
     // Update existing citation
     Citation.findOne({_id: req.body.id}, function (err, citation) {
@@ -108,7 +108,7 @@ router.post('/modify', function (req, res, next) {
   }
 });
 
-router.post('/visible', function (req, res, next) {
+router.post('/visible', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
 
   var id = req.body.id;
   var visible = req.body.visible;

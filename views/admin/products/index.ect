@@ -13,18 +13,33 @@
   </div>
   <div class="row">
     <% for cat in @cats : %>
-    <% if cat._id : %>
-      <h4><%= cat._id %></h4>
-    <% else : %>
-      <h4>Unkategorisiert</h4>
-    <% end %>
+        <% if cat._id : %>
+            <h4>
+                <span class="product-cat-header">
+                    <%= cat._id %>
+                </span>
+                <div class="ui label">
+                    <a href="/admin/products/sort_down/<%= cat.catId %>">
+                      <i class="caret down icon"></i>
+                    </a>
+                </div>
+                <div class="ui label">
+                    <a href="/admin/products/sort_up/<%= cat.catId %>">
+                      <i class="caret up icon"></i>
+                    </a>
+                </div>
+            </h4>
+        <% else : %>
+            <h4>Unkategorisiert</h4>
+        <% end %>
     <table class="ui fluid table">
       <thead>
         <tr>
-          <th width="25%">Bild</th>
-          <th width="25%">Titel</th>
-          <th width="25%">Preis (CHF)</th>
-          <th>Aktionen</th>
+          <th width="four wide">Bild</th>
+          <th width="five wide">Titel</th>
+          <th width="two wide">Preis (CHF)</th>
+          <th class="two wide">Sichtbar</th>
+          <th class="two wide">Aktionen</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +52,16 @@
           </td>
           <td><%= product.title %></td>
           <td><%= @utils.getCHF(product.price) %></td>
+          <td>
+              <div class="ui slider checkbox product_visible_checkbox">
+                <% if product.visible:  %>
+                  <input type="checkbox" checked data-id='<%= product._id %>' />
+                <% else: %>
+                  <input type="checkbox" data-id='<%= product._id %>' '/>
+                <% end %>
+                <label></label>
+              </div>
+          </td>
           <td>
             <a class="ui icon button" href="/admin/products/modify/<%= product._id %>">
               <i class="write icon"></i>

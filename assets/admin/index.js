@@ -188,6 +188,28 @@ common.then(function () {
       }
     });
 
+    var switchProductVisibleCheckbox = function (productId, checked) {
+      $.post({
+        url: '/admin/products/visible/',
+        data: {
+          id: productId,
+          visible: checked
+        }
+      }).done(function (res) {
+      }).fail(function (xhr, status, err) {
+        console.log(err);
+      });
+    };
+
+    $('.product_visible_checkbox').checkbox({
+      onChecked: function (ele) {
+        switchProductVisibleCheckbox($(this).data('id'), true)
+      },
+      onUnchecked: function (ele) {
+        switchProductVisibleCheckbox($(this).data('id'), false)
+      }
+    });
+
     require('../vendor/jquery.picker/picker.min.css');
     require(['../vendor/jquery.picker/picker.min.js'], function () {
 

@@ -38,7 +38,9 @@
               <%= item.title %>
               </p>
               <div class="item-picture">
-                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image" />
+                <%if item.avatar:%>
+                    <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image" />
+                <% end%>
               </div>
             </a>
           </div>
@@ -61,30 +63,19 @@
               <%= item.title %>
               </p>
               <div class="item-picture">
-                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+                <%if item.avatar:%>
+                    <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+                <% end %>
               </div>
             </a>
           </div>
-
           <% end %>
-
         </div>
       </div>
       <% end %>
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
 </div>
-
 
 <div id="anchor-lammfleisch" class="ui stackable grid lammfleisch-header">
   <div class="two column row">

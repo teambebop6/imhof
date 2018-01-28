@@ -1,8 +1,9 @@
 var devEnc = require('./imhof-secret/development');
 var prodEnc = require('./imhof-secret/production');
+var path = require('path');
 
 var development = {
-  UPLOAD_FOLDER: process.env.UPLOAD_FOLDER || '/home/flaudre/www/uploads',
+  UPLOAD_FOLDER: process.env.UPLOAD_FOLDER || path.join(process.env.HOME, '/www/uploads'),
   DB_PORT: '27017',
   DB_NAME: 'imhof',
   DEBUG_LOG: true,

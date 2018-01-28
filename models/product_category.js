@@ -5,9 +5,13 @@ autoIncrement = require('mongoose-auto-increment');
 
 autoIncrement.initialize(mongoose.connection);
 
-ProductCategory = new mongoose.Schema({
+var ProductCategory = new mongoose.Schema({
   id: Number,
   name: String,
+  order: {
+    type: Number,
+    "default": 0,
+  },
   creation_date: {
     type: Date,
     "default": Date.now

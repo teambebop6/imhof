@@ -18,7 +18,10 @@ Product = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  type: ProductCat,
+  type: {
+    type: Number,
+    ref: 'ProductCat',
+  },
   creation_date: {
     type: Date,
     "default": Date.now
@@ -38,12 +41,61 @@ Product.statics.findByCat = function (args) {
       "$match": args ? args : {}
     },
     {
+      "$lookup": {
+        "from" : "productcategories",
+        "localField" : "type",
+        "foreignField" : "_id",
+        "as" : "type"
+      }
+    },
+    {
+      "$unwind": {
+        path : "$type",
+      }
+    },
+    {
       "$group": {
         "_id": "$type.name",
+        "catId": {
+          $first: "$type._id",
+        },
+        "order": {
+          $first: "$type.order",
+        },
         "items": {$push: "$$ROOT"}
+      }
+    },
+    {
+      "$sort": {
+        order: -1,
       }
     }
   ]);
 };
+// Product.statics.findByCat = function (args) {
+//
+//   return this.aggregate([
+//     {
+//       "$match": args ? args : {}
+//     },
+//     {
+//       "$group": {
+//         "_id": "$type.name",
+//         "catId": {
+//           $first: "$type._id",
+//         },
+//         "order": {
+//           $first: "$type.order",
+//         },
+//         "items": {$push: "$$ROOT"}
+//       }
+//     },
+//     {
+//       "$sort": {
+//         order: -1,
+//       }
+//     }
+//   ]);
+// };
 
 module.exports = mongoose.model('Product', Product);

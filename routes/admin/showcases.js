@@ -65,7 +65,7 @@ saveShowcase = function (req, res, next, showcase) {
   });
 };
 
-router.post('/visible', function (req, res, next) {
+router.post('/visible', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
 
   var id = req.body.id;
   var visible = req.body.visible;
@@ -88,7 +88,7 @@ router.post('/visible', function (req, res, next) {
   }
 });
 
-router.post('/modify', upload.single('avatar'), function (req, res, next) {
+router.post('/modify', utils.isNotAuthenticatedThenLogin, upload.single('avatar'), function (req, res, next) {
 
   console.log(req.body);
 
