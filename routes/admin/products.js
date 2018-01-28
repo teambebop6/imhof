@@ -65,28 +65,37 @@ saveProduct = function (req, res, next, product) {
       next(err);
     }
     else {
-      if (!cat) {
-        cat = new ProductCat({ name: req.body.type });
-        cat.save();
-      }
 
-      product.type = cat;
-
-      console.log("Cat is: " + JSON.stringify(cat));
-
-      if (req.file) {
-        product.avatar = req.file;
-      }
-
-      product.save(function (err) {
-        if (err) {
-          next(err);
+      new Promise(function (receive, reject) {
+        if (!cat) {
+          cat = new ProductCat({ name: req.body.type });
+          cat.save(function (err, catNew) {
+            if(err) {
+              reject(err);
+            } else {
+              receive(catNew);
+            }
+          });
+        } else {
+          receive(cat);
         }
-        else {
-          res.redirect('/admin/products/');
+      }).then(function (cat) {
+        product.type = cat._id;
+        console.log("Cat is: " + JSON.stringify(cat));
+        if (req.file) {
+          product.avatar = req.file;
         }
+        product.save(function (err) {
+          if (err) {
+            next(err);
+          }
+          else {
+            res.redirect('/admin/products/');
+          }
+        });
+      }).catch(function (err) {
+        return next(err);
       });
-
     }
   })
 };
