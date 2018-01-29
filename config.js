@@ -5,7 +5,7 @@ var path = require('path');
 var development = {
   UPLOAD_FOLDER: process.env.UPLOAD_FOLDER || path.join(process.env.HOME, '/www/uploads'),
   DB_PORT: '27017',
-  DB_NAME: 'imhof',
+  DB_NAME: process.env.DB_NAME || 'imhof_dev',
   DEBUG_LOG: true,
   DEBUG_WARN: true,
   DEBUG_ERROR: true,
