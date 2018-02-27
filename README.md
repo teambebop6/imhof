@@ -1,10 +1,10 @@
 # imhof
 
 Requirements:
-- git, installed
-- npm and node, installed
-- mongodb, installed and running
-- redis-server, installed and running
+- git
+- node
+- mongodb
+- redis-server
 
 
 Run with:
