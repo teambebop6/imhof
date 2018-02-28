@@ -9,3 +9,11 @@
 /* The size of page text  */
 @fontSize : 16px;
 
+
+/* Border Radius */
+@absoluteBorderRadius: 0;
+
+@textColor: #555555;
+
+@inputPlaceholderColor: lighten(@textColor, 55);
+
