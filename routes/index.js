@@ -151,51 +151,62 @@ router.get('/submit', function (req, res, next) {
 // Send form
 router.post('/contact/form', function (req, res, next) {
 
-  // Check honeypot
-  if (req.body.wineAndDine == "") {
+  console.log(req.body);
 
-    var firstName = req.body.firstName;
-    var lastName = req.body.lastName;
-    var phone = req.body.phone;
-    var email = req.body.email;
-
-    var message = req.body.text.replace(/(?:\r\n|\r|\n)/g, '<br />'); // Escaping html message
-
-    var html = "<h1>" + firstName + " " + lastName + " hat Ihnen eine Nachricht geschrieben</h1> \
-                <p>Telefon: " + phone + "</p> \
-                <p>Email: " + email + "</p> \
-                <p> " + message + "</p>";
-
-    // Send Email
-    var mailOptions = {
-      from: req.app.locals.config.DEFAULT_SENDER,
-      to: req.app.locals.config.EMAIL_ADDRESS,
-      subject: 'Neue Nachricht per Kontaktformular',
-      html: html
-    };
-
-    req.app.locals.smtp_transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return res.json({
-          success: false,
-          message: error.message
-        });
-      }
-
-      res.json({
-        success: true,
-        message: "Vielen Dank. Wir haben Ihre Nachricht erhalten und melden uns so bald wie möglich bei Ihnen!"
-      });
-
-      req.app.locals.smtp_transporter.close();
-    });
-
-  } else {
-    res.json({
-      success: false,
-      message: "Es . Bitte versuchen Sie es erneut!"
+  // honeypot
+  if(req.body.wineAndDine){
+    console.log("Trapped in honeypot.");
+    return res.status(500).json({ 
+      message: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut!" 
     });
   }
+
+  var sender = "";
+  if(req.body.firstName || req.body.lastName){ sender = req.body.firstName + " " + req.body.lastName }
+  else{
+    sender = req.body.name
+  }
+
+  var contactMethodBlock = "";
+
+  if(req.body.phoneOrEmail){
+    contactMethodBlock += "<p>Kontakt: " + req.body.phoneOrEmail + "</p>";
+    console.log(contactMethodBlock);
+  }else{
+    if(req.body.phone){
+      contactMethodBlock += "<p>Telefon: " + req.body.phone + "</p>";
+    }
+    if(req.body.email){
+      contactMethodBlock += "<p>Email: " + req.body.email + "</p>";
+    }
+  }
+
+  console.log(contactMethodBlock);
+
+  var messageBlock = "<p>" + req.body.text.replace(/(?:\r\n|\r|\n)/g, '<br />') + "</p>"; // Escaping html message
+
+  var titleBlock = "<h1>" + sender + " hat Ihnen eine Nachricht geschrieben</h1>";
+
+
+  var html = titleBlock + contactMethodBlock + messageBlock;          
+
+  // Send Email
+  var mailOptions = {
+    from: req.app.locals.config.DEFAULT_SENDER,
+    to: req.app.locals.config.EMAIL_ADDRESS,
+    subject: 'Neue Nachricht per Kontaktformular',
+    html: html
+  };
+
+  req.app.locals.smtp_transporter.sendMail(mailOptions, function (err, info) {
+    if (err) { return res.json(err); }
+
+    res.json({
+      message: "Vielen Dank. Wir haben Ihre Nachricht erhalten und melden uns so bald wie möglich bei Ihnen!"
+    });
+
+    req.app.locals.smtp_transporter.close();
+  });
 });
 
 router.get('/contact', function (req, res, next) {

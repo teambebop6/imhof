@@ -1,4 +1,5 @@
 var common = require("./common");
+var viewUtils = require('../utils/ViewUtils');
 
 common.then(function(){
 
@@ -31,52 +32,40 @@ common.then(function(){
         }
       },
       lang: 'de',
-      submitHandler: function(){
+      submitHandler: function(form){
 
-        $('#submit-form').addClass('loading');
-        $('#submit-form').prop('disabled', true); 
+        var submit_btn = $(form).find(':submit'); // Create button handler
+        submit_btn.addClass('disabled loading'); // Disable and add loading class
+        $(form).find('.ui.message').hide(); // Hide previous messages
 
-        $.ajax({
+        $.post({
           url: "/contact/form",
-          method: "POST",
-          data: $('#contact-form').serialize(),
-          success: function(result){
+          data: $(form).serialize(),
+          success: function(data, textStatus, xhr){
+            // Reactivate button
+            submit_btn.removeClass('disabled loading');
+            // Clear form
+            $(form).find("input[type=text], textarea").val("");
+
             var msg = $('.ui.message');
-            $('#submit-form').removeClass('loading');
-            $('#submit-form').prop('disabled', false);  
-            if(result.success){
 
-              // Reset contact form
-              $('#contact-form')[0].reset();
-              $('#contact-form .field').hide();
-              $('#contact-form button').hide();
-
-              msg.addClass('success');
-              msg.removeClass('error');
-
-              msg.find('.message').html(result.message);
-              msg.show();
+            if(xhr.status != 200){
+              if(data && data.message){
+                viewUtils.showErrorMessage(data.message, form);
+              }
             }else{
-              msg.addClass('error');
-              msg.removeClass('success');
+              // Success
+              var successModal = viewUtils.miniModal("Besten Dank!", "\
+                <p>Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.</p> \
+                <p>Herzlich,</p><p>Familie Imhof</p>");
+              $(successModal).modal('show');
 
-              msg.find('.message').html(result.message);
-              msg.show();
             }
-
-            $('#submit-form').removeClass('loading');
-            $('#submit-form').prop('disabled', false);  
           },
-          error: function(err){
-            var msg = $('.ui.message');
-
-            msg.addClass('error');
-            msg.removeClass('success');
-            msg.find('.message').html(err);
-            msg.show();
-
-            $('#submit-form').removeClass('loading');
-            $('#submit-form').prop('disabled', false);  
+          error: function(xhr, status, err){
+            // Reactivate button
+            submit_btn.removeClass('disabled loading');
+            viewUtils.showErrorMessage(xhr.responseJSON.message, form);
           }
         });
       }
@@ -108,7 +97,7 @@ common.then(function(){
       // Specify features and elements to define styles.
       var styles = 
         [{"featureType":"landscape","stylers":[{"hue":"#FFA800"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#53FF00"},{"saturation":-73},{"lightness":40},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FBFF00"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#00FFFD"},{"saturation":0},{"lightness":30},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#00BFFF"},{"saturation":6},{"lightness":8},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#679714"},{"saturation":33.4},{"lightness":-25.4},{"gamma":1}]}]
-        ;
+      ;
       map.setOptions({styles: styles});
     }
 

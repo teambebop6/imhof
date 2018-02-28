@@ -278,22 +278,35 @@ common.then(function(){
       },
       submitHandler: function(form, event) {
 
-        var submit_btn = $(form).find('button[type="submit"]');
+        var submit_btn = $(form).find(':submit'); // Create button handler
+        submit_btn.addClass('disabled loading'); // Disable and add loading class
+        $(form).find('.ui.message').hide(); // Hide previous messages
 
-        submit_btn.addClass('disabled loading');
-        $.post({url:"/shop/preorder", data: $(form).serialize()}).then(function(res){
+        $.post({
+          url:"/shop/preorder", 
+          data: $(form).serialize()
+        }).done(function(data, textStatus, xhr){
+          // Reactivate button
           submit_btn.removeClass('disabled loading');
 
-          if(res.status != 200){
-            viewUtils.showMessage(res);
+          // Clear form
+          $(form).find("input[type=text], textarea").val("");
+
+          if(xhr.status != 200){
+            if(data && data.message){
+              viewUtils.showErrorMessage(data.message, form);
+            }
           }else{
             // Success
-            $('.mini.modal.orderConfirm').modal('show');
-            $('.ui.message').hide();
+            var successModal = viewUtils.miniModal("Besten Dank!", "\
+                <p>Wir haben Ihre Vorbestellung erhalten und melden uns bald bei Ihnen.</p> \
+                <p>Herzlich,</p><p>Familie Imhof</p>");
+            $(successModal).modal('show');
           }
         }).fail(function(xhr, status, err){
+          // Reactivate button
           submit_btn.removeClass('disabled loading');
-          viewUtils.showMessage(err);
+          viewUtils.showErrorMessage(xhr.responseJSON.message, form);
         });
       }
     });

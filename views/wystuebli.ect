@@ -1,46 +1,151 @@
 <% extend 'layouts/main.ect' %>
 
-<% block 'scripts' : %>
-<script src="/default.bundle.js"></script>
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/wystuebli.css" type="text/css" />
 <% end %>
 
-<div class="filler" style="height:87px;"></div>
+<% block 'scripts' : %>
+<script src="/wystuebli.bundle.js"></script>
+<% end %>
 
+<a href="javascript:;" class="jump-to-wystuebli-start">
+  <div class="ui page grid top-bg"></div>
+</a>
 
-<div class="top-bg">
-  <div class="ui centered page grid container">
+<div class="ui page grid welcome-to-wystuebli">
+  <div class="row">
+    <div class="center aligned column">
+      <a href="javascript:;" class="jump-to-wystuebli-start">
+        <span>Willkommen im </span>
+        <img src="/images/imhofs_b.png" /><span> Wystuebli</span>
+        <p style="margin-top:1rem;">
+        <i class="ui large double angle down icon arrow-down bounce"></i>
+        </p>
+      </a>
+    </div>
   </div>
-</div>
-
-
-<div class="wystuebli-container">
-  <table class="ui very basic centered table">
-    <tr>
-      <td class="seven wide right aligned">
-        <h2><span>Imhof's</span></h2>
-
-      </td>
-      <td class="two wide">
-
-        <img class="ui centered small image" src="/images/logo_front_hq.png" />
-      </td>
-      <td>
-
-        <h2><span>Wystübli</span></h2>
-      </td>
-    </tr>
-  </table>
-  
-
-  <div class="ui page grid">
-    <div class="centering row">
-      <div class="column content">
-        <p>Bitte nur noch ein wenig Geduld! </p>
-        <p>Unser Wystübli wird in Kürze hier erscheinen - in neuem Glanz.</p>
+  <div class="row">
+    <div class="centering column">
+      <div id="wystuebli-start"></div>
+      <div class="introduction-block">
+        <p>
+        Feste soll man feiern, wie sie fallen. Ob Apéro, Geburtstagsfest, Hochzeit oder Firmenanlass, wir sind für Sie da. In unserem Wystübli verwöhnen wir Sie kulinarisch mit hausgemachten Spezialitäten zu ihrem privaten Event!
+        </p>
+        <div class="separator"></div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="ui stackable page grid">
 
 
-  <div class="filler" style="height:3rem"></div>
+  <div class="row">
+    <div class="column content" id="shop-start">      
+      <div class="main-block">
+
+        <div class="block about-block">
+          <div class="image">
+            <img class="ui image" src="/images/wystuebli/about.jpg" />
+          </div>
+          <div class="description">
+            <h3 class="title">Imhof's Wystübli</h3>
+            <p>
+            Etwas erhöht von Sissach, mit wunderschöner Aussicht auf das Ergolz-, Diegter- und Homburgertal, liegt der Hof der Familie Imhof und das Imhof’s Wystübli.
+            </p>
+            <p>
+            Unser Wystübli bietet Platz für maximal 60 Personen.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="block food-block clearfix">
+          <div class="image">
+            <img class="ui image" src="/images/wystuebli/food.jpg" />
+          </div>
+          <div class="description">
+            <h3 class="title">
+              Wein & Feines Essen 
+            </h3>
+            <p>
+            Im Imhof’s Wystübli werden Sie kulinarisch verwöhnt mit hausgemachten Spezialitäten.
+            </p>
+            <p>
+            Bei einem guten Tropfen Wein erzählen wir Ihnen auch viel Wissenswertes über die Pflege der Reben, die Weinproduktion und unseren Alltag auf dem Betrieb.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="block contact-block">
+          <div class="image">
+            <img class="ui image" src="/images/wystuebli/contact.jpg" />
+          </div>
+          <div class="description">
+            <h3 class="title">Kontaktieren Sie uns</h3>
+            <p>
+            Wir beraten Sie gerne bei einem persönlichen Gespräch. Rufen Sie uns an unter 061 973 22 22 oder senden Sie uns eine Nachricht über das folgende Kontaktformular.
+            </p>
+            <p>
+            Wir freuen uns, Sie und Ihre Gäste verwöhnen zu dürfen!
+            </p>
+
+
+
+          </div>
+
+
+          <!-- Contact form -->
+          <div class="contact-form">
+            <h3 class="title">
+              Senden Sie uns eine Nachricht:
+            </h3>
+            <form class="ui form" id="wystuebli-form">
+              <div class="field">
+                <input type="text" name="name" placeholder="Ihr Name" required />
+              </div>
+              <div class="field">
+                <input type="text" name="phoneOrEmail" placeholder="Ihre E-mail oder Telefonnummer" required />
+              </div>
+              <div class="field">
+                <textarea name="text" placeholder="Ihre Nachricht" required></textarea>
+              </div>
+              <div class="field">
+                <div class="wine-and-dine">
+                  <p class="error">Bitte lassen Sie das folgende Feld leer.</p>
+                  <input type="text" name="wineAndDine">
+                </div>
+              </div>
+              <div class="field"> 
+                <button class="ui red large fluid button" type="submit">ABSENDEN</button>  
+              </div>
+            </form>
+
+          </div>
+          <!-- End Contact Form -->
+
+
+          <div class="contact-icons">
+            <div class="ui four column grid">
+              <div class="column">
+                <img class="ui image" src="/images/wystuebli/grape.png" />
+              </div>
+              <div class="column">
+                <img class="ui image" src="/images/wystuebli/wineyard.png" />
+              </div>
+              <div class="column">
+                <img class="ui image" src="/images/wystuebli/wine.png" />
+              </div>
+              <div class="column">
+                <img class="ui image" src="/images/wystuebli/cellar.png" />
+              </div>
+            </div>
+            <div class="separator"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -12,44 +12,41 @@
 
 <div class="ui two column relaxed stackable page grid">
   <div class="ui column">
-    <h3>Senden Sie uns eine Nachricht!</h3>
+    <div class="narrow-form">
+      <h3>Senden Sie uns eine Nachricht!</h3>
 
-    <form id="contact-form" class="ui form">
-      <div class="ui message" style="display:none;" >
-        <p class="message"></p>
-      </div>
-      <div class="two fields">
-        <div class="field">
-          <label>Vorname</label>
-          <input type="text" name="firstName" minlength="2" placeholder="Ihr Vorname" required>
+      <form id="contact-form" class="ui form">
+        <div class="ui message" style="display:none;" >
+          <p class="message"></p>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="firstName" minlength="2" placeholder="Ihr Vorname" required>
+          </div>
+          <div class="field">
+            <input type="text" name="lastName" minlength="2" placeholder="Ihr Famillienname" required>
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="phone" placeholder="Ihre Telefonnummer">
+          </div>
+          <div class="field">
+            <input type="text" name="email" placeholder="Ihre Email-Adresse" required>
+          </div>
         </div>
         <div class="field">
-          <label>Name</label>
-          <input type="text" name="lastName" minlength="2" placeholder="Ihr Famillienname" required>
-        </div>
-      </div>
-      <div class="two fields">
-        <div class="field">
-          <label>Telefon</label>
-          <input type="text" name="phone" placeholder="Ihre Telefonnummer">
+          <textarea name="text" placeholder="Ihre Nachricht" required></textarea>
         </div>
         <div class="field">
-          <label>Email-Adresse</label>
-          <input type="email" name="email" placeholder="Ihre Email-Adresse" required>
+          <div class="wine-and-dine">
+            <p class="error">Bitte lassen Sie das folgende Feld leer.</p>
+            <input type="text" name="wineAndDine">
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label>Ihre Nachricht</label>
-        <textarea name="text" required></textarea>
-      </div>
-      <div class="field">
-        <div class="wine-and-dine">
-          <p class="error">Bitte lassen Sie das folgende Feld leer.</p>
-          <input type="text" name="wineAndDine">
-        </div>
-      </div>
-      <button id="submit-form" class="ui red button" type="submit">Senden</button>
-    </form>
+        <button id="submit-form" class="ui large red fluid button" type="submit">SENDEN</button>
+      </form>
+    </div>
   </div>
   <div class="column">
     <div class="ui grid">

@@ -26,6 +26,7 @@ module.exports = {
     about: './assets/about',
     contact: './assets/contact',
     shop: './assets/shop',
+    wystuebli: './assets/wystuebli',
     cart: './assets/cart',
     buy: './assets/buy',
     home: './assets/home',
@@ -78,7 +79,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       filename: "commons.js",
       name: "commons",
-      chunks: ['default', 'about', 'contact', 'shop', 'cart', 'buy', 'home'],
+      chunks: ['default', 'about', 'contact', 'shop', 'cart', 'buy', 'home', 'wystuebli'],
     })
   ]
 };

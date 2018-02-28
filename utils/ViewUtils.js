@@ -7,16 +7,47 @@ exports.formatPrice = function(price){
 }
 
 exports.showMessage = function(res){
-  if(res.status == 200){
+  if(!res.status || res.status == 200){
     $('.ui.message').removeClass('error');
     $('.ui.message').addClass('success');
     $('.ui.message .message').text(res.message);
     $('.ui.message').show();
   }
-  else if(res.status == 400){
+  else{
     $('.ui.message').removeClass('success');
     $('.ui.message').addClass('error');
     $('.ui.message .message').text(res.message);
     $('.ui.message').show();
   }
 }
+
+exports.showErrorMessage = function(message, formElement){
+  if(formElement){
+    var el = $('<div class="ui error message"></div>');
+    el.html(message);
+    el.prependTo($(formElement));
+    el.show();
+  }
+  else{
+    $('.ui.message').removeClass('success');
+    $('.ui.message').addClass('error');
+    $('.ui.message .message').text(message);
+    $('.ui.message').show();
+  }
+}
+
+// Success modal
+var miniModal = function(title, message){
+  return '<div class="ui mini modal"> \
+  <i class="close icon"></i> \
+  <div class="header"> \
+    '+title+' \
+  </div> \
+  <div class="content"> \
+    '+message+' \
+  </div> \
+</div>';
+
+}
+exports.miniModal = miniModal;
+

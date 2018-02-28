@@ -172,66 +172,55 @@
             </table>
           </div>
           <div class="column">
-            <h3>Senden Sie uns eine unverbindliche Vorbestellung!</h3>
-
-            <div class="ui message" style="display:none;">
-              <div class="message"></div>
-            </div>
-            <form class="ui form" id="lammfleisch-order">
-              <div class="two fields">
+            <div class="form-block">
+              <h3 class="title">Senden Sie uns eine unverbindliche Vorbestellung!</h3>
+              <form class="ui form" id="lammfleisch-order">
                 <div class="field">
                   <label>Ihr Vorname</label>
-                  <input class="ui input" name="firstName" type="text" required="" />
+                  <input 
+                     placeholder="Ihr Vorname"
+                     class="ui input" 
+                     name="firstName" 
+                     type="text" required="" />
                 </div>
                 <div class="field">
                   <label>Ihr Nachname</label>
-                  <input class="ui input" name="lastName" minlength="2" type="text" required>
+                  <input 
+                     placeholder="Ihr Nachname" 
+                     class="ui input" name="lastName" minlength="2" type="text" required>
                 </div>
-              </div>
-              <div class="two fields">
                 <div class="field">
                   <label>Ihre Telefonnummer</label>
-                  <input class="ui input" name="phone" minlength="10" type="text" required>
+                  <input 
+                     placeholder="Ihre Telefonnummer" 
+
+                     class="ui input" name="phone" minlength="10" type="text" required>
                 </div>
                 <div class="field">
                   <label>Ihre Email-Adresse</label>
-                  <input class="ui input" name="email" type="text" required>
+                  <input 
+                     placeholder="Ihre E-mail Adresse" 
+                     class="ui input" name="email" type="text" required>
                 </div>
-              </div>
-              <div class="field">
-                <label>Ihre Nachricht</label>
-                <textarea name="text" required></textarea>
-              </div>
-              <div class="field">
-                <div class="wine-and-dine">
-                  <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
-                  <input type="text" name="wineAndDine">
+                <div class="field">
+                  <label>Ihre Nachricht</label>
+                  <textarea name="text" placeholder="Was möchten Sie gerne bestellen?" required></textarea>
                 </div>
-              </div>
+                <div class="field">
+                  <div class="wine-and-dine">
+                    <p class="error">Falls Sie diese Nachricht sehen, bitte lassen Sie das folgende Feld leer.</p>
+                    <input type="text" name="wineAndDine">
+                  </div>
+                </div>
 
-              <div class="field">
-                <button id="send-preorder" class="ui button" type="submit">Vorbestellung absenden</button>
-              </div>
-            </form>
+                <div class="field">
+                  <button class="ui red fluid button" type="submit">ABSENDEN</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="ui mini modal orderConfirm">
-  <i class="close icon"></i>
-  <div class="header">
-    Vorbestellung erfolgreich!
-  </div>
-  <div class="content">
-    <p>Wir haben Ihre Vorbestellung erfolgreich erhalten. Sie hören von uns!</p>
-
-    <p>
-    Familie Imhof
-    </p>
-
-  </div>
-</div>
-

@@ -75,7 +75,10 @@
   margin-bottom: 1rem;
   display: block;
   color: #C8343A;
-  font-size: 1.8rem; }
+  font-size: 2.2rem;
+  font-family: 'Playfair Display', serif;
+}
+
 
 .vtimeline-content {
   transition: 0.5s ease all; }
