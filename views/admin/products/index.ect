@@ -35,7 +35,6 @@
     <table class="ui fluid table">
       <thead>
         <tr>
-          <th width="four wide">Bild</th>
           <th width="five wide">Titel</th>
           <th width="two wide">Preis (CHF)</th>
           <th class="two wide">Sichtbar</th>
@@ -45,14 +44,6 @@
       <tbody>
       <% for product in cat.items: %>
         <tr>
-          <td>
-            <% if product.avatar : %>
-            <img class="ui mini image" src="/products/<%= product.avatar.filename %>" />
-            <% else: %>
-            <img src="/images/default_wine.png" class="ui mini image" />
-            <% end %>
-
-          </td>
           <td><%= product.title %></td>
           <td><%= @utils.getCHF(product.price) %></td>
           <td>
