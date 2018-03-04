@@ -25,7 +25,11 @@
           <div class="centered column">
             <h4>Beschreibung</h4>
             <div>
+              <% if @product.description: %>
               <%= @product.description %>
+              <% else: %>
+              keine
+              <% end %>
             </div>
           </div>
         </div>

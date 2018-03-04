@@ -214,9 +214,12 @@ common.then(function () {
     require(['../vendor/jquery.picker/picker.min.js'], function () {
 
       console.log("Jquery picker loaded.");
+      var coeff = 1000 * 60 * 5;
+
       $('.js-full-picker').each(function (index, e) {
         const pickr = new Picker(e, {
           format: "D. MMMM YYYY, HH:mm",
+          date: new Date(Math.ceil((new Date()).getTime() / coeff) * coeff),
           months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
           increment: {
             minute: 5,
@@ -237,7 +240,6 @@ common.then(function () {
             confirm: 'Bestätigen',
           },
         });
-
         var d = new Date($(e).val());
         if (Object.prototype.toString.call(d) === "[object Date]") {
           if (!isNaN(d.getTime())) {
