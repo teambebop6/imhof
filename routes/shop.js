@@ -19,23 +19,22 @@ module.exports = function (app) {
 router.use(expressValidator([]));
 
 router.get('/', function(req, res, next) {
-	Product.findByCat({'visible' : true}).exec(function(err, cats){
-		if (err) { return next(err);	} 
+  Product.findByCat({'visible' : true}).exec(function(err, cats){
+    if (err) { return next(err);	} 
 
-		console.log(cats);
+    console.log(cats);
 
     Product.find().limit(5).exec(function(err, favs){
-		if (err) { return next(err);	}
+      if (err) { return next(err);	}
 
-    console.log(favs);
+      console.log(favs);
 
-    res.render('shop.ect', {
-      site : 'shop',	 
-      cats: cats,
-      favs: favs,
+      res.render('shop.ect', {
+        site : 'shop',	 
+        cats: cats,
+        favs: favs,
+      });
     });
-    });
-
   });
 });
 
@@ -79,9 +78,9 @@ router.get('/buy', utils.getCartItems, function(req, res, next){
           subtotal: item.itemsAmount * item.details.price
         }
       });
-      
+
       var total = viewItems.map(function(item){return item.subtotal}).reduce(function(a, b) { return a + b; });
-      
+
       res.render('buy', {
         items: viewItems,
         totalPrice: total,
@@ -162,7 +161,7 @@ router.post('/order', utils.ifNoItemsInCookiesThenRedirect, function(req, res, n
   var items = JSON.parse(req.cookies.itemsToBuy);
 
   ProductService.getFullProductsInfo(items).then(function(items){
-    
+
     var total = 0;
     items.forEach(function(item, index){
       items[index].subtotal = item.itemsAmount * item.details.price;

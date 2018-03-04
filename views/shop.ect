@@ -10,24 +10,25 @@
 <% end %>
 
 <div class="shop-header">
-  <img class="header-logo" src="/images/logo_front_hq.png" style="z-index:100;"/>
+	<img class="header-logo" src="/images/logo_front_hq.png" style="z-index:100;"/>
 </div>
 
 <a href="javascript:;" class="jump-to-shop-start" style="margin-top:-4rem;display:block;">
-<div class="ui page grid welcome-to-shop">
-  <div class="row">
-    <div class="center aligned column">
-      <span>Willkommen im </span>
-      <img src="/images/imhofs.png" /><span> Shop</span>
-      <p style="margin-top:1rem;"><i class="ui large double angle down icon arrow-down bounce"></i></p>
+  <div class="ui page grid welcome-to-shop">
+    <div class="row">
+      <div class="center aligned column">
+        <span>Willkommen im </span>
+        <img src="/images/imhofs.png" /><span> Shop</span>
+        <p style="margin-top:1rem;"><i class="ui large double angle down icon arrow-down bounce"></i></p>
+      </div>
     </div>
   </div>
-</div>
 </a>
 
 <div class="ui stackable page grid">
   <div class="row">
     <div class="column content" id="shop-start" style="padding-top:3rem;">
+      <% if @favs?.length : %>
       <h2><span>Beliebt</span></h2>
       <div class="ui grid">
         <div class="five column row">
@@ -37,18 +38,13 @@
               <p class="item-title">
               <%= item.title %>
               </p>
-              <div class="item-picture">
-                <%if item.avatar:%>
-                    <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image" />
-                <% end%>
-              </div>
-            </a>
+              <div class="item-picture"><%if item.avatar:%><img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image"><% end %></div><a>
           </div>
           <% end %>
         </div>
       </div>
-      <% end %>
 
+      <% end %>
 
       <% for cat in @cats : %>
       <h2 id="cat-<%- cat._id %>"><span><%- cat._id %></span></h2>
@@ -64,7 +60,10 @@
               </p>
               <div class="item-picture">
                 <%if item.avatar:%>
-                    <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
+                <% else: %>
+                <img id="<%- item.html_id %>" src="/images/default_wine.png" class="item-image" />
+
                 <% end %>
               </div>
             </a>

@@ -48,19 +48,22 @@
           <td>
             <% if product.avatar : %>
             <img class="ui mini image" src="/products/<%= product.avatar.filename %>" />
+            <% else: %>
+            <img src="/images/default_wine.png" class="ui mini image" />
             <% end %>
+
           </td>
           <td><%= product.title %></td>
           <td><%= @utils.getCHF(product.price) %></td>
           <td>
-              <div class="ui slider checkbox product_visible_checkbox">
-                <% if product.visible:  %>
-                  <input type="checkbox" checked data-id='<%= product._id %>' />
-                <% else: %>
-                  <input type="checkbox" data-id='<%= product._id %>' '/>
-                <% end %>
-                <label></label>
-              </div>
+            <div class="ui slider checkbox product_visible_checkbox">
+              <% if product.visible:  %>
+              <input type="checkbox" checked data-id='<%= product._id %>' />
+              <% else: %>
+              <input type="checkbox" data-id='<%= product._id %>' />
+              <% end %>
+              <label></label>
+            </div>
           </td>
           <td>
             <a class="ui icon button" href="/admin/products/modify/<%= product._id %>">
@@ -71,7 +74,7 @@
             </button>
           </td>
         </tr>
-      <% end %>
+        <% end %>
       </tbody>
     </table>
     <% end %>

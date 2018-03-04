@@ -89,8 +89,6 @@ router.get('/', function (req, res, next) {
       })
     }
   });
-
-  //   res.render('shop', {site : 'shop'});
 });
 
 router.get('/agenda', function (req, res, next) {

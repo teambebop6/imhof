@@ -8,21 +8,13 @@
 <script src="/shop.bundle.js"></script>
 <% end %>
 
-
-
-
-
 <div class="filler" style="height:9rem;"></div>
-
-
-
-
 
 <% if @product.avatar : %>
 <img src="/products/<%= @product.avatar.filename %>" class="ui centered small image" />
+<% else: %>
+<img src="/images/default_wine.png" class="ui centered small image" />
 <% end %>
-
-
 
 <h2 class="ui centered header title"><%= @product.title %></h2>
 <div class="ui stackable page grid product-details">
