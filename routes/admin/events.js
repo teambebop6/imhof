@@ -4,7 +4,7 @@ express = require('express');
 router = express.Router();
 
 var moment = require('moment');
-//moment.locale("de");
+moment.locale("de");
 
 utils = require('../../utils/AdminUtils');
 
@@ -39,6 +39,11 @@ saveEvent = function (req, res, next, event) {
 }
 
 router.post('/modify', function (req, res, next) {
+
+  // Parse date
+  var begin = moment(req.body.begin, "D. MMMM YYYY, HH:mm");
+  var end = moment(req.body.end, "D. MMMM YYYY, HH:mm");
+
   if (req.body.id) {
     // Update existing event
     Event.findOne({_id: req.body.id}, function (err, event) {
@@ -50,8 +55,8 @@ router.post('/modify', function (req, res, next) {
       }
       else {
         event.name = req.body.name;
-        event.begin = req.body.begin;
-        event.end = req.body.end;
+        event.begin = begin;
+        event.end = end;
 
         saveEvent(req, res, next, event);
       }
@@ -64,8 +69,8 @@ router.post('/modify', function (req, res, next) {
     // New Event
     event = new Event({
       name: req.body.name,
-      begin: req.body.begin,
-      end: req.body.end,
+      begin: begin,
+      end: end,
     });
 
     console.log("Creating new event: " + JSON.stringify(event));
