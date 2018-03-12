@@ -96,11 +96,23 @@ router.get('/agenda', function (req, res, next) {
     if (err) {
       next(err)
     } else {
+
+      var upcomingEvents = events.filter(function(event){
+        return moment(event.begin).diff(Date.Now, 'days') <= 0
+      });
+
+      var pastEvents = events.filter(function(event){
+        return moment(event.begin).diff(Date.Now, 'days') > 0
+      })
+
       res.render('agenda.ect', {
         site: 'agenda',
         moment: moment,
-        agenda: events.sort(function (a, b) {
+        upcomingEvents: upcomingEvents.sort(function (a, b) {
           return a.begin - b.begin
+        }),
+        pastEvents: pastEvents.sort(function (a, b) {
+          return b.begin - a.begin
         }),
       });
     }
