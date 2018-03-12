@@ -38,7 +38,13 @@
               <p class="item-title">
               <%= item.title %>
               </p>
-              <div class="item-picture"><%if item.avatar:%><img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image"><% end %></div><a>
+              <div class="item-picture">
+                <%if item.avatar:%>
+                <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image">
+                <% else: %>
+                <img id="<%- item.html_id %>" src="/images/default_wine.png" class="ui tiny centered image item-image">
+
+                <% end %></div><a>
           </div>
           <% end %>
         </div>
@@ -63,8 +69,13 @@
                 <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="item-image" />
                 <% else: %>
                 <img id="<%- item.html_id %>" src="/images/default_wine.png" class="item-image" />
-
                 <% end %>
+
+
+                <% if item.soldOut: %>
+                <% include 'partials/soldOut.ect', { item : item, moment: @moment } %> 
+                <% end %>
+
               </div>
             </a>
           </div>

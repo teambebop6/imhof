@@ -8,6 +8,7 @@ mime = require('mime');
 mkdirp = require('mkdirp');
 fs = require('fs');
 path = require('path');
+var moment = require('moment');
 
 utils = require('../../utils/AdminUtils');
 
@@ -57,8 +58,17 @@ saveProduct = function (req, res, next, product) {
   product.title = req.body.title;
   product.price = req.body.price * 100;
   product.description = req.body.description;
+  product.soldOut = req.body.soldOut;
+
+  if(product.soldOut && req.body.expectedRefillDate){
+    product.expectedRefillDate = moment(req.body.expectedRefillDate, 'MMMM YYYY');
+  }else{
+    product.expectedRefillDate = null
+  }
   product.visible = req.body.visible;
 
+  console.log("Saving product..");
+  console.log(product);
 
   ProductCat.findOne({ name: req.body.type }, function (err, cat) {
     if (err) {
@@ -149,7 +159,9 @@ router.get('/new', utils.isNotAuthenticatedThenLogin, function (req, res, next) 
 });
 
 router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res, next) {
-  Product.findOne({ _id: req.params.id }, function (err, product) {
+  Product.findOne({
+    _id: req.params.id
+  }).populate('type').exec(function (err, product) {
     if (err) {
       return next(err);
     }
@@ -163,7 +175,8 @@ router.get('/modify/:id', utils.isNotAuthenticatedThenLogin, function (req, res,
           cats = {}
         }
 
-        console.log(ViewUtils);
+        console.log(product);
+        console.log(cats);
 
         return res.render('admin/products/modify', {
           active: { products: true },

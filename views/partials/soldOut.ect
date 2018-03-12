@@ -1,0 +1,8 @@
+<div class="soldOut">
+  <strong>Ausgetrunken!</strong>
+  <% if @item.expectedRefillDate: %>
+  <p>
+  <span>Nächste Produktion erwartet am: <%= @moment(@item.expectedRefillDate).format("MMMM YYYY") %></span>
+  </p>
+  <% end %>
+</div>
