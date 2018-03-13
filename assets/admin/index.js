@@ -2,21 +2,6 @@ var common = require('../common.js');
 
 common.then(function () {
   require(['jquery.validate', 'jquery.validate.de'], function () {
-
-    $('form#modify-event').validate({
-      rules: {
-        name: {
-          required: true,
-        },
-        begin: {
-          required: true,
-        },
-        end: {
-          required: true,
-        },
-      }
-    });
-
     $('form#modify-citation').validate({
       rules: {
         words: {
@@ -38,36 +23,11 @@ common.then(function () {
         }
       }
     });
-
   });
-
-  if ($('#visible').val() == "true") {
-    $('#visible-checkbox').checkbox('check');
-  }
 
   if ($('#showcase-visible').val() == "true") {
     $('#showcase-visible-checkbox').checkbox('check');
   }
-
-  if ($('#visible').val() == "true") {
-    $('#visible-checkbox').checkbox('check');
-  }
-
-
-  $('.remove-event').click(function () {
-    var el = this;
-    var id = $(el).data('id');
-    if (confirm("Sind Sie sicher, dass Sie dieses Event löschen möchten?")) {
-      $.post({
-        url: '/admin/events/delete',
-        data: {id: id}
-      }).done(function (res) {
-        $(el).closest('tr').remove();
-      }).fail(function (xhr, status, err) {
-        console.log(err);
-      });
-    }
-  });
 
   $('.remove-showcase').click(function () {
     var el = this;
@@ -125,28 +85,6 @@ common.then(function () {
     },
     onUnchecked: function (ele) {
       switchCitationVisibleCheckbox($(this).data('id'), false)
-    }
-  });
-
-  var switchProductVisibleCheckbox = function (productId, checked) {
-    $.post({
-      url: '/admin/products/visible/',
-      data: {
-        id: productId,
-        visible: checked
-      }
-    }).done(function (res) {
-    }).fail(function (xhr, status, err) {
-      console.log(err);
-    });
-  };
-
-  $('.product_visible_checkbox').checkbox({
-    onChecked: function (ele) {
-      switchProductVisibleCheckbox($(this).data('id'), true)
-    },
-    onUnchecked: function (ele) {
-      switchProductVisibleCheckbox($(this).data('id'), false)
     }
   });
 

@@ -25,6 +25,9 @@ require('./vendor/Semantic-UI/dist/components/list.css');
 require('./vendor/Semantic-UI/dist/components/sticky.css');
 require('./vendor/Semantic-UI/dist/components/icon.css');
 
+// Datepicker
+require('./vendor/jquery.picker/picker.min.css');
+
 // Less
 //
 require('./less/main.less');

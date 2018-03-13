@@ -32,6 +32,7 @@ module.exports = {
     home: './assets/home',
     'admin/index': './assets/admin/index',
     'admin/products': './assets/admin/products',
+    'admin/events': './assets/admin/events',
   },
   output: {
     path: path.resolve(__dirname, 'public/dist'),
@@ -75,7 +76,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       filename: "admin/commons.js",
       name: "admin/commons",
-      chunks: ['admin/index', 'admin/products'],
+      chunks: ['admin/index', 'admin/products', 'admin/events'],
     }),
     new webpack.optimize.CommonsChunkPlugin({
       filename: "commons.js",

@@ -263,10 +263,14 @@ function sortCat(up, req, res, next) {
     console.log(id, up);
 
     ProductCat.findOne({ _id: id }, function (err, pc) {
+      console.log(pc);
+
       if (err) {
         return next(err);
       }
+
       if (!pc || pc.order === 0) {
+
         console.log(`cannot find product with id ${id} or order is min`);
         return res.redirect('/admin/products/');
       }
