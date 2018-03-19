@@ -1,11 +1,9 @@
-var Event, mongoose, autoIncrement, ProductCat, Product;
+var Event, mongoose, autoIncrement, Product;
 
 mongoose = require('mongoose');
 autoIncrement = require('mongoose-auto-increment');
 
 autoIncrement.initialize(mongoose.connection);
-
-ProductCat = require('./product_category').schema;
 
 Product = new mongoose.Schema({
   id: Number,
@@ -14,13 +12,18 @@ Product = new mongoose.Schema({
   titlePicture: Number,
   title: String,
   description: String,
+  soldOut: {
+    type: Boolean,
+    default: false,
+  },
+  expectedRefillDate: Date,
   visible: {
     type: Boolean,
     default: false
   },
   type: {
     type: Number,
-    ref: 'ProductCat',
+    ref: 'ProductCategory',
   },
   creation_date: {
     type: Date,

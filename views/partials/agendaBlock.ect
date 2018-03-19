@@ -1,0 +1,27 @@
+<% if @events?.length : %>
+<table class="ui very basic table">
+  <tbody>
+    <% for event in @events : %>
+    <tr>
+
+      <% if @moment(event.begin).isSame(event.end, 'day') : %>
+        <td class="five wide">
+          <%= @moment(event.begin).format("Do MMMM YYYY") %>
+        </td>
+        <td class="five wide">
+          <%= @moment(event.begin).format("HH:mm") %> - <%= @moment(event.end).format("HH:mm") %>
+        </td>
+      <% else : %>
+        <td class="five wide"><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
+        <td class="fivw wide"><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
+      <% end %>
+      
+      <td class="six wide"><%= event.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else: %>
+<p>Keine Einträge vorhanden.</p>
+<% end %>
