@@ -1,7 +1,7 @@
 <% extend 'admin/layouts/main' %>
 
 <% block 'scripts' : %>
-  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+  <script src="/admin/products.bundle.js" charset="utf-8"></script>
 <% end %>
 
 <div class="ui page grid">
@@ -35,8 +35,8 @@
     <table class="ui fluid table">
       <thead>
         <tr>
-          <th width="five wide">Titel</th>
-          <th width="two wide">Preis (CHF)</th>
+          <th class="six wide">Titel</th>
+          <th class="six wide">Preis (CHF)</th>
           <th class="two wide">Sichtbar</th>
           <th class="two wide">Aktionen</th>
         </tr>
@@ -60,7 +60,7 @@
             <a class="ui icon button" href="/admin/products/modify/<%= product._id %>">
               <i class="write icon"></i>
             </a>
-            <button class="ui icon button remove-product" data-id="<%= product._id %>">
+            <button class="ui red icon button remove-product" data-id="<%= product._id %>">
               <i class="remove icon"></i>
             </button>
           </td>

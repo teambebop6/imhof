@@ -25,7 +25,11 @@
           <div class="centered column">
             <h4>Beschreibung</h4>
             <div>
+              <% if @product.description: %>
               <%= @product.description %>
+              <% else: %>
+              keine
+              <% end %>
             </div>
           </div>
         </div>
@@ -35,6 +39,11 @@
       <div class="ui grid">
         <div class="two column row">
           <div class="right floated column">
+            
+            <% if @product.soldOut : %>
+              <% include 'partials/soldOut.ect', { item: @product, moment: @moment } %>
+            <% else: %>
+            
             <h4>Preis</h4>
             <p><span>CHF <%= @utils.getCHF(@product.price) %> / Stk.</span></p>
 
@@ -64,6 +73,8 @@
                 </button>
               </div>
             </form>
+
+            <% end %>
           </div>
         </div>
       </div>

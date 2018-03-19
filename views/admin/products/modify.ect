@@ -1,8 +1,13 @@
 <% extend 'admin/layouts/main' %>
 
 <% block 'scripts' : %>
-  <script src="/admin/index.bundle.js" charset="utf-8"></script>
+  <script src="/admin/products.bundle.js" charset="utf-8"></script>
 <% end %>
+
+<% block 'stylesheets' : %>
+<link rel="stylesheet" href="/admin/products.css" type="text/css" />
+<% end %>
+
 
 <div class="ui page grid">
   <div class="row">
@@ -11,7 +16,7 @@
       <div class="ui grid">
         <div class="two column row">
           <div class="column">
-            <form id="modify-product" class="ui form" method="post" enctype="multipart/form-data" action="<%= @root %>/modify">
+            <form id="modify-product" class="ui form" method="post" enctype="multipart/form-data" action="<%= path.join(@root, '/modify') %>">
               <div class="hidden field">
                 <input name="id" type="hidden" value="<%= @product._id %>" />
               </div>
@@ -47,8 +52,23 @@
                   <label>Sichtbar?</label>
                 </div>
               </div>
+              <div class="field">
+                <div id="soldOut-checkbox" class="ui checkbox">
+                  <input id="soldOut" type="hidden" value="<%= @product.soldOut %>" />
+                  <input name="soldOut" type="checkbox">
+                  <label>Ausgetrunken?</label>
+                </div>
+              </div>
+              <div class="field" id="expectedRefillDate" 
+                                 style="display:<% if @product.soldOut: %>block<%else:%>none<%end%>;">
+                <label>Voraussichtliches Wiedereinstelldatum</label>
+                <input name="expectedRefillDate" type="text" value="<%= @product.expectedRefillDate %>" class="js-month-picker"/>
+              </div>
+
+
+              <!-- PRODUCT TYPE -->
               <div class="field" id="product-type-dropdown">
-                <input name="product-type-is-addition" id="product-type-is-addition" type="hidden" value="false" />
+                <input type="hidden" name="product-type-is-addition" id="product-type-is-addition" value="false" />
                 <input id="product-type" type="hidden" value="<% if @product.type: %><%= @product.type.name %><% end %>" />
                 <select name="type" class="ui search fluid dropdown">
                   <option value="">Produkttyp</option>

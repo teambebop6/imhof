@@ -8,7 +8,6 @@
   height:400px;
 }
 </style>
-
 <% end %>
 
 <% block 'scripts' : %>
@@ -20,37 +19,10 @@
   <div class="column">
     <h2><span>Agenda</span></h2>
 
+    <% include 'partials/agendaBlock.ect', { moment: @moment, events : @agenda } %>
     <% if @agenda?.length : %>
-    <table class="ui very basic table">
-      <thead>
-        <tr>
-          <th>Anlass</th>
-          <th>Beginn</th>
-          <th>Ende</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for event in @agenda : %>
-        <tr>
-          <td><%= event.name %></td>
-          <td><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
-          <td><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
-        </tr>
-        <% end %>
-        <tr>
-            <td colspan="3" style="text-align: right;">
-                <a href="/agenda" style="text-decoration: underline; font-style: italic">
-                    ältere anzeigen...
-                </a>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <% else: %>
-    <p>Die Agenda ist momentan leer.</p>
+    <a href="/agenda" style="text-decoration: underline; font-style: italic">Alle Events anzeigen...</a>
     <% end %>
-
 
     <h2><span>Facebook News</span></h2>
 
@@ -67,9 +39,9 @@
       <div class="four wide column img">
         <a href="/shop">
           <% if (@showcases[0] && @showcases[0].avatar):%>
-            <img id="empfehlung_img" height="325" width="97" src="/showcases/<%= @showcases[0].avatar.filename %>" class="ui itemimage" />
+          <img id="empfehlung_img" height="325" width="97" src="/showcases/<%= @showcases[0].avatar.filename %>" class="ui itemimage" />
           <% else: %>
-            <img id="empfehlung_img" height="325" width="97" src="" class="ui itemimage" />
+          <img id="empfehlung_img" height="325" width="97" src="" class="ui itemimage" />
           <% end %>
         </a>
       </div>
@@ -80,7 +52,7 @@
         <div class="stackable two column grid description">
           <div class="column">
             <p>
-                <%= @showcases[0].detail %>
+            <%= @showcases[0].detail %>
             </p>
           </div>
         </div>

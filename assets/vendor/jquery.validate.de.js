@@ -29,6 +29,11 @@
   } 
   );
 
+
+
+  // Custom rules
+
+
   var isSwissPhoneNumber = function(number){
     number = number.replace(/\s+/g, "");
     return number.length > 9 && number.match(/^(?:(?:|0{1,2}|\+{0,2})41(?:|\(0\))|0)([1-9]\d)(\d{3})(\d{2})(\d{2})$/);
@@ -47,6 +52,12 @@
       || isSwissPhoneNumber(value) 
       || /[a-z]+@[a-z]+\.[a-z]+/.test(value);
   }
-  
+
   $.validator.addMethod("phoneOrEmail", phoneOrEmailValidator, "Bitte geben Sie eine gültige Telefonnummer oder eine gültige Email-Adresse ein!");
+
+
+  $.validator.addMethod("price", function (value, element) {
+    return this.optional(element) || /^(\d+|\d+.\d{1,2})$/.test(value);
+  }, "Bitte eine zweistellige Kommazahl eingeben");
+
 }));

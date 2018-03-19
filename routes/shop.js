@@ -11,6 +11,7 @@ Cookies = require('cookies');
 var utils = require('../utils/Utils');
 ViewUtils = require('../utils/ViewUtils');
 ProductService = require('../services/product');
+var moment = require('moment');
 
 module.exports = function (app) {
   app.use('/shop', router);
@@ -33,6 +34,7 @@ router.get('/', function(req, res, next) {
         site : 'shop',	 
         cats: cats,
         favs: favs,
+        moment: moment,
       });
     });
   });
@@ -48,6 +50,7 @@ router.get('/:id(\\d+)/', function(req, res, next) {
         active: {products: true },
         product: product,
         utils: ViewUtils,
+        moment: moment,
       });
     }
   });
