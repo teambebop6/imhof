@@ -9,30 +9,26 @@
 <% end %>
 
 <div class="ui stackable grid imhof-family">
-  <div class="two column row">
-    <div class="column">
-      <img class="right floated" src="/images/logo_front_hq.png" />
-    </div>
-    <div class="column">
-      <div class="slider-pro" id="citation-slider">
-          <% a = 0%>
-          <% for citation in @citations: %>
-              <% if a == 0: %>
-                <% visibleClass='' %>
-              <% else: %>
-                <% visibleClass='hide' %>
-              <% end %>
-              <div class="citation <%= visibleClass %>" id="<%= 'citation-' + a %>">
-                <p class="text">
-                    <%= citation.words %>
-                </p>
-                <p class="author">
-                    - <%= citation.author %>
-                </p>
-              </div>
-              <% a+=1 %>
-          <% end %>
+  <div class="about-slider-wrapper">
+    <img class="des-image" src="/images/logo_front_hq.png" />
+    <div class="slider-pro" id="citation-slider">
+      <% a = 0%>
+      <% for citation in @citations: %>
+      <% if a == 0: %>
+      <% visibleClass='' %>
+      <% else: %>
+      <% visibleClass='hide' %>
+      <% end %>
+      <div class="citation <%= visibleClass %>" id="<%= 'citation-' + a %>">
+        <p class="text">
+          <%= citation.words %>
+        </p>
+        <p class="author">
+          - <%= citation.author %>
+        </p>
       </div>
+      <% a+=1 %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -97,38 +93,38 @@
 
 
       <h2><span>Angepflanzte Traubensorten</span></h2>
- 
+
 
       <div class="ui fluid stackable grid grapes-list">
         <div class="row">
           <% count = 1 %>
           <% for grape in @grapes : %>
-              <% if grape.image : %>
-                <div class="four wide column">
-                    <img src="/images/grapes/<%= grape.image %>" class="ui fluid image" />
-                </div>
-                <div class="four wide column">
-                  <div class="description border">
-                    <h3><%= grape.title %></h3>
-                    
-                    <p><%= grape.description %></p>
-                  </div>
-                </div>
+          <% if grape.image : %>
+          <div class="four wide column">
+            <img src="/images/grapes/<%= grape.image %>" class="ui fluid image" />
+          </div>
+          <div class="four wide column">
+            <div class="description border">
+              <h3><%= grape.title %></h3>
 
-                <% else : %>
+              <p><%= grape.description %></p>
+            </div>
+          </div>
 
-                <div class="six wide column">
-                  <h3><%= grape.title %></h3>
-                  <div class="description">
-                    <%= grape.description %>
-                  </div>
-                </div>
-                <div class="two wide column">
-                  <div class="border">
+          <% else : %>
 
-                  </div>
-                </div>
-              <% end %>
+          <div class="six wide column">
+            <h3><%= grape.title %></h3>
+            <div class="description">
+              <%= grape.description %>
+            </div>
+          </div>
+          <div class="two wide column">
+            <div class="border">
+
+            </div>
+          </div>
+          <% end %>
           <% end %>
           
         </div>
@@ -142,60 +138,60 @@
       <div class="credits">
         <p><strong>Quellenangaben:</strong> www.weinlandschweiz.ch / www.swisswine.ch</p>
         <p><strong>Fotos:</strong> www.rebschule-meier.ch / www.rebschulen.ch<p>
+        </div>
+
+        <% end %>
+
+
+
+        <h2><span>Facts</span></h2>
+
+        <div class="ui two column grid facts">
+          <div class="column">
+            <img class="ui tiny centered image" src="/images/icons/truck.png">
+            <p>Die Bewirtschaftung unseres gesamten Betriebes erfolgt nach den Richtlinien der integrierten Produktion und ist ein wichtiger Bestandteil unserer Philosophie.</p>
+          </div>
+          <div class="column">
+            <img class="ui tiny centered image" src="/images/icons/cherry.png">
+            <p>Eine weitere Intensivkultur sind rund 5 ha Kirschen. </p>
+          </div>
+          <div class="column">
+            <img class="ui tiny centered image" src="/images/icons/tree.png">
+            <p>Wir ernten Früchte von zahlreichen alten Hochstammbäumen, welche dann zu hochwertigen Edelbränden verarbeitet werden.</p>
+          </div>
+          <div class="column">
+            <img class="ui tiny centered image" src="/images/icons/sheep.png">
+            <p>Das restliche Land brauchen wir als Weide für unsere Mutterschafe.</p>
+          </div>
+        </div>
+
+        <h2><span>Chronik</span></h2>
+
+        <div id="myTimeline">
+          <div data-vtdate="2017">       
+            <p>Imhof's Merlot wird mit der Médaille d'Argent ausgezeichnet.</p>
+            <a href="https://www.laselection.ch/fr-CH/resultate/weinsuche.aspx/Search/productdetail/21502/Imhofs%20Merlot/ps/false" target="_blank">
+              <img class="ui small image medaille" src="/images/medailledargent.png" />
+            </a>
+          </div>
+          <div data-vtdate="2014">
+            Eröffnung des Wystüblis.
+          </div>
+          <div data-vtdate="Ab 1999">
+            Die Anbaufläche der Reben wird stetig vergrössert.
+          </div>
+          <div data-vtdate="1984 - 1991">
+            Im Laufe der Jahre wurden die Kühe durch Schafe ersetzt und der Betrieb wurde nach und nach ganz auf Wein- und Obstbau umgestellt.
+          </div>
+          <div data-vtdate="1983">
+            Die erste Parzelle Reben wird angepflanzt, um ein weiteres Standbein in der 
+            Landwirtschaft zu schaffen.
+          </div>
+          <div data-vtdate="vor 1983">
+            Der Betrieb wurde als traditioneller Milchwirtschafts- und Ackerbaubetrieb geführt.
+          </div>
+        </div>
+
       </div>
-      
-      <% end %>
-      
-
-
-      <h2><span>Facts</span></h2>
-
-      <div class="ui two column grid facts">
-        <div class="column">
-          <img class="ui tiny centered image" src="/images/icons/truck.png">
-          <p>Die Bewirtschaftung unseres gesamten Betriebes erfolgt nach den Richtlinien der integrierten Produktion und ist ein wichtiger Bestandteil unserer Philosophie.</p>
-        </div>
-        <div class="column">
-          <img class="ui tiny centered image" src="/images/icons/cherry.png">
-          <p>Eine weitere Intensivkultur sind rund 5 ha Kirschen. </p>
-        </div>
-        <div class="column">
-          <img class="ui tiny centered image" src="/images/icons/tree.png">
-          <p>Wir ernten Früchte von zahlreichen alten Hochstammbäumen, welche dann zu hochwertigen Edelbränden verarbeitet werden.</p>
-        </div>
-        <div class="column">
-          <img class="ui tiny centered image" src="/images/icons/sheep.png">
-          <p>Das restliche Land brauchen wir als Weide für unsere Mutterschafe.</p>
-        </div>
-      </div>
-
-      <h2><span>Chronik</span></h2>
-
-      <div id="myTimeline">
-        <div data-vtdate="2017">       
-          <p>Imhof's Merlot wird mit der Médaille d'Argent ausgezeichnet.</p>
-          <a href="https://www.laselection.ch/fr-CH/resultate/weinsuche.aspx/Search/productdetail/21502/Imhofs%20Merlot/ps/false" target="_blank">
-            <img class="ui small image medaille" src="/images/medailledargent.png" />
-          </a>
-        </div>
-        <div data-vtdate="2014">
-          Eröffnung des Wystüblis.
-        </div>
-        <div data-vtdate="Ab 1999">
-          Die Anbaufläche der Reben wird stetig vergrössert.
-        </div>
-        <div data-vtdate="1984 - 1991">
-          Im Laufe der Jahre wurden die Kühe durch Schafe ersetzt und der Betrieb wurde nach und nach ganz auf Wein- und Obstbau umgestellt.
-        </div>
-        <div data-vtdate="1983">
-          Die erste Parzelle Reben wird angepflanzt, um ein weiteres Standbein in der 
-Landwirtschaft zu schaffen.
-        </div>
-        <div data-vtdate="vor 1983">
-          Der Betrieb wurde als traditioneller Milchwirtschafts- und Ackerbaubetrieb geführt.
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
