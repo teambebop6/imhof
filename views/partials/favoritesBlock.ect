@@ -1,0 +1,24 @@
+<% if @favs?.length : %>
+
+<h2><span>Beliebt</span></h2>
+<div class="ui grid">
+  <div class="five column row">
+    <% for item in @favs: %>
+    <div class="column shop-item">
+      <a href="/shop/<%= item._id %>">
+        <p class="item-title">
+        <%= item.title %>
+        </p>
+        <div class="item-picture">
+          <%if item.avatar:%>
+          <img id="<%- item.html_id %>" src="/products/<%- item.avatar.filename %>" class="ui tiny centered image item-image">
+          <% else: %>
+          <img id="<%- item.html_id %>" src="/images/default_wine.png" class="ui tiny centered image item-image">
+
+          <% end %></div><a>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
