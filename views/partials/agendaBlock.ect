@@ -3,19 +3,20 @@
   <tbody>
     <% for event in @events : %>
     <tr>
-      <td><%= event.name %></td>
 
       <% if @moment(event.begin).isSame(event.end, 'day') : %>
-      <td>
-        <%= @moment(event.begin).format("Do MMMM YYYY") %>
-      </td>
-      <td>
-        <%= @moment(event.begin).format("HH:mm") %> - <%= @moment(event.end).format("HH:mm") %>
-      </td>
+        <td class="five wide">
+          <%= @moment(event.begin).format("Do MMMM YYYY") %>
+        </td>
+        <td class="five wide">
+          <%= @moment(event.begin).format("HH:mm") %> - <%= @moment(event.end).format("HH:mm") %>
+        </td>
       <% else : %>
-      <td><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
-      <td><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
+        <td class="five wide"><%= @moment(event.begin).format("Do MMMM YYYY, HH:mm") %></td>
+        <td class="fivw wide"><%= @moment(event.end).format("Do MMMM YYYY, HH:mm") %></td>
       <% end %>
+      
+      <td class="six wide"><%= event.name %></td>
     </tr>
     <% end %>
   </tbody>

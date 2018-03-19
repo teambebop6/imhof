@@ -66,6 +66,12 @@ router.get('/', function (req, res, next) {
         if (err) {
           next(err)
         } else {
+          var agenda = events.sort(function (a, b) {
+            return a.begin - b.begin
+          }).filter(function (element, index, array) {
+            return element.end > Date.now();
+          }).slice(0, limit);
+
           // showcase
           // TODO only latest now
           Showcase.find({visible: true}).sort({visible: -1, last_modified_date: -1}).exec(function(err, showcases) {
@@ -76,11 +82,7 @@ router.get('/', function (req, res, next) {
                 site: 'home',
                 shopItems: shopItems.slice(0, 2),
                 moment: moment,
-                agenda: events.sort(function (a, b) {
-                  return a.begin - b.begin
-                }).filter(function (element, index, array) {
-                  return element.end > Date.now();
-                }).slice(0, limit),
+                agenda: agenda,
                 showcases: showcases
               });
             }
@@ -98,11 +100,11 @@ router.get('/agenda', function (req, res, next) {
     } else {
 
       var upcomingEvents = events.filter(function(event){
-        return moment(event.begin).diff(Date.Now, 'days') <= 0
+        return moment(event.begin).diff(Date.Now, 'days') > 0
       });
 
       var pastEvents = events.filter(function(event){
-        return moment(event.begin).diff(Date.Now, 'days') > 0
+        return moment(event.begin).diff(Date.Now, 'days') <= 0
       })
 
       res.render('agenda.ect', {

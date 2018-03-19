@@ -28,7 +28,14 @@
           <tbody>
             <% for item in @items: %>
             <tr data-id="<%= item._id %>" class="item-row">
-              <td><img class="ui mini image" src="/products/<%= item.details.avatar.filename %>"></td>
+              <td>
+                <% if item.details.avatar: %>
+                <img class="ui mini image" src="/products/<%= item.details.avatar.filename %>">
+                <% else : %>
+                <img class="ui mini image" src="/images/default_wine.png">
+                <% end %>
+              
+              </td>
               <td><%= item.details.title %></td>
               <td id="price-<%= item._id %>"><%= @utils.getCHF(item.details.price) %></td>
               <td>
