@@ -1,8 +1,7 @@
 <div class="soldOut">
-  <strong>Ausgetrunken!</strong>
-  <% if @item.expectedRefillDate: %>
-  <p>
-  <span>Nächste Produktion erwartet am: <%= @moment(@item.expectedRefillDate).format("MMMM YYYY") %></span>
-  </p>
-  <% end %>
+	<div class="emptyWine"><img src="/images/icons/emptyWineBottle.svg"></div>
+	<div class="Ausgetrunken soldOut_banner">Ausgetrunken!</div>
+	<% if @item.expectedRefillDate: %>
+	<div class="date soldOut_banner">Nächste Produktion erwartet am: <%= @moment(@item.expectedRefillDate).format("MMMM YYYY") %></div>
+	<% end %>
 </div>
