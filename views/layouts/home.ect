@@ -38,13 +38,19 @@
   <div class="cart-icon notOnMobilie">
     <% include 'partials/shop_cart' %>
   </div>
-  <div class="ui page-top sticky fixed stackable page grid page-cont">
+  <div class="ui page-top sticky fixed stackable page grid page-cont" id="header">
 
     <div class="ui grid page-menu">
       <div class="column page-nav">
 
         <a href="/" class="home return-home"></a>
-        <a class="toggle-sidebar"><i class="huge content icon"></i></a>
+        <!-- <a class="toggle-sidebar"><i class="huge content icon"></i></a> -->
+
+        <div class="menu-toggle">
+          <span class="lines-button">
+            <span class="lines"></span>
+          </span>
+        </div>
 
         <div class="cart-icon">
           <% include 'partials/shop_cart' %>
@@ -55,6 +61,8 @@
       </div>
     </div>
   </div>
+
+  <div class="overlay"></div>
 
   <div class="ui page grid top-bg">
     <div class="alpha">

@@ -3,68 +3,74 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1">
 
-    <!-- Force Compatibility View -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <!-- Force Compatibility View -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display' rel='stylesheet' type='text/css' />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display' rel='stylesheet' type='text/css' />
 
 
-    <link rel="stylesheet" href="/commons.css" type="text/css" />
+  <link rel="stylesheet" href="/commons.css" type="text/css" />
 
-    <% content 'stylesheets' %>
-    
-    <title>Imhof's Wein und Obstbau</title>
-  </head>
-  <body>
-    <div class="ui sidebar inverted vertical menu">
-      <% include 'partials/menu' %>
+  <% content 'stylesheets' %>
+  
+  <title>Imhof's Wein und Obstbau</title>
+</head>
+<body>
+  <div class="ui sidebar inverted vertical menu">
+    <% include 'partials/menu' %>
+  </div>
+
+  <div class="pusher">
+    <div class="cart-icon cart-out">
+      <% include 'partials/shop_cart' %>
     </div>
 
-    <div class="pusher">
-      <div class="cart-icon cart-out">
-        <% include 'partials/shop_cart' %>
-      </div>
-
-      <div class="ui page-top top sticky fixed stackable page grid">
-        <div class="ui grid page-menu">
-          <div class="column page-nav">
-            <a href="/" class="return-home">
-              <p style="display:none;"><span>Home</span></p>
-              <div class="logo-container">
-                <img src="/images/logo_@2x.png" />
-              </div>
-            </a>
-
-            <a class="toggle-sidebar"><i class="huge content icon"></i></a>
-
-            <div class="cart-icon cart-in">
-              <% include 'partials/shop_cart' %>
+    <div class="ui page-top top sticky fixed stackable page grid">
+      <div class="ui grid page-menu">
+        <div class="column page-nav">
+          <a href="/" class="return-home">
+            <p style="display:none;"><span>Home</span></p>
+            <div class="logo-container">
+              <img src="/images/logo_@2x.png" />
             </div>
-            <div class="nav clearfix">
-              <% include 'partials/menu' %>
-            </div>
+          </a>
+
+          <!-- <a class="toggle-sidebar"><i class="huge content icon"></i></a> -->
+
+          <div class="menu-toggle">
+            <span class="lines-button">
+              <span class="lines"></span>
+            </span>
+          </div>
+
+          <div class="cart-icon cart-in">
+            <% include 'partials/shop_cart' %>
+          </div>
+          <div class="nav clearfix">
+            <% include 'partials/menu' %>
           </div>
         </div>
-        <% include 'partials/subnav' %>
       </div>
-
-
-     
-      <% content %>
-
-      <div class="filler" style="height:3rem;"></div>
-      
-      <% include 'partials/footer' %>
-
+      <% include 'partials/subnav' %>
     </div>
 
-    <script src="/commons.js" charset="utf-8"></script>
 
-    <% content 'scripts' %>
+    
+    <% content %>
 
-  </body>
+    <div class="filler" style="height:3rem;"></div>
+    
+    <% include 'partials/footer' %>
+
+  </div>
+
+  <script src="/commons.js" charset="utf-8"></script>
+
+  <% content 'scripts' %>
+
+</body>
 </html>

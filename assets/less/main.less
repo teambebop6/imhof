@@ -386,7 +386,7 @@ a.link:hover, a.link.footer-link:hover{
 .wavy{
   bottom: 0;
   position: absolute;
-  opacity: .8;
+  opacity: .5;
   width: 100vw;
   height: 200px;
 }
@@ -689,14 +689,26 @@ p.category-selection{
 }
 
 
-.ui.grid.subnav-grid {
+.return-home{  
+  left: 2rem;
+  top: 11px;
+  position: fixed;
+  display: table;
 
-  padding-left: 0;
-  margin-left: 0;
-  padding-right: 0;
-  width:100%;
+    // &.home{
+    //   display:none;
+    // }
+  }
 
-  .row{
+
+  .ui.grid.subnav-grid {
+
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 0;
+    width:100%;
+
+    .row{
     //border-radius: 0 0 5px 5px;
     background:@light-gray;
     opacity:0.9;
@@ -984,7 +996,7 @@ blockquote.not(.facebook){
     }
 
     margin-right:2rem;
-    margin-top:1rem;
+    margin-top:13px;
     i{
       font-size:2em !important;
       margin:0 0 0.2rem !important;
@@ -996,7 +1008,7 @@ blockquote.not(.facebook){
 
   .cart-in{
     display:block;
-    margin-top:20px;
+    // margin-top:20px;
     background:black;
 
     a:link, a:visited, a:active{color:white;}
@@ -1062,6 +1074,16 @@ blockquote.not(.facebook){
     }
   }
 }
+
+.ui.vertical.menu {
+  width: 15rem;
+  visibility: hidden;
+  top: 70px;
+  right: 0;
+  left: auto;
+  z-index: 10000;
+}
+
 h1{
   display:none;
 
@@ -1097,17 +1119,11 @@ h2{
   list-style-type:none;
   padding-left:0;
   height:70px;
-  // @border-color: @light-gray;
-  // border-left:1px solid @border-color;
-  // border-bottom:1px solid @border-color;
-  // border-right:1px solid @border-color;
 
   // Colin's changes 19 Mar 2018
   box-shadow: 0 0 20px 0px rgba(0,0,0,.05);
 
 
-  //background:white;
-  //opacity:0.85;
 
   .item{
     //text-transform:uppercase;
@@ -1170,17 +1186,121 @@ h2{
   padding:0 !important;
   position:relative;
 
-  .toggle-sidebar{
-    float:right;
-    color:white;
 
-    margin-top:5px;
-    i.huge.icon{font-size:3.8em;}
-    &:hover{color:@light-gray;}
+
+  /*------menubtn-------*/
+  .menu-toggle{
+    position: relative;
+    float: right;
+    top: 24px;
+    margin-right: 2rem;
+
+    cursor: pointer;
   }
+
+
+  .lines-button {
+    display: inline-block;
+    -webkit-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+
+    user-select: none;
+    border-radius: 0.21429rem;
+    -webkit-appearance: none;
+    margin-left: 10px;
+  }
+
+  .lines {
+    display: inline-block;
+    width: 1.5rem;
+    height: 0.1875rem;
+    background: #fff;
+    transition: 0.3s;
+    position: relative;
+    top: -5px;
+  }
+
+  .lines:before, .lines:after {
+    display: inline-block;
+    width: 1.5rem;
+    height: 0.1875rem;
+    background: #fff;
+    transition: 0.3s;
+    position: absolute;
+    left: 0;
+    content: '';
+    -webkit-transform-origin: 0.10714rem center;
+    -ms-transform-origin: 0.10714rem center;
+    -moz-transform-origin: 0.10714rem center;
+    -o-transform-origin: 0.10714rem center;
+    transform-origin: 0.10714rem center;
+  }
+
+  .lines:before {
+    top: 0.5rem;
+  }
+
+  .lines:after {
+    top: -0.5rem;
+  }
+
+  .menu-x{background: transparent}
+
+  .menu-x:after, .menu-x:before {
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    background: #fff;
+    top: 0;
+    width: 1.5rem;
+  }
+
+  .menu-x:before {
+    -webkit-transform: rotate3d(0,0,1,45deg);
+    -ms-transform: rotate3d(0,0,1,45deg);
+    -moz-transform: rotate3d(0,0,1,45deg);
+    -o-transform: rotate3d(0,0,1,45deg);
+    transform: rotate3d(0,0,1,45deg);
+  }
+
+  .menu-x:after {
+    -webkit-transform: rotate3d(0,0,1,-45deg);
+    -ms-transform: rotate3d(0,0,1,-45deg);
+    -moz-transform: rotate3d(0,0,1,-45deg);
+    -o-transform: rotate3d(0,0,1,-45deg);
+    transform: rotate3d(0,0,1,-45deg);
+  }
+
+
+
+
+  /*------menubtnEnd-------*/
+
   .nav{display:none;}
 }
 
+
+.overlay{
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0,0,0,.6);
+  opacity: 0;
+  top: 0;
+  z-index: 50;
+  cursor: pointer;
+}
+
+.close-menu{
+  display: block;
+  opacity: 0.6;
+}
 
 .button.cart-icon-add{
   position:absolute;
@@ -1245,15 +1365,12 @@ h2{
 
 .return-home{
 
-  float: left;
-
   .logo-container{
     display:table-cell;
     vertical-align:middle;
 
     img{
-      height:60px;
-      width:67px;
+      width:55px;
 
       &:hover{
         opacity:0.8;
@@ -1280,7 +1397,7 @@ h2{
 .alpha{
   font-family: 'Playfair Display';
   padding-top: 10rem;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   position: relative;
   height: 100%;
   text-align: center;
@@ -1481,6 +1598,7 @@ Modify as content requires.
 }
 
 @media only screen and (max-width: 600px) {
+  .ui.page.grid{padding:0!important}
   .ui.grid.imhof-family{padding:0;}
 }
 
@@ -1522,7 +1640,7 @@ Modify as content requires.
 
 
   .page-nav{
-    a.toggle-sidebar{display:none;}
+    .menu-toggle{display:none;}
 
     .nav{
       display:block; // visible
@@ -1559,19 +1677,6 @@ Modify as content requires.
     }
   }
 
-  .return-home{  
-
-    margin-left:-134px;
-    margin-top:4px;
-    position:absolute;
-    height:100%; 
-    display:table;
-
-    &.home{
-      display:none;
-    }
-  }
-
   .cart-icon{
     position:fixed;
     top:0;
@@ -1587,10 +1692,6 @@ Modify as content requires.
   .cart-out{
     display:block;
   }
-
-
-
-
 
 }
 
