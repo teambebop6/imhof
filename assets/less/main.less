@@ -159,6 +159,60 @@ h3.title{
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .block{
+
+    > .image{
+      width:94%;
+      margin: auto;
+    }
+
+    > .description{
+      width: 94%;
+      position: relative;
+      margin: auto;
+      margin-top: 2rem;
+    }
+  }
+
+  .food-block.block{ 
+    margin-top: 2rem;
+    > .image{
+      width: 45%;
+    }
+    > .description{
+      margin: 0;
+      width: 60%;
+      padding: 2rem;
+      left: 1rem;
+      top:3rem;
+    }
+  }
+
+  .contact-block{
+    margin-top: 2rem;
+  }
+
+}
+
+
+
+@media only screen and (max-width: 500px) {
+
+  .food-block.block{ 
+    > .image{
+      width: 94%;
+      float: none;
+    }
+    > .description{
+      width: 94%;
+      margin-bottom: 3rem;
+    }
+  }
+
+}
+
+
 .phone, .email{
   margin-top:2rem;
   span{
@@ -450,7 +504,7 @@ a.link:hover, a.link.footer-link:hover{
 }
 
 .soldOut{
-  position: absolute;
+  position: relative;
   bottom: 80px;
 
   .emptyWine{
@@ -469,16 +523,16 @@ a.link:hover, a.link.footer-link:hover{
   }
 
   .soldOut_banner{
+    text-align: center;
     color: #ffffff;
-    padding: 8px 10px 8px 30px;
-    margin-left: 20px;
-    text-align: left;
+    padding: 8px 10px;
+    margin: auto;
+    left: 0;
+    right: 0;
     position: absolute;
-    top: 3px;
-    // min-width: 166px;
+    min-width: 166px;
     height: 40px;
-    overflow: hidden;
-
+    display: block;
     transition: all 0.5s ease;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
@@ -488,18 +542,15 @@ a.link:hover, a.link.footer-link:hover{
     font-family: 'Playfair Display', serif;
   }
   .date{
-    z-index: 10;
+    top: 0;
     background: #555555;
     font-size: .7rem;
     line-height: 12px;
-    width: 0px;
-    padding: 8px 0;
   }
 }
 .soldOut:hover{
   .date{
-    width: 166px;
-    padding: 8px 10px 8px 30px;
+    top: 40px;
   }
 }
 
