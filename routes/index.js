@@ -146,14 +146,6 @@ router.get('/wystuebli', function (req, res, next) {
   res.render('wystuebli', {site: 'wyystuebli'});
 });
 
-router.get('/impressum', function (req, res, next) {
-  res.render('impressum', {site: 'impressum'});
-});
-
-
-router.get('/agb', function (req, res, next) {
-  res.render('agb', {site: 'agb'});
-});
 
 router.get('/submit', function (req, res, next) {
   res.redirect('/shop');
