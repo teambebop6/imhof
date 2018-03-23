@@ -3,75 +3,84 @@
 <!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>   <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 
-    <!-- viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display' rel='stylesheet' type='text/css' />
+  <!-- viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display' rel='stylesheet' type='text/css' />
 
-    <link href='/commons.css' rel='stylesheet' type='text/css' />
+  <link href='/commons.css' rel='stylesheet' type='text/css' />
 
-    <% content 'stylesheets' %>
+  <% content 'stylesheets' %>
 
-    <title>Imhof's Wein und Obstbau - Das Gute liegt so nah! - Home</title>
-  </head>
-  <body>
+  <title>Imhof's Wein und Obstbau - Das Gute liegt so nah! - Home</title>
+</head>
+<body>
 
-    <!-- FABEBOOK TIMELINE -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.10";
-fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!-- END FACEBOOK TIMELINE -->
+  <!-- FABEBOOK TIMELINE -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.10";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- END FACEBOOK TIMELINE -->
 
-    <div class="ui sidebar inverted vertical menu">
-      <% include 'partials/menu' %>
-    </div>
-    <div class="pusher">
+<div class="ui sidebar inverted vertical menu">
+  <% include 'partials/menu' %>
+</div>
+<div class="pusher">
 
-      <div class="cart-icon cart-out">
-        <% include 'partials/shop_cart' %>
-      </div>
-      <div class="ui page-top sticky fixed stackable page grid page-cont">
+  <div class="cart-icon notOnMobilie">
+    <% include 'partials/shop_cart' %>
+  </div>
+  <div class="ui page-top sticky fixed stackable page grid page-cont" id="header">
 
-        <div class="ui grid page-menu">
-          <div class="column page-nav">
+    <div class="ui grid page-menu">
+      <div class="column page-nav">
 
-            <a href="/" class="home return-home"></a>
-            <a class="toggle-sidebar"><i class="huge content icon"></i></a>
+        <a href="/" class="home return-home"></a>
+        <!-- <a class="toggle-sidebar"><i class="huge content icon"></i></a> -->
 
-            <div class="cart-icon cart-in">
-              <% include 'partials/shop_cart' %>
-            </div>
-            <div class="nav clearfix">
-              <% include 'partials/menu' %>
-            </div>
-          </div>
+        <div class="menu-toggle">
+          <span class="lines-button">
+            <span class="lines"></span>
+          </span>
+        </div>
+
+        <div class="cart-icon">
+          <% include 'partials/shop_cart' %>
+        </div>
+        <div class="nav clearfix">
+          <% include 'partials/menu' %>
         </div>
       </div>
-
-      <div class="ui page grid top-bg">
-        <div class="ui two column row logo-row">
-          <div class="alpha"></div>
-          <div class="logo"></div>
-        </div>
-      </div>
-      <div class="ui relaxed page grid page-cont">
-        <% content %>
-      </div>
-
-
-      <% include 'partials/footer' %>
     </div>
+  </div>
 
-    <script src="/commons.js"></script>
-    <% content 'scripts' %>
+  <div class="overlay"></div>
 
-  </body>
+  <div class="ui page grid top-bg">
+    <div class="alpha">
+      <img class="header-logo" src="/images/logo_front_hq.png" >
+      <div class="wein-und_obstbau">WEIN &amp; UND OBSTBAU</div>
+      <h3>SISSACH</h3>
+    </div>
+  </div>
+  <div class="ui relaxed page grid page-cont">
+    <% content %>
+  </div>
+
+
+  <% include 'partials/footer' %>
+</div>
+
+<script src="/commons.js"></script>
+<% content 'scripts' %>
+
+</body>
 </html>
