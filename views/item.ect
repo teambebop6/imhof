@@ -35,10 +35,10 @@
         </div>
       </div>
     </div>
-    <div class="column">
+    <div class="column clearfix">
       <div class="ui grid">
         <div class="two column row">
-          <div class="right floated column">
+          <div class="right floated column soldOut_column">
             
             <% if @product.soldOut : %>
               <% include 'partials/soldOut.ect', { item: @product, moment: @moment } %>
