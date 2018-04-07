@@ -15,18 +15,21 @@ common.then(function(){
   }
 
   // Items opacity
-  $('.shop-item').on('mouseover', function(){
-    $('.item-image').not($(this).find('.item-image')).css('opacity', '0.2');
-    $(this).find('.item-title').show();
-  });
-  $('.shop-item').on('mouseleave', function(){
-    $('.item-image').not($(this).find('.item-image')).css('opacity', '');
-    $(this).find('.item-title').hide();
-  });
-
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+    // some code..
+  } else {
+    $('.shop-item').on('mouseover', function(){
+      $('.item-image').not($(this).find('.item-image')).css('opacity', '0.2');
+      $(this).find('.item-title').show();
+    });
+    $('.shop-item').on('mouseleave', function(){
+      $('.item-image').not($(this).find('.item-image')).css('opacity', '');
+      $(this).find('.item-title').hide();
+    });
+  }
 
   // Item cart
- 
+
   $('.buy-item').removeClass('disabled');
   $('.to-cart').removeClass('disabled');
   $('.insta-buy').removeClass('disabled');
@@ -299,8 +302,8 @@ common.then(function(){
           }else{
             // Success
             var successModal = viewUtils.miniModal("Besten Dank!", "\
-                <p>Wir haben Ihre Vorbestellung erhalten und melden uns bald bei Ihnen.</p> \
-                <p>Herzlich,</p><p>Familie Imhof</p>");
+              <p>Wir haben Ihre Vorbestellung erhalten und melden uns bald bei Ihnen.</p> \
+              <p>Herzlich,</p><p>Familie Imhof</p>");
             $(successModal).modal('show');
           }
         }).fail(function(xhr, status, err){
